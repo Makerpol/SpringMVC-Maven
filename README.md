@@ -1,3 +1,9 @@
+#
+
+后台框架：spring+springmvc+mybatis
+前端框架：layui+juqery
+依赖管理：maven
+服务器： jetty
 
 ## git init
 ## git add README.md
