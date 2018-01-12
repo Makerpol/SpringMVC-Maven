@@ -17,6 +17,7 @@ public class PaperServiceImpl implements PaperService {
 	
 	@Override
 	public void addPaper(Paper paper) throws DataAccessException {
+		paper.setText(format(paper.getText()));
 		mapper.insertSelective(paper);
 	}
 
@@ -47,6 +48,16 @@ public class PaperServiceImpl implements PaperService {
 	
 	@Override
 	public void upDataPaper(Paper paper) throws DataAccessException {
+		paper.setText(format(paper.getText()));
 		mapper.updateByPrimaryKeySelective(paper);
+	}
+	
+	/**
+	 * 替换文章内容中的换行(\r),空格(" ")，保证文章格式不变
+	 * @param text 文章内容
+	 * @return format后的文章内容
+	 */
+	private String format(String text) {
+		return text.replaceAll("\r", "<br>").replaceAll(" ","&nbsp;&nbsp;");
 	}
 }
