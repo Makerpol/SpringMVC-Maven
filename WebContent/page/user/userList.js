@@ -1,4 +1,5 @@
- layui.config({
+var LoginUser = $.parseJSON(user);
+layui.config({
 	base : "js/"
 }).use(['form','layer','jquery','laypage'],function(){
 	var form = layui.form(),
@@ -94,6 +95,12 @@
 	}
 	//添加新用户
 	$(".linksAdd_btn").click(function(){
+		if(LoginUser.grade==2|| LoginUser.grade==1){
+			layer.open({
+				content: '没有权限添加用户！'
+			});     
+			return false;
+		}
 		var index = layui.layer.open({
 			title : "添加新用户",
 			type : 2,
@@ -169,6 +176,14 @@
  
 	//操作
 	$("body").on("click",".links_edit",function(){  //编辑
+
+		if(LoginUser.grade!=0){
+			layer.open({
+				content: '没有权限编辑文章！'
+			});     
+			return false;
+		}
+		
 		var _this = $(this);
 		var id = _this.attr("data-id");
 		var index = layui.layer.open({
@@ -187,6 +202,14 @@
 	})
 
 	$("body").on("click",".links_del",function(){  //删除
+		
+		if(LoginUser.grade!=0){
+			layer.open({
+				content: '没有权限删除文章！'
+			});     
+			return false;
+		}
+		
 		var _this = $(this);
 		layer.confirm('确定删除此信息？',{icon:3, title:'提示信息'},function(index){
 			var id = _this.attr("data-id");

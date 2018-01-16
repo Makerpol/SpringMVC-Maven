@@ -22,6 +22,20 @@ layui.config({
 		window.sessionStorage.setItem("lockcms",true);
 		lockPage();
 	})
+	
+	$(".loginout").on("click",function(){
+		
+		$.ajax({
+			url:"userLogout.do",
+			success:function(data){
+				if(data.message=="ok"){
+					console.log("loginout");
+					window.parent.location.href = "/login.jsp";
+				}
+			}
+		})
+	})
+	
 	// 判断是否显示锁屏
 	if(window.sessionStorage.getItem("lockcms") == "true"){
 		lockPage();
@@ -94,7 +108,7 @@ layui.config({
 	}
 	//判断是否处于锁屏状态(如果关闭以后则未关闭浏览器之前不再显示)
 	if(window.sessionStorage.getItem("lockcms") != "true" && window.sessionStorage.getItem("showNotice") != "true"){
-		showNotice();
+		//showNotice();
 	}
 	$(".showNotice").on("click",function(){
 		showNotice();
@@ -137,18 +151,4 @@ layui.config({
 //打开新窗口
 function addTab(_this){
 	tab.tabAdd(_this);
-}
-
-//捐赠弹窗
-function donation(){
-	layer.tab({
-		area : ['260px', '367px'],
-		tab : [{
-			title : "微信",
-			content : "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/wechat.jpg'></div>"
-		},{
-			title : "支付宝",
-			content : "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/alipay.jpg'></div>"
-		}]
-	})
 }

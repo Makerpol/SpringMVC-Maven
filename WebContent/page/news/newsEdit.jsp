@@ -32,18 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<div class="layui-inline">
-				<label class="layui-form-label">自定义属性</label>
-				<div class="layui-input-block" >
-					<input type="checkbox" class="tuijian" name="tuijian" title="推荐" >
-				</div>
-				<div class="layui-input-block" >
-					<input type="checkbox"  class="newsStatus" name="shenhe" title="审核" <c:choose><c:when test='${paper.status == 0}'>checked</c:when></c:choose>>
-				</div>
-				<div class="layui-input-block" >
-					<input type="checkbox"  class="isShow" name="show" title="展示" <c:choose><c:when test='${paper.show == 0}'>checked</c:when></c:choose>>
-				</div>
-			</div>
+			
 			<div class="layui-inline">		
 				<label class="layui-form-label">文章作者</label>
 				<div class="layui-input-inline">
@@ -56,6 +45,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this})" value="${paper.date}">
 				</div>
 			</div>
+			
+		</div>
+		<div class="layui-form-item">
+		<div class="layui-inline">
+				<label class="layui-form-label">文章类型</label>
+				<div class="layui-input-inline">
+					<select name="type" class="type" lay-filter="type">
+						<option value="0" <c:choose><c:when test='${paper.type == 0}'>selected</c:when></c:choose>>自然科学</option>
+						<option value="1" <c:choose><c:when test='${paper.type == 1}'>selected</c:when></c:choose>>工程技术</option>
+						<option value="2" <c:choose><c:when test='${paper.type == 2}'>selected</c:when></c:choose>>医药卫生</option>
+						<option value="3" <c:choose><c:when test='${paper.type == 3}'>selected</c:when></c:choose>>农业科学</option>
+						<option value="4" <c:choose><c:when test='${paper.type == 4}'>selected</c:when></c:choose>>哲学政法</option>
+						<option value="5" <c:choose><c:when test='${paper.type == 5}'>selected</c:when></c:choose>>社会科学</option>
+						<option value="6" <c:choose><c:when test='${paper.type == 6}'>selected</c:when></c:choose>>科教文艺</option>
+					</select>
+				</div>
+			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">浏览权限</label>
 				<div class="layui-input-inline">
@@ -66,11 +72,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
+		
 		<div class="layui-form-item">
-			<label class="layui-form-label">关键字</label>
-			<div class="layui-input-block">
-				<input type="text" class="layui-input" placeholder="请输入文章关键字">
+		<div class="layui-inline">
+			<label class="layui-form-label">自定义属性</label>
+			<div class="layui-input-block" >
+				<input type="checkbox" class="tuijian" name="tuijian" title="推荐" >
+				<input type="checkbox"  class="newsStatus" name="shenhe" title="审核" <c:choose><c:when test='${paper.status == 0}'>checked</c:when></c:choose>>
+				<input type="checkbox"  class="isShow" name="show" title="展示" <c:choose><c:when test='${paper.show == 0}'>checked</c:when></c:choose>>
 			</div>
+		</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">内容摘要</label>

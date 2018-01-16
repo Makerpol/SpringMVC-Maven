@@ -18,9 +18,11 @@ layui.config({
  		param.power = $(".browseLook").val();
  		param.date = $(".newsTime").val();
  		param.author = $(".newsAuthor").val();
+ 		param.type = $(".type").val();
  		param.show = data.field.show=="on" ? 1 : 0;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
- 		param.text = layedit.getText(editIndex);
+ 		param.text = layedit.getContent(editIndex);
+ 		console.log(param.text);
  		
  		
  		$.ajax({

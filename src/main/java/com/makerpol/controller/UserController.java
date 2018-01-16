@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,7 +86,7 @@ public class UserController {
 	
 	@RequestMapping(value="/deleteUser")
 	@ResponseBody
-	public Map deleteUser(@RequestParam Integer id) {
+	public Map<Object,Object> deleteUser(@RequestParam Integer id) {
 		Map<Object,Object> map = new HashMap<Object,Object>();
 		try {
 			service.deleteUser(id);
@@ -122,7 +121,7 @@ public class UserController {
 	
 	@RequestMapping(value="/addUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map addUser(@RequestBody User user) {
+	public Map<Object,Object> addUser(@RequestBody User user) {
 		Map<Object,Object> map = new HashMap<Object,Object>();
 		try {
 			service.addUser(user);

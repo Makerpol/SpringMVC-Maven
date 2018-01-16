@@ -1,7 +1,14 @@
 package com.makerpol.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.http.HttpResponse;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.makerpol.entity.User;
 import com.makerpol.service.UserService;
 /**
@@ -53,8 +61,11 @@ public class LoginController {
 	 * 注销处理
 	 */
 	@RequestMapping(value="/userLogout")
-	public String userLogout(HttpSession session) {
+	@ResponseBody
+	public Map<String,String> userLogout(HttpSession session,HttpServletResponse resp){
+		Map<String,String> map = new HashMap<String,String>();
 		session.removeAttribute("user");
-		return "login";
+		map.put("message", "ok");
+		return map;
 	}
 }

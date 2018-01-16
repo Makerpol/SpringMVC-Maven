@@ -1,9 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.makerpol.entity.User"%>
+<%@ page import="net.sf.json.JSONObject"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+User user = (User)session.getAttribute("user");
+String userInfo = JSONObject.fromObject(user).toString();
 %>
 <!DOCTYPE html>
 <html>
@@ -19,6 +23,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
 	<link rel="stylesheet" href="/css/news.css" media="all" />
+	<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
+	<script type="text/javascript">
+		var user = '<%=userInfo%>';
+		console.log(user);
+	</script>
 </head>
 <body class="childrenBody">
 	<blockquote class="layui-elem-quote news_search">

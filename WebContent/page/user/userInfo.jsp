@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span class="x-red">*</span>用户组
                 </label>
                     <div class="layui-input-inline">
-                      <select id="grade" name="role">
+                      <select id="grade" name="role" <c:choose><c:when test="${user.grade != 0}">disabled="disabled"</c:when></c:choose>>
                         <option value="">请选择用户组</option>
                         <option value="0" <c:choose><c:when test="${user.grade == 0}">selected='selected'</c:when></c:choose>>超级管理员</option>
                         <option value="1" <c:choose><c:when test="${user.grade == 1}">selected='selected'</c:when></c:choose>>编辑人员</option>

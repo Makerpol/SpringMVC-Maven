@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import com.makerpol.dao.PaperMapper;
 import com.makerpol.entity.Paper;
 
+/**
+ * æ–‡ç« 
+ * @author user
+ *
+ */
 @Service
 public class PaperServiceImpl implements PaperService {
 	
@@ -17,7 +22,6 @@ public class PaperServiceImpl implements PaperService {
 	
 	@Override
 	public void addPaper(Paper paper) throws DataAccessException {
-		paper.setText(format(paper.getText()));
 		mapper.insertSelective(paper);
 	}
 
@@ -32,30 +36,39 @@ public class PaperServiceImpl implements PaperService {
 	} 
 
 	@Override
-	public List<Paper> getPaperByName(String param) throws DataAccessException {
-		return mapper.getPaperByName(param);
-	}
-
-	@Override
 	public Paper getPaper(Integer id) throws DataAccessException {
 		return mapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public List<Paper> getPaper(String param) throws DataAccessException {
-		return mapper.getPaperList(param);
+		return this.getPaperByName(param);
 	}
 	
+	@Override
+	public List<Paper> getPaper(String starTime, String endTime) {
+		return mapper.getPaperListByTime(starTime,endTime);
+	}
+
 	@Override
 	public void upDataPaper(Paper paper) throws DataAccessException {
 		paper.setText(format(paper.getText()));
 		mapper.updateByPrimaryKeySelective(paper);
 	}
 	
+	@Override
+	public List<Paper> getPaperListByType(Integer type) {
+		return mapper.getPapeListrByType(type);
+	}
+
+	private List<Paper> getPaperByName(String param) throws DataAccessException {
+		return mapper.getPaperListByName(param);
+	}
+
 	/**
-	 * Ìæ»»ÎÄÕÂÄÚÈİÖĞµÄ»»ĞĞ(\r),¿Õ¸ñ(" ")£¬±£Ö¤ÎÄÕÂ¸ñÊ½²»±ä
-	 * @param text ÎÄÕÂÄÚÈİ
-	 * @return formatºóµÄÎÄÕÂÄÚÈİ
+	 * æ›¿æ¢æ–‡ç« å†…å®¹ä¸­çš„æ¢è¡Œ(\r),ç©ºæ ¼(" ")ï¼Œä¿è¯æ–‡ç« æ ¼å¼ä¸å˜
+	 * @param text æ–‡ç« å†…å®¹
+	 * @return formatåçš„æ–‡ç« å†…å®¹
 	 */
 	private String format(String text) {
 		return text.replaceAll("\r", "<br>").replaceAll(" ","&nbsp;&nbsp;");

@@ -1,7 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.makerpol.entity.User"%>
+<%@ page import="net.sf.json.JSONObject"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+User user = (User)session.getAttribute("user");
+String userInfo = JSONObject.fromObject(user).toString();
 %>
 <!DOCTYPE html>
 <html>
@@ -17,6 +23,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
 	<link rel="stylesheet" href="/css/news.css" media="all" />
+	<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
+	<script type="text/javascript">
+		var user = '<%=userInfo%>';
+		console.log(user);
+	</script>
 </head>
 <body class="childrenBody">
 	<blockquote class="layui-elem-quote news_search">
@@ -31,9 +42,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="layui-inline">
 			<a class="layui-btn audit_btn">审核文章</a>
-		</div>
-		<div class="layui-inline">
-			<div class="layui-form-mid layui-word-aux">本页面刷新后除新添加的文章外所有操作无效，关闭页面所有数据重置</div>
 		</div>
 	</blockquote>
 	<div class="layui-form news_list">
@@ -52,10 +60,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
 					<th style="text-align:left;">文章标题</th>
-					<th>发布人</th>
+					<th>文章类型</th>
+					<th>作者</th>
 					<th>审核状态</th>
 					<th>浏览权限</th>
-					<th>是否展示</th>
 					<th>发布时间</th>
 					<th>操作</th>
 				</tr> 

@@ -10,6 +10,7 @@ public interface PaperService {
 	public List<Paper> searchAllPaper();
 	public Paper getPaper(Integer id);
 	public List<Paper> getPaper(String param);
-	public List<Paper> getPaperByName(String param);
+	public List<Paper> getPaper(String starTime,String endTime);
+	public List<Paper> getPaperListByType(Integer type);	
 	public void upDataPaper(Paper paper);
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -64,7 +63,7 @@ public class PaperController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Paper> list = new ArrayList<Paper>();
 		try {
-			list = service.getPaperByName(name);
+			list = service.getPaper(name);
 		}catch(DataAccessException e) {
 			map.put("message", "error");
 			System.out.println(e);
@@ -118,7 +117,7 @@ public class PaperController {
 	
 	@RequestMapping(value="/deletePaper")
 	@ResponseBody
-	public Map deletePaper(@RequestParam Integer id) {
+	public Map<String, Object> deletePaper(@RequestParam Integer id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			service.deletePaper(id);

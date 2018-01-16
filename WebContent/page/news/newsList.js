@@ -1,3 +1,4 @@
+var LoginUser = $.parseJSON(user);
 layui.config({
 	base : "js/"
 }).use(['form','layer','jquery','laypage'],function(){
@@ -9,34 +10,7 @@ layui.config({
 	//加载页面数据
 	var newsData = '';
 	$.get("getAllPaper.do", function(data){
-		console.log(data);
-		
 		newsList(data.paperList);
-		/*var newArray = [];
-		//单击首页“待审核文章”加载的信息
-		if($(".top_tab li.layui-this cite",parent.document).text() == "待审核文章"){
-			if(window.sessionStorage.getItem("addNews")){
-				var addNews = window.sessionStorage.getItem("addNews");
-				newsData = JSON.parse(addNews).concat(data);
-			}else{
-				newsData = data;
-			}
-			for(var i=0;i<newsData.length;i++){
-        		if(newsData[i].newsStatus == "待审核"){
-					newArray.push(newsData[i]);
-        		}
-        	}
-        	newsData = newArray;
-        	newsList(newsData);
-		}else{    //正常加载信息
-			newsData = data;
-			if(window.sessionStorage.getItem("addNews")){
-				var addNews = window.sessionStorage.getItem("addNews");
-				newsData = JSON.parse(addNews).concat(newsData);
-			}
-			//执行加载数据的方法
-			newsList();
-		}*/
 	})
 
 	//查询
@@ -65,6 +39,13 @@ layui.config({
 
 	//添加文章
 	$(".newsAdd_btn").click(function(){
+		if(LoginUser.grade==2){
+			layer.open({
+				content: '没有权限添加文章！'
+			});     
+			return false;
+		}
+		
 		var index = layui.layer.open({
 			title : "添加文章",
 			type : 2,
@@ -85,22 +66,14 @@ layui.config({
 		layui.layer.full(index);
 	})
 
-	//推荐文章
-	$(".recommend").click(function(){
-		var $checkbox = $(".news_list").find('tbody input[type="checkbox"]:not([name="show"])');
-		if($checkbox.is(":checked")){
-			var index = layer.msg('推荐中，请稍候',{icon: 16,time:false,shade:0.8});
-            setTimeout(function(){
-                layer.close(index);
-				layer.msg("推荐成功");
-            },2000);
-		}else{
-			layer.msg("请选择需要推荐的文章");
-		}
-	})
-
 	//审核文章
 	$(".audit_btn").click(function(){
+		if(LoginUser.grade==2){
+			layer.open({
+				content: '没有权限审核文章！'
+			});     
+			return false;
+		}
 		var $checkbox = $('.news_list tbody input[type="checkbox"][name="checked"]');
 		var $checked = $('.news_list tbody input[type="checkbox"][name="checked"]:checked');
 		
@@ -216,10 +189,16 @@ layui.config({
  
 	//操作
 	$("body").on("click",".news_edit",function(){  //编辑
+		if(LoginUser.grade==2){
+			layer.open({
+				content: '没有权限编辑文章！'
+			});     
+			return false;
+		}
 		var _this = $(this);
 		var id = _this.attr("data-id");
 		var index = layui.layer.open({
-			title : "编辑用户信息",
+			title : "编辑文章信息",
 			type : 2,
 			content : "toUpdataPaper.do?id="+id,
 			area : ['1400px', '600px'],
@@ -243,6 +222,12 @@ layui.config({
 	})
 
 	$("body").on("click",".news_del",function(){  //删除
+		if(LoginUser.grade==2){
+			layer.open({
+				content: '没有权限删除文章！'
+			});     
+			return false;
+		}
 		var _this = $(this);
 		layer.confirm('确定删除此信息？',{icon:3, title:'提示信息'},function(index){
 			var id = _this.attr("data-id");
@@ -272,8 +257,36 @@ layui.config({
 				for(var i=0;i<data.length;i++){
 					dataHtml += '<tr>'
 			    	+'<td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose"></td>'
-			    	+'<td align="left">'+data[i].paperName+'</td>'
-			    	+'<td>'+data[i].author+'</td>';
+			    	+'<td align="left">'+data[i].paperName+'</td>';
+					
+					switch(data[i].type)
+					{
+					case 0:
+						dataHtml += '<td>自然科学</td>';
+						break;
+					case 1:
+						dataHtml += '<td>工程技术</td>';
+						break;
+					case 2:
+						dataHtml += '<td>医药卫生</td>';
+						break;
+					case 3:
+						dataHtml += '<td>农业科学</td>';
+						break;
+					case 4:
+						dataHtml += '<td>哲学政法</td>';
+						break;
+					case 5:
+						dataHtml += '<td>社会科学</td>';
+						break;
+					case 6:
+						dataHtml += '<td>科教文艺</td>';
+						break;
+					default:
+						dataHtml += '<td>自然科学</td>';
+					}
+					
+					dataHtml += '<td>'+data[i].author+'</td>';
 			    	if(data[i].status == 0){
 			    		dataHtml += '<td >审核通过</td>';
 			    	}else{
@@ -285,7 +298,7 @@ layui.config({
 			    		dataHtml += '<td>会员浏览</td>';
 			    	}
 			    	
-			    	dataHtml += '<td><input type="checkbox" name="show" lay-skin="switch" lay-text="是|否" lay-filter="isShow"></td>'
+			    	dataHtml += ''
 			    	+'<td>'+data[i].date+'</td>'
 			    	+'<td>'
 					+  '<a class="layui-btn layui-btn-mini news_edit" data-id="'+data[i].id+'"><i class="iconfont icon-edit"></i> 编辑</a>'

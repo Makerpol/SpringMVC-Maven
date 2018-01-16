@@ -45,11 +45,10 @@ layui.config({
  		param.power = $(".browseLook").val();
  		param.date = $(".newsTime").val();
  		param.author = $(".newsAuthor").val();
+ 		param.type = $(".type").val();
  		param.show = data.field.show=="on" ? 0 : 1;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
- 		param.text = layedit.getText(editIndex);
- 		console.log(data.field.shenhe);
- 		console.log(param.status);
+ 		param.text = layedit.getContent(editIndex);
  		
  		$.ajax({
 			url : "upDataPaper.do",
