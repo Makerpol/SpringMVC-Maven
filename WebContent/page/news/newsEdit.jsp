@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 			<label class="layui-form-label">文章标题</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input newsName" lay-verify="required" placeholder="请输入文章标题" value="${paper.paperName}">
+				<input type="text" maxlength="50" class="layui-input newsName" lay-verify="required" placeholder="请输入文章标题" value="${paper.paperName}">
 			</div>
 			<div class="layui-hide">
 				<input type="text" value="${paper.id}" id="id">

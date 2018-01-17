@@ -13,7 +13,9 @@ public interface PaperMapper {
      */
     int deleteByPrimaryKey(Integer id);
     
-    public List<Paper> searchAllPaper();
+    public List<Paper> searchAllPaper(Integer start,Integer num);
+    
+    public int getPaperCount();
     
     public List<Paper> getPaperListByName(String param);
     

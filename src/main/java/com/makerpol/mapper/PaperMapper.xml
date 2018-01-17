@@ -45,7 +45,7 @@
     select * from tb_paper where id = #{id,jdbcType=INTEGER}
   </select>
   
-  <select id="getPapeListrByName" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="string">
+  <select id="getPaperListByName" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="string">
   	select * from tb_paper where paper_name like concat('%',#{param},'%')
   </select>
   
@@ -53,12 +53,12 @@
   	select * from tb_paper where type = #{type}
   </select>
   
-  <select id="searchAllPaper" resultType="list" resultMap="ResultMapWithBLOBs">
-  	select * from tb_paper  
+  <select id="searchAllPaper" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+  	select * from tb_paper limit #{0},#{1}
   </select>
   
-  <select id="getPaperList" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="string">
-  	select * from tb_paper where paper_name like concat('%',#{param},'%') 
+  <select id="getPaperCount" resultType="int">
+  	select count(id) from tb_paper 
   </select>
   
   <select id="getPaperListByTime" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="string">

@@ -1,5 +1,7 @@
 package com.makerpol.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,15 +17,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.makerpol.Utils.MD5Util;
 import com.makerpol.entity.User;
 import com.makerpol.service.UserService;
 
+/**
+ * 用户管理
+ * @author user
+ *
+ */
 @Controller("userController")
 public class UserController {
 	
 	@Autowired
 	private UserService<?> service;
 	
+	/**
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/searchUser")
 	public String searchUser(Integer id, Model model) {
 		User user = (User)service.getUser(id);
@@ -34,7 +48,6 @@ public class UserController {
 	@RequestMapping(value="/searchUserByLike")
 	@ResponseBody
 	public Map<String,Object> searchUserByLike(@RequestParam String param) {
-		System.out.println("param===="+param);
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<User> list = new ArrayList<User>();
 		list = service.getUserList(param);
@@ -42,9 +55,8 @@ public class UserController {
 		if(list.size()==0) {
 			map.put("message", "没有符合的数据！");
 		}
-		
+
 		map.put("userList", list);
-		
 		return map;
 	}
 	
@@ -72,9 +84,10 @@ public class UserController {
 	
 	@RequestMapping(value="/updataUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map<Object,Object> updataUser(@RequestBody User user) {
+	public Map<Object,Object> updataUser(@RequestBody User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		Map<Object,Object> map = new HashMap<Object,Object>();
-		System.out.println("updataUser.id==="+user.getId());
+		//MD5加密
+		user.setPassword(MD5Util.EncoderByMd5(user.getPassword()));
 		try {
 			service.updataUser(user);
 		}catch(DataAccessException e) {
@@ -121,8 +134,10 @@ public class UserController {
 	
 	@RequestMapping(value="/addUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map<Object,Object> addUser(@RequestBody User user) {
+	public Map<Object,Object> addUser(@RequestBody User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		Map<Object,Object> map = new HashMap<Object,Object>();
+		//MD5加密
+		user.setPassword(MD5Util.EncoderByMd5(user.getPassword()));
 		try {
 			service.addUser(user);
 		}catch(DataAccessException e) {

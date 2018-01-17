@@ -1,5 +1,7 @@
 package com.makerpol.Interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,18 +36,30 @@ public class BaseInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object obj) throws Exception {
 		String url = req.getRequestURI();
-		System.out.println("BaseInterceptor:  "+url);
 		if(url.indexOf("login")>0||url.indexOf("userLogin")>0){
-			System.out.println(url);
 			return true;
 		}
 		HttpSession session = req.getSession();
 		User user = (User)session.getAttribute("user");
-		if(user!=null) {
-			return true;
+		System.out.println(BaseInterceptor.class.getName()+"  URL: "+url);
+		if(user==null) {
+			PrintWriter out = resp.getWriter();
+			/**
+			 * 子页面的操作超时的情况下，直接重定向或者转发，跳转的页面都会显示为子页面，父页面没有跳转。
+			 * 一般情况下，我们期望超时后整体返回到登录界面。重定向和转发明显不能实现我们的需求。
+			 * 因此，有了下面的解决方案：返回一个HTML，并利用js代码实现登录页面打开。
+			 * target=_top意思是打开时忽略所有的框架。
+			 */
+			out.println("<html>");
+			out.println("<script>");
+			out.println("window.open('"+req.getContextPath()+"/login.jsp','_top')");
+			out.println("</script>");
+			out.println("</html>");
+			
+			//req.getRequestDispatcher("/login.jsp").forward(req, resp);	//重定向
+			//resp.sendRedirect(req.getContextPath()+"login.jsp");			//转发
+			return false;
 		}
-		
-		req.getRequestDispatcher("/login.jsp").forward(req, resp);;
-		return false;
+		return true;
 	}
 }

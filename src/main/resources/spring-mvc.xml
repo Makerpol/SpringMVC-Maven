@@ -18,7 +18,8 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<bean class="com.makerpol.Interceptor.BaseInterceptor"></bean>
+			<bean class="com.makerpol.Interceptor.BaseInterceptor">
+			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
     

@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.makerpol.dao.PaperMapper;
+import com.makerpol.entity.Page;
 import com.makerpol.entity.Paper;
 
 /**
@@ -31,8 +32,10 @@ public class PaperServiceImpl implements PaperService {
 	}
 
 	@Override
-	public List<Paper> searchAllPaper() throws DataAccessException {
-		return mapper.searchAllPaper();
+	public List<Paper> searchAllPaper(Page page) throws DataAccessException {
+		System.out.println(page.getStart());
+		System.out.println(page.getLimit());
+		return mapper.searchAllPaper(page.getStart(), page.getLimit());
 	} 
 
 	@Override
@@ -60,8 +63,16 @@ public class PaperServiceImpl implements PaperService {
 	public List<Paper> getPaperListByType(Integer type) {
 		return mapper.getPapeListrByType(type);
 	}
+	
+	@Override
+	public int getPaperCount() {
+		return mapper.getPaperCount();
+	}
 
 	private List<Paper> getPaperByName(String param) throws DataAccessException {
+		if(param==null|| param=="") {
+			return mapper.searchAllPaper(0,13);
+		}
 		return mapper.getPaperListByName(param);
 	}
 

@@ -33,7 +33,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 			<label class="layui-form-label">登录密码</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input userpassword" lay-verify="required|password" placeholder="请输入密码">
+				<input type="password" class="layui-input userpassword" lay-verify="required|newPwd" id="firstPwd" placeholder="请输入密码">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">确认密码</label>
+			<div class="layui-input-block">
+				<input type="password" class="layui-input userpassword" lay-verify="required|confirmPwd" placeholder="请确认输入密码">
 			</div>
 		</div>
 		<div class="layui-form-item">

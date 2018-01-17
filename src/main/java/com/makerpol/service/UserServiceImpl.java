@@ -17,6 +17,9 @@ public class UserServiceImpl<T> implements UserService<T> {
 	
 	@Override
 	public List<User> getUserList(String param) throws DataAccessException {
+		if(param==null || param=="") {
+			return mapper.getAllUser();
+		}
 		return mapper.getUserList(param);
 	}
 

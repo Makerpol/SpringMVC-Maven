@@ -9,14 +9,36 @@ layui.config({
 
 	//加载页面数据
 	var newsData = '';
-	$.get("getAllPaper.do", function(data){
-		newsList(data.paperList);
-	})
-
+	
+	//文章总数
+	var paperCount = 0;
+	//当前页
+	var currPage = 1;
+	//开始
+	var start = 0;
+	//每页显示数据
+	var limit = 13;
+	
+	getPaperList(start,limit);
+	
+	function getPaperList(start,limit){
+		$.get("getAllPaper.do?start="+start+"&num="+limit, function(data){
+			console.log(page);
+			var page = data.page;
+			start = page.currentResult;
+			console.log(start);
+			paperCount = page.total;
+			
+			renderDate(data.paperList);
+			toPage();
+		})
+		
+	}
+	
 	//查询
 	$(".search_btn").click(function(){
 		var newArray = [];
-		if($(".search_input").val() != ''){
+		//if($(".search_input").val() != ''){
 			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
             setTimeout(function(){
             	$.ajax({
@@ -25,16 +47,15 @@ layui.config({
 					dataType : "json",
 					success : function(data){
 						newsData = data.paperList;
-						
-		            	newsList(newsData);
+						renderDate(newsData);
 					}
 				})
-            	
+            	toPage();
                 layer.close(index);
             },2000);
-		}else{
+		/*}else{
 			layer.msg("请输入需要查询的内容");
-		}
+		}*/
 	})
 
 	//添加文章
@@ -128,34 +149,6 @@ layui.config({
 			}
 		})
 	}
-	
-	//批量删除
-	$(".batchDel").click(function(){
-		var $checkbox = $('.news_list tbody input[type="checkbox"][name="checked"]');
-		var $checked = $('.news_list tbody input[type="checkbox"][name="checked"]:checked');
-		if($checkbox.is(":checked")){
-			layer.confirm('确定删除选中的信息？',{icon:3, title:'提示信息'},function(index){
-				var index = layer.msg('删除中，请稍候',{icon: 16,time:false,shade:0.8});
-	            setTimeout(function(){
-	            	//删除数据
-	            	for(var j=0;j<$checked.length;j++){
-	            		for(var i=0;i<newsData.length;i++){
-							if(newsData[i].newsId == $checked.eq(j).parents("tr").find(".news_del").attr("data-id")){
-								newsData.splice(i,1);
-								newsList(newsData);
-							}
-						}
-	            	}
-	            	$('.news_list thead input[type="checkbox"]').prop("checked",false);
-	            	form.render();
-	                layer.close(index);
-					layer.msg("删除成功");
-	            },2000);
-	        })
-		}else{
-			layer.msg("请选择需要删除的文章");
-		}
-	})
 
 	//全选
 	form.on('checkbox(allChoose)', function(data){
@@ -176,15 +169,6 @@ layui.config({
 			$(data.elem).parents('table').find('thead input#allChoose').get(0).checked = false;
 		}
 		form.render('checkbox');
-	})
-
-	//是否展示
-	form.on('switch(isShow)', function(data){
-		var index = layer.msg('修改中，请稍候',{icon: 16,time:false,shade:0.8});
-        setTimeout(function(){
-            layer.close(index);
-			layer.msg("展示状态修改成功！");
-        },2000);
 	})
  
 	//操作
@@ -247,84 +231,85 @@ layui.config({
 		});
 		
 	})
-
-	function newsList(that){
-		//渲染数据
-		function renderDate(data,curr){
-			var dataHtml = '';
-			
-			if(data.length > 0){
-				for(var i=0;i<data.length;i++){
-					dataHtml += '<tr>'
-			    	+'<td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose"></td>'
-			    	+'<td align="left">'+data[i].paperName+'</td>';
-					
-					switch(data[i].type)
-					{
-					case 0:
-						dataHtml += '<td>自然科学</td>';
-						break;
-					case 1:
-						dataHtml += '<td>工程技术</td>';
-						break;
-					case 2:
-						dataHtml += '<td>医药卫生</td>';
-						break;
-					case 3:
-						dataHtml += '<td>农业科学</td>';
-						break;
-					case 4:
-						dataHtml += '<td>哲学政法</td>';
-						break;
-					case 5:
-						dataHtml += '<td>社会科学</td>';
-						break;
-					case 6:
-						dataHtml += '<td>科教文艺</td>';
-						break;
-					default:
-						dataHtml += '<td>自然科学</td>';
-					}
-					
-					dataHtml += '<td>'+data[i].author+'</td>';
-			    	if(data[i].status == 0){
-			    		dataHtml += '<td >审核通过</td>';
-			    	}else{
-			    		dataHtml += '<td style="color:#f00">未审核</td>';
-			    	}
-			    	if(data[i].power == 1){
-			    		dataHtml += '<td>开放浏览</td>';
-			    	}else{
-			    		dataHtml += '<td>会员浏览</td>';
-			    	}
-			    	
-			    	dataHtml += ''
-			    	+'<td>'+data[i].date+'</td>'
-			    	+'<td>'
-					+  '<a class="layui-btn layui-btn-mini news_edit" data-id="'+data[i].id+'"><i class="iconfont icon-edit"></i> 编辑</a>'
-					+  '<a class="layui-btn layui-btn-danger layui-btn-mini news_del" data-id="'+data[i].id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
-			        +'</td>'
-			    	+'</tr>';
-				}
-			}else{
-				dataHtml = '<tr><td colspan="8">暂无数据</td></tr>';
-			}
-		    return dataHtml;
-		}
-
-		//分页
-		var nums = 13; //每页出现的数据量
-		if(that){
-			newsData = that;
-		}
+	
+	function toPage(){
 		laypage({
 			cont : "page",
-			pages : Math.ceil(newsData.length/nums),
-			jump : function(obj){
-				$(".news_content").html(renderDate(newsData,obj.curr));
-				$('.news_list thead input[type="checkbox"]').prop("checked",false);
-		    	form.render();
+			pages : paperCount,
+			curr : currPage,
+			skip: true,
+			jump : function(obj,first){
+				currPage = obj.curr;
+				start = (obj.curr-1)*limit;
+				
+				if(!first){
+					getPaperList(start,limit);
+				}
 			}
 		})
+	}
+	
+	//渲染数据
+	function renderDate(data){
+		var dataHtml = '';
+		
+		if(data.length > 0){
+			for(var i=0;i<data.length;i++){
+				dataHtml += '<tr>'
+		    	+'<td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose"></td>'
+		    	+'<td align="left">'+data[i].paperName+'</td>';
+				
+				switch(data[i].type)
+				{
+				case 0:
+					dataHtml += '<td>自然科学</td>';
+					break;
+				case 1:
+					dataHtml += '<td>工程技术</td>';
+					break;
+				case 2:
+					dataHtml += '<td>医药卫生</td>';
+					break;
+				case 3:
+					dataHtml += '<td>农业科学</td>';
+					break;
+				case 4:
+					dataHtml += '<td>哲学政法</td>';
+					break;
+				case 5:
+					dataHtml += '<td>社会科学</td>';
+					break;
+				case 6:
+					dataHtml += '<td>科教文艺</td>';
+					break;
+				default:
+					dataHtml += '<td>自然科学</td>';
+				}
+				
+				dataHtml += '<td>'+data[i].author+'</td>';
+		    	if(data[i].status == 0){
+		    		dataHtml += '<td >审核通过</td>';
+		    	}else{
+		    		dataHtml += '<td style="color:#f00">未审核</td>';
+		    	}
+		    	if(data[i].power == 1){
+		    		dataHtml += '<td>开放浏览</td>';
+		    	}else{
+		    		dataHtml += '<td>会员浏览</td>';
+		    	}
+		    	
+		    	dataHtml += ''
+		    	+'<td>'+data[i].date+'</td>'
+		    	+'<td>'
+				+  '<a class="layui-btn layui-btn-mini news_edit" data-id="'+data[i].id+'"><i class="iconfont icon-edit"></i> 编辑</a>'
+				+  '<a class="layui-btn layui-btn-danger layui-btn-mini news_del" data-id="'+data[i].id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
+		        +'</td>'
+		    	+'</tr>';
+			}
+		}else{
+			dataHtml = '<tr><td colspan="8">暂无数据</td></tr>';
+		}
+		
+		$(".news_content").html(dataHtml);
 	}
 })

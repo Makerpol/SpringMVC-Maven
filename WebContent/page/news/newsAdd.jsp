@@ -25,7 +25,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">文章标题</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input newsName"
+				<input type="text" maxlength="50" class="layui-input newsName"
 					lay-verify="required" placeholder="请输入文章标题">
 			</div>
 		</div>

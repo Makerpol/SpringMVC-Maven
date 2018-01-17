@@ -29,7 +29,7 @@ layui.config({
 		var newArray = [];
 		var param = $(".search_input").val();
 		
-		if( param != ''){
+		//if( param != ''){
 			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
             setTimeout(function(){
             	$.ajax({
@@ -67,9 +67,9 @@ layui.config({
             	
                 layer.close(index);
             },2000);
-		}else{
+		/*}else{
 			layer.msg("请输入需要查询的内容");
-		}
+		}*/
 	})
 	
 	function getStatus(status){
@@ -268,6 +268,8 @@ layui.config({
 			cont : "page",
 			pages : Math.ceil(linksData.length/nums),
 			jump : function(obj){
+				
+				
 				$(".links_content").html(renderDate(linksData,obj.curr));
 				$('.links_list thead input[type="checkbox"]').prop("checked",false);
 		    	form.render();
