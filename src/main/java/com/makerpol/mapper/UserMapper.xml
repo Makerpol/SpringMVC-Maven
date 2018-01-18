@@ -22,9 +22,15 @@
 	<!-- id和mapper接口中的方法名对应，resultType使用mybatis.xml中的别名 -->
 	<!-- userResultMap是user-mapper.xml中定义的resultmap -->
 	<!-- 获取所有用户信息 -->
-	<select id="getAllUser" resultType="list" resultMap="userResultMap">
+	<select id="getAllUser" resultType="list" resultMap="userResultMap" parameterType="int">
          <![CDATA[         
-              select * from tb_user   
+              select * from tb_user limit #{0},#{1}
+         ]]> 
+	</select>
+	  
+	<select id="getCount" resultType="int" >
+         <![CDATA[         
+              select count(id) from tb_user   
          ]]> 
 	</select>     
    

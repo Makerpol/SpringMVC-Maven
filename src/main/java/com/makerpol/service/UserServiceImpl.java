@@ -18,7 +18,7 @@ public class UserServiceImpl<T> implements UserService<T> {
 	@Override
 	public List<User> getUserList(String param) throws DataAccessException {
 		if(param==null || param=="") {
-			return mapper.getAllUser();
+			return mapper.getAllUser(0,13);
 		}
 		return mapper.getUserList(param);
 	}
@@ -34,8 +34,13 @@ public class UserServiceImpl<T> implements UserService<T> {
 	}
 
 	@Override
-	public List<User> getAllUser() throws DataAccessException {
-		return mapper.getAllUser();
+	public List<User> getAllUser(Integer start, Integer num) throws DataAccessException {
+		return mapper.getAllUser(start, num);
+	}
+	
+	@Override
+	public int getCount() {
+		return mapper.getCount();
 	}
 
 	@Override

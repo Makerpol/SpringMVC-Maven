@@ -15,6 +15,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 	<meta charset="utf-8">
 	<title>用户管理--后台管理模板</title>
 	<meta name="renderer" content="webkit">
+	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -26,7 +27,6 @@ String userInfo = JSONObject.fromObject(user).toString();
 	<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
 	<script type="text/javascript">
 		var user = '<%=userInfo%>';
-		console.log(user);
 	</script>
 </head>
 <body class="childrenBody">
@@ -63,21 +63,8 @@ String userInfo = JSONObject.fromObject(user).toString();
 					<th>状态</th>
 					<th>操作</th>
 				</tr>
-				<c:forEach items="${userList}" var="user">  
-				    <tr>  
-				     <td><input type="checkbox" name="checked" value="${user.id}" lay-skin="primary" lay-filter="choose"></td> 
-				     <td align="left">${user.name}</td>  
-				     <td><c:choose><c:when test="${user.grade == 0}">超级管理员</c:when><c:when test="${user.grade == 1}">编辑人员</c:when><c:when test="${user.grade == 2}">问题维护</c:when></c:choose></td>  
-				     <td>${user.email}</td>  
-				     <td>${user.phone}</td> 
-				     <td><c:choose><c:when test="${user.status == 0}">正常用户</c:when><c:when test="${user.grade == 1}">限制用户</c:when></c:choose></td>
-					<td><a class="layui-btn layui-btn-mini links_edit" data-id="${user.id }"><i class="iconfont icon-edit"></i> 编辑</a> 
-					<a class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="${user.id }"><i class="layui-icon">&#xe640;</i> 删除</a>
-				    </td>
-				    </tr>  
-				</c:forEach>  
 		    </thead>
-		    <tbody class="links_content"></tbody>
+		    <tbody class="user_content"></tbody>
 		</table>
 	</div>
 	<div id="page"></div>

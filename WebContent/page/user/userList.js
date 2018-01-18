@@ -8,68 +8,52 @@ layui.config({
 		$ = layui.jquery;
 
 	//加载页面数据
-	var linksData = '';
-	/*$.ajax({
-		url : "../../json/linksList.json",
-		type : "get",
-		dataType : "json",
-		success : function(data){
-			linksData = data;
-			if(window.sessionStorage.getItem("addLinks")){
-				var addLinks = window.sessionStorage.getItem("addLinks");
-				linksData = JSON.parse(addLinks).concat(linksData);
+	var userData = '';
+	
+	//总数
+	var total = 0;
+	//开始位置
+	var start = 0;
+	//每页显示数
+	var num = 13;
+	//当前页
+	var currPage = 1;
+	
+	getUserList(start, num);
+	
+	function getUserList(start,num){
+		$.ajax({
+			url: "getUserList.do?start="+start+"&num="+num,
+			type:"get",
+			success:function(data){
+				total = data.count;
+				renderDate(data.userList);
+				console.log(data.userList);
+				toPage();
 			}
-			//执行加载数据的方法
-			linksList();
-		}
-	})*/
+		});
+	}
 
 	//查询
 	$(".search_btn").click(function(){
 		var newArray = [];
 		var param = $(".search_input").val();
 		
-		//if( param != ''){
 			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
             setTimeout(function(){
             	$.ajax({
 					url : "searchUserByLike.do?param="+param,
 					type : "get",
-					//dataType : "json",
 					success : function(data){
 						console.log(data);
 						var userList = data.userList;
-						if(userList.length>0){
-							$(".layui-table tr:not(:first)").remove();
-							var table = $(".layui-table");
-							var trs = '';
-							for(var i = 0; i<userList.length;i++){
-								var user = userList[i];
-
-								var tr='<tr><td><input type="checkbox" name="checked" value="'+user.id+'"'+' '+'lay-skin="primary" lay-filter="choose">';
-								tr= tr+'<div class="layui-unselect layui-form-checkbox" lay-skin="primary"><i class="layui-icon"></i></div></td>';
-								tr= tr+'<td align="left">'+user.name+'</td> ';
-								tr= tr+'<td>'+getGrade(user.grade)+'</td>';
-								tr= tr+'<td>'+user.email+'</td>';
-								tr= tr+'<td>'+user.phone+'</td>';
-								tr= tr+'<td>'+getStatus(user.status)+'</td>';
-								tr= tr+'<td><a class="layui-btn layui-btn-mini links_edit" data-id=\"'+user.id+'\"><i class="iconfont icon-edit"></i> 编辑</a>'; 
-								tr= tr+'<a class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id=\"'+user.id +'\">';
-								tr= tr+'<i class="layui-icon">&#xe640;</i> 删除</a></td>';
-								tr= tr+'</tr>';
-								trs= trs+tr;
-							}
-							console.log(trs);
-							table.append(trs);
-						}
+						renderDate(userList);
+						toPage();
 					}
 				})
             	
                 layer.close(index);
             },2000);
-		/*}else{
-			layer.msg("请输入需要查询的内容");
-		}*/
 	})
 	
 	function getStatus(status){
@@ -106,9 +90,7 @@ layui.config({
 			type : 2,
 			content : "toAddUser.do",
 			success : function(layero, index){
-				/*layui.layer.tips('点击此处返回文章列表', '.layui-layer-setwin .layui-layer-close', {
-					tips: 3
-				});*/
+			
 			},
 			end: function () {
                 location.reload();
@@ -228,52 +210,74 @@ layui.config({
 			layer.close(index);
 		});
 	})
-
-	function linksList(that){
-		//渲染数据
-		function renderDate(data,curr){
-			var dataHtml = '';
-			if(!that){
-				currData = linksData.concat().splice(curr*nums-nums, nums);
-			}else{
-				currData = that.concat().splice(curr*nums-nums, nums);
-			}
-			if(currData.length != 0){
-				for(var i=0;i<currData.length;i++){
-					dataHtml += '<tr>'
-			    	+'<td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose"></td>'
-			    	+'<td align="left">'+currData[i].linksName+'</td>'
-			    	+'<td><a style="color:#1E9FFF;" target="_blank" href="'+currData[i].linksUrl+'">'+currData[i].linksUrl+'</a></td>'
-			    	+'<td>'+currData[i].masterEmail+'</td>'
-			    	+'<td>'+currData[i].linksTime+'</td>'
-			    	+'<td>'+currData[i].showAddress+'</td>'
-			    	+'<td>'
-					+  '<a class="layui-btn layui-btn-mini links_edit"><i class="iconfont icon-edit"></i> 编辑</a>'
-					+  '<a class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="'+data[i].linksId+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
-			        +'</td>'
-			    	+'</tr>';
-				}
-			}else{
-				dataHtml = '<tr><td colspan="7">暂无数据</td></tr>';
-			}
-		    return dataHtml;
-		}
-
-		//分页
-		var nums = 13; //每页出现的数据量
-		if(that){
-			linksData = that;
-		}
+	
+	
+	function toPage(){
 		laypage({
 			cont : "page",
-			pages : Math.ceil(linksData.length/nums),
-			jump : function(obj){
+			pages : total,
+			curr : currPage,
+			skip: true,
+			jump : function(obj,first){
+				currPage = obj.curr;
+				start = (obj.curr-1)*num;
 				
-				
-				$(".links_content").html(renderDate(linksData,obj.curr));
-				$('.links_list thead input[type="checkbox"]').prop("checked",false);
-		    	form.render();
+				if(!first){
+					getUserList(start,num);
+				}
 			}
 		})
+	}
+	
+	//渲染数据
+	function renderDate(data){
+		var dataHtml = '';
+		if(data!=null && data.length != 0){
+			for(var i=0;i<data.length;i++){
+				dataHtml += '<tr>'
+		    	+'<td><input type="checkbox" name="checked" value="'+ data[i].id+'" lay-skin="primary" lay-filter="choose"></td>'
+		    	+'<td align="left">'+data[i].name+'</td>';
+		    	
+				var text;
+		    	switch(data[i].grade){
+		    	case 0:
+		    		text="超级管理员";
+		    		break;
+		    	case 1:
+		    		text="编辑人员";
+		    		break;
+		    	case 2:
+		    		text="问题维护";
+		    		break;
+		    	default:
+		    		text="超级管理员";
+		    	}
+		    	
+		    	dataHtml += '<td>'+text+'</td>'
+		    	+'<td>'+data[i].email+'</td>'
+		    	+'<td>'+data[i].phone+'</td>';
+		    	
+		    	switch(data[i].status){
+		    	case 0:
+		    		text="正常用户";
+		    		break;
+		    	case 1:
+		    		text="限制用户";
+		    		break;
+		    	default:
+		    		text="正常用户";
+		    	}
+		    	
+		    	dataHtml += '<td>'+text+'</td>'
+		    	+'<td>'
+				+  '<a class="layui-btn layui-btn-mini links_edit" data-id="'+data[i].id+'"><i class="iconfont icon-edit"></i> 编辑</a>'
+				+  '<a class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="'+data[i].id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
+		        +'</td>'
+		    	+'</tr>';
+			}
+		}else{
+			dataHtml = '<tr><td colspan="7">暂无数据</td></tr>';
+		}
+		$(".user_content").html(dataHtml);
 	}
 })

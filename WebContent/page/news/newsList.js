@@ -23,10 +23,9 @@ layui.config({
 	
 	function getPaperList(start,limit){
 		$.get("getAllPaper.do?start="+start+"&num="+limit, function(data){
-			console.log(page);
 			var page = data.page;
 			start = page.currentResult;
-			console.log(start);
+
 			paperCount = page.total;
 			
 			renderDate(data.paperList);

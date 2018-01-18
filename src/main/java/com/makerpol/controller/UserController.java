@@ -33,8 +33,8 @@ public class UserController {
 	private UserService<?> service;
 	
 	/**
-	 * 
-	 * @param id
+	 * 访问编辑用户信息页面
+	 * @param id  用户ID
 	 * @param model
 	 * @return
 	 */
@@ -45,6 +45,13 @@ public class UserController {
 		return "/page/user/userInfo";
 	}
 	
+	/**
+	 * 查询用户信息（根据输入用户名）
+	 * 1.如果输入用户名是null或者''，就调用getAllUser(0,13)返回第一页用户资料
+	 * 2.根据输入用户名进行模糊查询，返回查询结果
+	 * @param param  输入用户名字符串
+	 * @return
+	 */
 	@RequestMapping(value="/searchUserByLike")
 	@ResponseBody
 	public Map<String,Object> searchUserByLike(@RequestParam String param) {
@@ -60,14 +67,42 @@ public class UserController {
 		return map;
 	}
 	
+	/**
+	 * 访问用户管理页面
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/userList")
-	public String userList(Model model) {
-		List<User> list = new ArrayList<User>();
-		list = service.getAllUser();
-		model.addAttribute("userList", list);
+	public String userList() {
 		return "/page/user/userList";
 	}
 	
+	/**
+	 * 获取用户列表（分页查询）
+	 * @param start  开始行
+	 * @param num	  查询数
+	 * @return
+	 */
+	@RequestMapping(value="/getUserList")
+	@ResponseBody
+	public Map<String, Object> getUserList(int start, int num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<User> list = new ArrayList<User>();
+		System.out.println(UserController.class.getName()+" getUserList  start :"+start);
+		System.out.println(UserController.class.getName()+" getUserList  num :"+num);
+		list = service.getAllUser(start, num);
+		int count = service.getCount();
+		map.put("userList", list);
+		map.put("count", count);
+		return map;
+	}
+	
+	/**
+	 * 访问修改密码页面
+	 * @param id  用户ID
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/changePsw")
 	public String changePsw(@RequestParam Integer id, Model model) {
 		User user = service.getUser(id);
@@ -75,6 +110,12 @@ public class UserController {
 		return "/page/user/changePwd";
 	}
 	
+	/**
+	 * 访问用户信息编辑页面
+	 * @param id  用户ID
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/toUpdataUser")
 	public String toUpdataUser(@RequestParam Integer id, Model model) {
 		User user = service.getUser(id);
@@ -82,6 +123,13 @@ public class UserController {
 		return "/page/user/userInfo";
 	}
 	
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value="/updataUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
 	public Map<Object,Object> updataUser(@RequestBody User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -97,6 +145,11 @@ public class UserController {
 		return map;
 	}
 	
+	/**
+	 * 删除用户
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value="/deleteUser")
 	@ResponseBody
 	public Map<Object,Object> deleteUser(@RequestParam Integer id) {
@@ -111,6 +164,11 @@ public class UserController {
 		return map;
 	}
 	
+	/**
+	 * 批量删除用户
+	 * @param list
+	 * @return
+	 */
 	@RequestMapping(value="/deleteUserList")
 	public Map<Object, Object> deleteUserList(@RequestParam List<Integer> list) {
 		
@@ -127,11 +185,22 @@ public class UserController {
 		return map;		
 	}
 	
+	/**
+	 * 访问添加用户页面
+	 * @return
+	 */
 	@RequestMapping(value="/toAddUser")
 	public String toAddUser() {
 		return "/page/user/addUser";
 	}
 	
+	/**
+	 * 添加用户
+	 * @param user
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value="/addUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
 	public Map<Object,Object> addUser(@RequestBody User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
