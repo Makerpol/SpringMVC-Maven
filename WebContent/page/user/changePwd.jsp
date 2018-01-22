@@ -55,6 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </div>
 		</div>
 	</form>
+	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
 	<script type="text/javascript" src="/layui/layui.js"></script>
 	<script type="text/javascript" src="/page/user/address.js"></script>
 	<script type="text/javascript" src="/page/user/user.js"></script>

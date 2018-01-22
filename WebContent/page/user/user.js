@@ -2,6 +2,7 @@ var areaData = address;
 var $form;
 var form;
 var $;
+md5;
 layui.config({
 	base : "../../js/"
 }).use(['form','layer','upload','laydate'],function(){
@@ -31,8 +32,10 @@ layui.config({
         	},
             oldPwd : function(value, item){
             	var oldpwd = $("#password").val();
-            	
-                if(value != oldpwd){
+            	console.log(oldpwd);
+            	var  p=md5(value);
+            	console.log(p.toUpperCase());
+                if(p.toUpperCase() != oldpwd){
                     return "密码错误，请重新输入！";
                 }
             },

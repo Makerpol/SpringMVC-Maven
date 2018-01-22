@@ -6,6 +6,7 @@ layui.config({
 		laypage = layui.laypage,
 		layedit = layui.layedit,
 		laydate = layui.laydate,
+		upload = layui.upload;
 		$ = layui.jquery;
 	
 	/*$.get("getPaper.do?id="+$("#id").val(), function(data){
@@ -21,13 +22,18 @@ layui.config({
 		//form.render("checkbox");
 	});*/
 	
-	layedit.set({
-	  uploadImage: {
-	    url: 'ImagesUpload.do', //接口url
+	/*upload.render({
+		url: 'upload.do', //接口url
 	    type: 'post',//默认post
 	    success:function(data){
-	    	
+	    	console.log(data);
 	    }
+	});*/
+	
+	layedit.set({
+	  uploadImage: {
+	    url: 'upload.do', //接口url
+	    type: 'post',//默认post
 	  }
 	});
 	

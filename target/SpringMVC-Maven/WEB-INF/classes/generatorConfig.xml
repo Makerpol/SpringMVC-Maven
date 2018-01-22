@@ -45,7 +45,12 @@
              <property name="enableSubPackages" value="true" />  
         </javaClientGenerator>  
 		
-        <table tableName="tb_user"  domainObjectName="User" enableCountByExample="false"
+		<table tableName="tb_paper"  domainObjectName="Paper" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+		
+      <!--  <table tableName="tb_user"  domainObjectName="User" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false"
             enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
@@ -53,6 +58,6 @@
         <table tableName="tb_navs"  domainObjectName="Nav" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false"
             enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
+        </table> -->
     </context>
 </generatorConfiguration>
