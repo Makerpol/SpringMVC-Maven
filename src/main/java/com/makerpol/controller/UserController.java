@@ -46,28 +46,6 @@ public class UserController {
 	}
 	
 	/**
-	 * 查询用户信息（根据输入用户名）
-	 * 1.如果输入用户名是null或者''，就调用getAllUser(0,13)返回第一页用户资料
-	 * 2.根据输入用户名进行模糊查询，返回查询结果
-	 * @param param  输入用户名字符串
-	 * @return
-	 */
-	@RequestMapping(value="/searchUserByLike")
-	@ResponseBody
-	public Map<String,Object> searchUserByLike(@RequestParam String param) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		List<User> list = new ArrayList<User>();
-		list = service.getUserList(param);
-		
-		if(list.size()==0) {
-			map.put("message", "没有符合的数据！");
-		}
-
-		map.put("userList", list);
-		return map;
-	}
-	
-	/**
 	 * 访问用户管理页面
 	 * @param model
 	 * @return
@@ -85,15 +63,14 @@ public class UserController {
 	 */
 	@RequestMapping(value="/getUserList")
 	@ResponseBody
-	public Map<String, Object> getUserList(int start, int num) {
+	public Map<String, Object> getUserList(@RequestParam String param ,@RequestParam int start, @RequestParam int num) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<User> list = new ArrayList<User>();
-		System.out.println(UserController.class.getName()+" getUserList  start :"+start);
-		System.out.println(UserController.class.getName()+" getUserList  num :"+num);
-		list = service.getAllUser(start, num);
-		int count = service.getCount();
+
+		list = service.getUserList(param,start, num);
+		int total = service.getCount(param);
 		map.put("userList", list);
-		map.put("count", count);
+		map.put("total", total);
 		return map;
 	}
 	

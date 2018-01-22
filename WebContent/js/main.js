@@ -12,7 +12,59 @@ layui.config({
 		window.parent.addTab($(this));
 	})
 	
+	var dataList;
+	
+	/*$.get("getPaperTypeList.do", function(data){
+		dataList = data.typeList;
+		console.log(dataList);
+	})*/
+	
 	axisChart();
+	
+	
+	
+	function pieChart(){
+		var myChart = echarts.init($("#pie"));
+		
+		option = {
+			    title : {
+			        text: '文章类型统计',
+			        x:'center'
+			    },
+			    tooltip : {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b} : {c}"
+			    },
+			    legend: {
+			        type: 'scroll',
+			        orient: 'vertical',
+			        right: 10,
+			        top: 20,
+			        bottom: 20
+			        //data: data.legendData,
+
+			        //selected: data.selected
+			    },
+			    series : [
+			        {
+			            name: '文章类型',
+			            type: 'pie',
+			            radius : '55%',
+			            center: ['40%', '50%'],
+			            data: data.seriesData,
+			            itemStyle: {
+			                emphasis: {
+			                    shadowBlur: 10,
+			                    shadowOffsetX: 0,
+			                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+			                }
+			            }
+			        }
+			    ]
+			};
+
+		
+	}
 	
 	function axisChart(){
 		// 基于准备好的dom，初始化echarts实例

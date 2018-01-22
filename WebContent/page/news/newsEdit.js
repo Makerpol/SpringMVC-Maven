@@ -21,6 +21,16 @@ layui.config({
 		//form.render("checkbox");
 	});*/
 	
+	layedit.set({
+	  uploadImage: {
+	    url: 'ImagesUpload.do', //接口url
+	    type: 'post',//默认post
+	    success:function(data){
+	    	
+	    }
+	  }
+	});
+	
 	//创建一个编辑器
  	var editIndex = layedit.build('news_content');
  	var addNewsArray = [],addNews;
@@ -36,6 +46,8 @@ layui.config({
 			$(".show").removeAttr("checked");
 		}
  	}
+ 	
+ 	
  	
  	form.on("submit(addNews)",function(data){
  		var index = layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});

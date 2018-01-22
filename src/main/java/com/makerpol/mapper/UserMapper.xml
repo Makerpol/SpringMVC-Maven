@@ -28,11 +28,14 @@
          ]]> 
 	</select>
 	  
-	<select id="getCount" resultType="int" >
-         <![CDATA[         
-              select count(id) from tb_user   
-         ]]> 
-	</select>     
+	<select id="getCount" resultType="int" parameterType="string">
+		select count(id) from tb_user  
+		<trim prefix="where" prefixOverrides='add||or'>
+			<if test="_parameter != null">
+				add name like concat('%',#{0},'%')
+			</if>
+		</trim>
+	</select>   
    
 	<select id="getUserById" parameterType="int"  resultMap="userResultMap">    
          <![CDATA[        
@@ -45,7 +48,10 @@
 	</select>
 	
 	<select id="getUserList" parameterType="string" resultType="list"  resultMap="userResultMap">         
-         select * from tb_user where name like concat('%',#{name},'%')   
+         select * from
+           (select * from tb_user where name like concat('%',#{0},'%'))
+         as u
+         limit #{1},#{2}
 	</select>
 	
 	<update id="updataUser" parameterType="com.makerpol.entity.User">

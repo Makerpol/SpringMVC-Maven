@@ -4,6 +4,15 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * MD5工具
+ * 
+ * <p>EncoderByMd5  MD5加密密码<br>
+ * <p>checkPassword MD5检查
+ * 
+ * @author user
+ *
+ */
 public class MD5Util {
 	/**
 	 * MD5加密密码

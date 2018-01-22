@@ -94,37 +94,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</legend>
 	</fieldset>
 	<div class="row">
-		 <div class="col-sm-6">
+		 <div>
          <section class="panel">
-                    <div class="panel-heading">区域统计</div>
-                    <div class="panel-body">
-                        <div class="echarts" id="area" style="height:300px; width:500px"></div>
-                    </div>
-                </section>
+             <div class="panel-heading">区域统计</div>
+             <div class="panel-body">
+                 <div class="echarts" id="main" style="height:300px; width:500px"></div>
+             </div>
+          </section>
         </div>
-        <div class="col-sm-6">
+         <div>
          <section class="panel">
-                    <div class="panel-heading">一周统计</div>
-                    <div class="panel-body">
-                        <div class="echarts" id="main" style="height:300px; width:500px"></div>
-                    </div>
-                </section>
-        </div>
-        <div class="col-sm-6">
-         <section class="panel">
-                    <div class="panel-heading">年度统计</div>
-                    <div class="panel-body">
-                        <div class="echarts" id="years" style="height:300px; width:500px"></div>
-                    </div>
-                </section>
-        </div>
-        <div class="col-sm-6">
-         <section class="panel">
-                    <div class="panel-heading">产品统计</div>
-                    <div class="panel-body">
-                        <div class="echarts" id="product" style="height:300px; width:500px"></div>
-                    </div>
-                </section>
+             <div class="panel-heading">区域统计</div>
+             <div class="panel-body">
+                 <div class="echarts" id="main" style="height:300px; width:500px"></div>
+             </div>
+          </section>
         </div>
 	</div>
 	

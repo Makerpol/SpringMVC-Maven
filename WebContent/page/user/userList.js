@@ -22,13 +22,13 @@ layui.config({
 	getUserList(start, num);
 	
 	function getUserList(start,num){
+		var param = $(".search_input").val();
 		$.ajax({
-			url: "getUserList.do?start="+start+"&num="+num,
+			url: "getUserList.do?param="+param+"&start="+start+"&num="+num,
 			type:"get",
 			success:function(data){
-				total = data.count;
+				total = data.total;
 				renderDate(data.userList);
-				console.log(data.userList);
 				toPage();
 			}
 		});
@@ -41,17 +41,8 @@ layui.config({
 		
 			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
             setTimeout(function(){
-            	$.ajax({
-					url : "searchUserByLike.do?param="+param,
-					type : "get",
-					success : function(data){
-						console.log(data);
-						var userList = data.userList;
-						renderDate(userList);
-						toPage();
-					}
-				})
-            	
+            	getUserList(start,num);
+            	toPage();
                 layer.close(index);
             },2000);
 	})
@@ -279,5 +270,7 @@ layui.config({
 			dataHtml = '<tr><td colspan="7">暂无数据</td></tr>';
 		}
 		$(".user_content").html(dataHtml);
+		$('.users_list thead input[type="checkbox"]').prop("checked",false);
+    	form.render();
 	}
 })

@@ -22,39 +22,23 @@ layui.config({
 	getPaperList(start,limit);
 	
 	function getPaperList(start,limit){
-		$.get("getAllPaper.do?start="+start+"&num="+limit, function(data){
-			var page = data.page;
-			start = page.currentResult;
-
-			paperCount = page.total;
-			
+		var param = $(".search_input").val();
+		$.get("getAllPaper.do?param="+param+"&start="+start+"&num="+limit, function(data){
+			paperCount = data.total;
 			renderDate(data.paperList);
 			toPage();
 		})
-		
 	}
 	
 	//查询
 	$(".search_btn").click(function(){
 		var newArray = [];
-		//if($(".search_input").val() != ''){
 			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
             setTimeout(function(){
-            	$.ajax({
-					url : "getPaperByName.do?name="+$(".search_input").val(),
-					type : "get",
-					dataType : "json",
-					success : function(data){
-						newsData = data.paperList;
-						renderDate(newsData);
-					}
-				})
+            	getPaperList(start,limit);
             	toPage();
                 layer.close(index);
             },2000);
-		/*}else{
-			layer.msg("请输入需要查询的内容");
-		}*/
 	})
 
 	//添加文章
@@ -310,5 +294,7 @@ layui.config({
 		}
 		
 		$(".news_content").html(dataHtml);
+		$('.news_list thead input[type="checkbox"]').prop("checked",false);
+    	form.render();
 	}
 })

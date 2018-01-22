@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.makerpol.entity.Page;
 import com.makerpol.entity.Paper;
 import com.makerpol.service.PaperService;
 
@@ -78,29 +77,6 @@ public class PaperController {
 	}
 	
 	/**
-	 * 根据输入文章标题查询
-	 * 1.输入文章标题是空或者''，则调用searchAllPaper(0,13),返回第一页文章列表
-	 * 2.根据输入文章标题进行模糊查询，返回文章列表
-	 * 
-	 * @param name 文章标题
-	 * @return 文章列表
-	 */
-	@RequestMapping(value="/getPaperByName")
-	@ResponseBody
-	public Map<String, Object> getPaperByName(String name) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<Paper> list = new ArrayList<Paper>();
-		try {
-			list = service.getPaper(name);
-		}catch(DataAccessException e) {
-			map.put("message", "error");
-			System.out.println(e);
-		}
-		map.put("paperList", list);
-		return map;
-	}
-	
-	/**
 	 * 访问文章管理界面
 	 * @param model
 	 * @return
@@ -136,19 +112,15 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/getAllPaper")
 	@ResponseBody
-	public Map<String, Object> getAllPaper(@RequestParam Integer start,@RequestParam Integer num) {
+	public Map<String, Object> getAllPaper(@RequestParam String param ,@RequestParam Integer start,@RequestParam Integer num) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Paper> list = new ArrayList<Paper>();
-		Page page = new Page();
-		page.setStart(start);
-		page.setLimit(num);
 
-		list = service.searchAllPaper(page);
-		int total = service.getPaperCount();
+		list = service.getPaper(param, start, num);
+		int total = service.getPaperCount(param);
 		
-		page.setTotal(total);
 		map.put("paperList", list);
-		map.put("page", page);
+		map.put("total", total);
 		return map;
 	}
 	
@@ -184,6 +156,16 @@ public class PaperController {
 		}catch(DataAccessException e) {
 			map.put("message", "error");
 		}
+		return map;
+	}
+	
+	@RequestMapping(value="/getPaperTypeList")
+	@ResponseBody
+	public Map<String, Object> getPaperTypeList() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<List> list = new ArrayList<List>();
+		list = service.getPaperTypeList();
+		map.put("typeList", list);
 		return map;
 	}
 }

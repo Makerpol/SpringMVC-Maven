@@ -7,7 +7,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.makerpol.dao.PaperMapper;
-import com.makerpol.entity.Page;
 import com.makerpol.entity.Paper;
 
 /**
@@ -32,20 +31,18 @@ public class PaperServiceImpl implements PaperService {
 	}
 
 	@Override
-	public List<Paper> searchAllPaper(Page page) throws DataAccessException {
-		System.out.println(page.getStart());
-		System.out.println(page.getLimit());
-		return mapper.searchAllPaper(page.getStart(), page.getLimit());
-	} 
-
-	@Override
 	public Paper getPaper(Integer id) throws DataAccessException {
 		return mapper.selectByPrimaryKey(id);
 	}
 
 	@Override
-	public List<Paper> getPaper(String param) throws DataAccessException {
-		return this.getPaperByName(param);
+	public List<Paper> getPaper(String param) {
+		return mapper.getPaperListByName(param, 0, 13);
+	}
+
+	@Override
+	public List<Paper> getPaper(String param,Integer start,Integer num) throws DataAccessException {
+		return this.getPaperByName(param,start,num);
 	}
 	
 	@Override
@@ -60,20 +57,21 @@ public class PaperServiceImpl implements PaperService {
 	}
 	
 	@Override
-	public List<Paper> getPaperListByType(Integer type) {
-		return mapper.getPapeListrByType(type);
+	public List<List> getPaperTypeList() {
+		return mapper.getPaperTypeList();
 	}
 	
 	@Override
-	public int getPaperCount() {
-		return mapper.getPaperCount();
+	public int getPaperCount(String param) {
+		System.out.println(PaperServiceImpl.class.getName()+"param : "+param);
+		return mapper.getPaperCount(param);
 	}
 
-	private List<Paper> getPaperByName(String param) throws DataAccessException {
+	private List<Paper> getPaperByName(String param,Integer start,Integer num) throws DataAccessException {
 		if(param==null|| param=="") {
-			return mapper.searchAllPaper(0,13);
+			return mapper.getPaperList(0,13);
 		}
-		return mapper.getPaperListByName(param);
+		return mapper.getPaperListByName(param,start,num);
 	}
 
 	/**
