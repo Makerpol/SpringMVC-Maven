@@ -57,7 +57,7 @@
   	limit #{1},#{2}
   </select>
    
-  <select id="getPaperTypeList">
+  <select id="getPaperTypeList" resultType="map">
   	select type,count(*) from tb_paper group by type 
   </select>
   

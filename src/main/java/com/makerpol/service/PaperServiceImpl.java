@@ -1,6 +1,7 @@
 package com.makerpol.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -57,7 +58,7 @@ public class PaperServiceImpl implements PaperService {
 	}
 	
 	@Override
-	public List<List> getPaperTypeList() {
+	public List<Map> getPaperTypeList() {
 		return mapper.getPaperTypeList();
 	}
 	

@@ -1,3 +1,4 @@
+var UE = window.UE;
 layui.config({
 	base : "js/"
 }).use(['form','layer','jquery','layedit','laydate'],function(){
@@ -8,7 +9,22 @@ layui.config({
 		laydate = layui.laydate,
 		upload = layui.upload;
 		$ = layui.jquery;
-	
+		
+		window.UEDITOR_HOME_URL = "/UEditor/";
+		var ue = UE.getEditor("paper_content");
+		
+		/*UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;  
+	    UE.Editor.prototype.getActionUrl = function(action) {  
+	        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadvideo') {  
+	            //return '/upload.do';  
+	        } else {  
+	            return this._bkGetActionUrl.call(this, action);  
+	        }  
+	    }  */
+		
+		/*ue.addListener("ready",function(){
+			ue.setContent();
+		})*/
 	/*$.get("getPaper.do?id="+$("#id").val(), function(data){
 		console.log(data);
 		var paper = data.paper;
@@ -34,6 +50,9 @@ layui.config({
 	  uploadImage: {
 	    url: 'upload.do', //接口url
 	    type: 'post',//默认post
+	    success: function(data){
+	    	console.log(data);
+	    }
 	  }
 	});
 	

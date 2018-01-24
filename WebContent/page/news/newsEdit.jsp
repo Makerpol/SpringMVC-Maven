@@ -92,7 +92,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 			<label class="layui-form-label">文章内容</label>
 			<div class="layui-input-block">
-				<textarea id="news_content" class="layui-textarea" name="content" lay-verify="content" >${paper.text}</textarea>
+				<script id="paper_content" type="text/plain" style="width:1260px;height:500px;"></script>
+				<%-- <textarea id="paper_content" class="layui-textarea" name="content" lay-verify="content" >${paper.text}</textarea> --%>
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -102,6 +103,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </div>
 		</div>
 	</form>
+	<script type="text/javascript" src="/UEditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="/UEditor/ueditor.all.js"></script>
 	<script type="text/javascript" src="/layui/layui.js"></script>
 	<script type="text/javascript" src="/layui/lay/modules/jquery.js"></script>
 	<script type="text/javascript" src="/page/news/newsEdit.js"></script>

@@ -163,7 +163,7 @@ public class PaperController {
 	@ResponseBody
 	public Map<String, Object> getPaperTypeList() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<List> list = new ArrayList<List>();
+		List<Map> list = new ArrayList<Map>();
 		list = service.getPaperTypeList();
 		map.put("typeList", list);
 		return map;
