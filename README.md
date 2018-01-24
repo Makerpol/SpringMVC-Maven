@@ -1,10 +1,12 @@
 #
 
-后台框架：spring+springmvc+mybatis
-前端框架：layui+juqery
-依赖管理：maven
-服务器： jetty
+#### 后台框架：spring+springmvc+mybatis
+#### 前端框架：layui+juqery
+#### 依赖管理：maven
+#### 服务器： jetty
+#### 富文本编辑器：UEditor
 
+### 创建本地仓库，链接远程仓库，推送到远程仓库
 #### $ git init   							//初始化仓库
 #### $ git add README.md 					//添加文件到本地仓库  
 #### $ git commit -m "first commit"			//添加文件描述信息
@@ -18,3 +20,8 @@
 #### $ git log -p master.. origin/master//比较本地的仓库和远程参考的区别
 
 #### $ git merge origin/master//把远程下载下来的代码合并到本地仓库，远程的和本地的合并
+
+###  拉取远程分支到本地分支
+#### $ git fetch origin 分支名
+#### $ git checkout -b 创建的本地分支名
+#### $ git checkout -b 本地分支名 origin/远程分支名
