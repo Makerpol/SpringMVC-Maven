@@ -124,11 +124,12 @@ for ( int i = 0, len = jsonArray.size(); i < len; i++ ) {
 
 ```
 这部分的修改，是由于UEditor依赖的org.json和项目net.json冲突，所以把UEditor中使用org.json代码替换成net.json
-
+<br>
 
 [BinaryUploader.java](https://github.com/Makerpol/SpringMVC-Maven/blob/dev/src/main/java/com/baidu/ueditor/upload/BinaryUploader.java)中上传代码和springmvc上传冲突，参照现在的上传修改原文件。
 
 FileManager.java
+
 修改前
 ```java
 return path.replace( this.rootPath, "/" );
@@ -145,7 +146,7 @@ return path.replace( this.rootPath, "" );
 
 
 
-
+#
 
 ### 创建本地仓库，链接远程仓库，推送到远程仓库
 #### $ git init   							//初始化仓库
