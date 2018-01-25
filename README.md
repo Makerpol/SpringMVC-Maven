@@ -142,9 +142,29 @@ return path.replace( this.rootPath, "" );
 否则访问上传文件时，路径会多一个**/**
 
 
+#### 问题
 
+找不到AllContent方法的问题
+>Caused by: java.lang.NoSuchMethodError: com.baidu.ueditor.ConfigManager.getAllConfig()Lorg/json/JSONObject;
 
+解决：
 
+ConfigManager.java
+```java
+public String getAllConfig() {
+    return this.jsonConfig.toString();
+}
+```
+
+ActionEnter.java
+```java
+switch (actionCode) {
+            case 0: {
+                return this.configManager.getAllConfig();
+            }
+```
+
+原因猜测：应该是和spring框架中的方法冲突导致，改变返回值类型，避免调用失败。
 
 #
 
