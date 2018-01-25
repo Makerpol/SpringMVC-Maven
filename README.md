@@ -58,9 +58,19 @@ ueditor.config.js中的配置说明：
 
 ```
 
-
-
 config.json配置文件说明：
+
+```js
+    "imageActionName": "uploadimage",    //处理图片上传的标志，是请求中参数action的值，后台获取参数action的值判断执行图片上传
+    "imageFieldName": "upfile",          //提交的图片表单的名称，如果要自己实现上传功能，注意参数名要一致upfile 
+    "imageMaxSize": 2048000, 
+    "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
+    "imageCompressEnable": true, 
+    "imageCompressBorder": 1600,
+    "imageInsertAlign": "none", 
+    "imageUrlPrefix": "http://192.168.211.16:8080", //访问图片的前缀，
+    "imagePathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", //图片保存地址格式
+```
 
 
 加载config.json文件的入口类说明：
@@ -75,8 +85,60 @@ out.write( new ActionEnter( request, rootPath ).exec() );
 通过ActionEnter的构造函数，把config.json的路径传入，让ConfigManager.readFile方法读取config.json文件。
 
 
+后端代码：
+
+ConfigManager.java
+
+修改前
+```java
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+······
+
+JSONObject jsonConfig = new JSONObject( configContent );
+
+······
+
+String[] result = new String[ jsonArray.length() ];
+		
+for ( int i = 0, len = jsonArray.length(); i < len; i++ ) {
+
+```
 
 
+修改后
+```java
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+······
+
+JSONObject jsonConfig = JSONObject.fromObject(configContent);
+
+······
+
+String[] result = new String[ jsonArray.size() ];
+		
+for ( int i = 0, len = jsonArray.size(); i < len; i++ ) {
+
+```
+这部分的修改，是由于UEditor依赖的org.json和项目net.json冲突，所以把UEditor中使用org.json代码替换成net.json
+
+
+[BinaryUploader.java](https://github.com/Makerpol/SpringMVC-Maven/blob/dev/src/main/java/com/baidu/ueditor/upload/BinaryUploader.java)中上传代码和springmvc上传冲突，参照现在的上传修改原文件。
+
+FileManager.java
+修改前
+```java
+return path.replace( this.rootPath, "/" );
+```
+
+修改后
+```java
+return path.replace( this.rootPath, "" );
+```
+否则访问上传文件时，路径会多一个**/**
 
 
 
