@@ -80,11 +80,9 @@ public class FileManager {
 	}
 	
 	private String getPath ( File file ) {
-		
 		String path = PathFormat.format( file.getAbsolutePath() );
-		
-		return path.replace( this.rootPath, "/" );
-		
+		String temp = path.replace( this.rootPath, "" );
+		return temp;
 	}
 	
 	private String[] getAllowFiles ( Object fileExt ) {

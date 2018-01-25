@@ -98,8 +98,10 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">文章内容</label>
 			<div class="layui-input-block">
-				<textarea id="news_content" class="layui-textarea" name="content"
-					lay-verify="content"></textarea>
+				<script id="paper_content" type="text/plain" style="width:1260px;height:500px;"></script>
+			
+				<!-- <textarea id="news_content" class="layui-textarea" name="content"
+					lay-verify="content"></textarea> -->
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -109,6 +111,8 @@
 			</div>
 		</div>
 	</form>
+	<script type="text/javascript" src="/UEditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="/UEditor/ueditor.all.js"></script>
 	<script type="text/javascript" src="/layui/layui.js"></script>
 	<script type="text/javascript" src="/page/news/newsAdd.js"></script>
 </body>

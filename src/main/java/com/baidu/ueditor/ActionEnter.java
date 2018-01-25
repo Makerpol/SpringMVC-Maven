@@ -11,6 +11,7 @@ import com.baidu.ueditor.define.State;
 import com.baidu.ueditor.hunter.FileManager;
 import com.baidu.ueditor.hunter.ImageHunter;
 import com.baidu.ueditor.upload.Uploader;
+import net.sf.json.JSONObject;
 
 public class ActionEnter {
 	
@@ -64,15 +65,14 @@ public class ActionEnter {
 		State state = null;
 		
 		int actionCode = ActionMap.getType( this.actionType );
-		System.out.println(actionType);
 		
 		Map<String, Object> conf = null;
 		
 		switch ( actionCode ) {
 		
 			case ActionMap.CONFIG:
-				
-				return this.configManager.getAllConfig().toString();
+				JSONObject obj = this.configManager.getAllConfig();
+				return obj.toString();
 				
 			case ActionMap.UPLOAD_IMAGE:
 			case ActionMap.UPLOAD_SCRAWL:

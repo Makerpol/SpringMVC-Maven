@@ -8,7 +8,7 @@
     "imageCompressEnable": true, 
     "imageCompressBorder": 1600,
     "imageInsertAlign": "none", 
-    "imageUrlPrefix": "", 
+    "imageUrlPrefix": "http://192.168.211.16:8080", 
     "imagePathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
                               
 
@@ -16,13 +16,13 @@
     "scrawlFieldName": "upfile", 
     "scrawlPathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "scrawlMaxSize": 2048000, 
-    "scrawlUrlPrefix": "", 
+    "scrawlUrlPrefix": "http://192.168.211.16:8080", 
     "scrawlInsertAlign": "none",
 
   
     "snapscreenActionName": "uploadimage", 
     "snapscreenPathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
-    "snapscreenUrlPrefix": "", 
+    "snapscreenUrlPrefix": "http://192.168.211.16:8080", 
     "snapscreenInsertAlign": "none", 
 
 
@@ -30,7 +30,7 @@
     "catcherActionName": "catchimage", 
     "catcherFieldName": "source", 
     "catcherPathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
-    "catcherUrlPrefix": "", 
+    "catcherUrlPrefix": "http://192.168.211.16:8080", 
     "catcherMaxSize": 2048000, 
     "catcherAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
 
@@ -38,7 +38,7 @@
     "videoActionName": "uploadvideo", 
     "videoFieldName": "upfile", 
     "videoPathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
-    "videoUrlPrefix": "", 
+    "videoUrlPrefix": "http://192.168.211.16:8080", 
     "videoMaxSize": 102400000, 
     "videoAllowFiles": [
         ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
@@ -47,7 +47,7 @@
     "fileActionName": "uploadfile", 
     "fileFieldName": "upfile", 
     "filePathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
-    "fileUrlPrefix": "", 
+    "fileUrlPrefix": "http://192.168.211.16:8080", 
     "fileMaxSize": 51200000, 
     "fileAllowFiles": [
         ".png", ".jpg", ".jpeg", ".gif", ".bmp",
@@ -60,7 +60,7 @@
     "imageManagerActionName": "listimage", 
     "imageManagerListPath": "/upload/", 
     "imageManagerListSize": 20, 
-    "imageManagerUrlPrefix": "", 
+    "imageManagerUrlPrefix": "http://192.168.211.16:8080", 
     "imageManagerInsertAlign": "none", 
     "imageManagerAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
 

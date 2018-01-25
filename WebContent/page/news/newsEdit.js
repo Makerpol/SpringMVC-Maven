@@ -10,58 +10,9 @@ layui.config({
 		upload = layui.upload;
 		$ = layui.jquery;
 		
-		window.UEDITOR_HOME_URL = "/UEditor/";
-		var ue = UE.getEditor("paper_content");
+	window.UEDITOR_HOME_URL = "/UEditor/";
+	var ue = UE.getEditor("paper_content");
 		
-		/*UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;  
-	    UE.Editor.prototype.getActionUrl = function(action) {  
-	        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadvideo') {  
-	            //return '/upload.do';  
-	        } else {  
-	            return this._bkGetActionUrl.call(this, action);  
-	        }  
-	    }  */
-		
-		/*ue.addListener("ready",function(){
-			ue.setContent();
-		})*/
-	/*$.get("getPaper.do?id="+$("#id").val(), function(data){
-		console.log(data);
-		var paper = data.paper;
-		console.log(paper);
-		$(".newsName").val(paper.paperName);
-		//renderCheckbox(paper);
-		//$(".newsAuthor").val(paper.author);
-		//$(".newsTime").val(paper.date);
-		$("#news_content").val(paper.text);
-		
-		//form.render("checkbox");
-	});*/
-	
-	/*upload.render({
-		url: 'upload.do', //接口url
-	    type: 'post',//默认post
-	    success:function(data){
-	    	console.log(data);
-	    }
-	});*/
-	
-	layedit.set({
-	  uploadImage: {
-	    url: 'upload.do', //接口url
-	    type: 'post',//默认post
-	    success: function(data){
-	    	console.log(data);
-	    }
-	  }
-	});
-	
-	//创建一个编辑器
- 	var editIndex = layedit.build('news_content');
- 	var addNewsArray = [],addNews;
- 	
- 	
- 	
  	function renderCheckbox(paper){
  		if(paper.status==1){
 			$(".shenhe").removeAttr("checked");
@@ -72,10 +23,9 @@ layui.config({
 		}
  	}
  	
- 	
- 	
  	form.on("submit(addNews)",function(data){
  		var index = layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
+ 		
  		var param = {};
  		param.id = $("#id").val();
  		param.paperName = $(".newsName").val();
@@ -85,7 +35,7 @@ layui.config({
  		param.type = $(".type").val();
  		param.show = data.field.show=="on" ? 0 : 1;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
- 		param.text = layedit.getContent(editIndex);
+ 		param.text = ue.getContent();
  		
  		$.ajax({
 			url : "upDataPaper.do",
@@ -106,9 +56,6 @@ layui.config({
         setTimeout(function(){
             layer.close(index);
 			layer.msg("文章编辑成功！");
- 			//layer.closeAll("iframe");
- 			//刷新父页面
-	 		//parent.location.reload();
         },2000);
         
         var FrameIndex = layer.getFrameIndex(window.name);

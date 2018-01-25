@@ -7,10 +7,10 @@ layui.config({
 		layedit = layui.layedit,
 		laydate = layui.laydate,
 		$ = layui.jquery;
+	
+	window.UEDITOR_HOME_URL = "/UEditor/";
+	var ue = UE.getEditor("paper_content");
 
-	//创建一个编辑器
- 	var editIndex = layedit.build('news_content');
- 	var addNewsArray = [],addNews;
  	form.on("submit(addNews)",function(data){
  		var index = layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
  		var param = {};
@@ -21,7 +21,7 @@ layui.config({
  		param.type = $(".type").val();
  		param.show = data.field.show=="on" ? 1 : 0;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
- 		param.text = layedit.getContent(editIndex);
+ 		param.text = ue.getContent();
  		console.log(param.text);
  		
  		
@@ -44,9 +44,6 @@ layui.config({
         setTimeout(function(){
             layer.close(index);
 			layer.msg("文章添加成功！");
- 			//layer.closeAll("iframe");
-	 		//刷新父页面
-	 		//parent.location.reload();
         },2000);
         
         var FrameIndex = layer.getFrameIndex(window.name);

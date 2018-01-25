@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 			<label class="layui-form-label">文章内容</label>
 			<div class="layui-input-block">
-				<script id="paper_content" type="text/plain" style="width:1260px;height:500px;"></script>
+				<script id="paper_content" type="text/plain" style="width:1260px;height:500px;">${paper.text}</script>
 				<%-- <textarea id="paper_content" class="layui-textarea" name="content" lay-verify="content" >${paper.text}</textarea> --%>
 			</div>
 		</div>

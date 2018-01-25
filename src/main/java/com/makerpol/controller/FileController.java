@@ -30,15 +30,16 @@ import com.makerpol.entity.User;
 @Controller("fileController")
 public class FileController {
 	
-	
-	
+	/**
+	 * º”‘ÿconfig.json≈‰÷√Œƒº˛
+	 */ 
 	@RequestMapping(value="config")
-	public void configB(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void config(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setContentType("application/json");
 		request.setCharacterEncoding( "utf-8" );
 		response.setHeader("Content-Type" , "text/html");
 		String rootPath = request.getSession().getServletContext().getRealPath("/");
-		String ae = new ActionEnter( request, rootPath+"\\UEditor\\jsp" ).exec();
+		String ae = new ActionEnter( request, rootPath).exec();
 		PrintWriter pw =response.getWriter();
 		pw.write(ae);
 		pw.flush();
@@ -46,7 +47,7 @@ public class FileController {
 	}
 	
 	
-	@RequestMapping("config1")
+	/*@RequestMapping("config1")
     @ResponseBody
     public String viewConfig(String action, HttpServletRequest request, HttpServletResponse response) {
 
@@ -125,6 +126,6 @@ public class FileController {
 	}
 
     private String filter(String input) {
-        return input.replaceAll("/\\*[\\s\\S]*?\\*/", "");
-    }
+        //return input.replaceAll("/\\*[\\s\\S]*?\\", "");
+*/   /* }*/
 }

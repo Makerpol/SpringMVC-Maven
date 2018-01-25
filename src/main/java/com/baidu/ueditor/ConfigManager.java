@@ -75,10 +75,7 @@ public final class ConfigManager {
 	}
 	
 	public JSONObject getAllConfig () {
-		
-		System.out.println("ConfigManager : "+this.jsonConfig);
 		return this.jsonConfig;
-		
 	}
 	
 	public Map<String, Object> getConfig ( int type ) {

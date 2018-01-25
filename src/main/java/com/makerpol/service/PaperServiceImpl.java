@@ -53,7 +53,6 @@ public class PaperServiceImpl implements PaperService {
 
 	@Override
 	public void upDataPaper(Paper paper) throws DataAccessException {
-		paper.setText(format(paper.getText()));
 		mapper.updateByPrimaryKeySelective(paper);
 	}
 	
@@ -64,7 +63,6 @@ public class PaperServiceImpl implements PaperService {
 	
 	@Override
 	public int getPaperCount(String param) {
-		System.out.println(PaperServiceImpl.class.getName()+"param : "+param);
 		return mapper.getPaperCount(param);
 	}
 
