@@ -62,7 +62,7 @@ public class PaperController {
 	 * @param id  文章ID
 	 * @return
 	 */
-	@RequestMapping(value="/getPaper")
+	@RequestMapping(value="/page/news/getPaper")
 	@ResponseBody
 	public Map<String, Object> getPaper(Integer id) {
 		Map<String, Object> map = new HashMap<String, Object>();

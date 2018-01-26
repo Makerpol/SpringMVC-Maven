@@ -33,7 +33,11 @@ public class PaperServiceImpl implements PaperService {
 
 	@Override
 	public Paper getPaper(Integer id) throws DataAccessException {
-		return mapper.selectByPrimaryKey(id);
+		Paper paper = mapper.selectByPrimaryKey(id);
+		
+		paper.setClickCount(paper.getClickCount()+1);
+		this.setPaperClickCount(paper);
+		return paper;
 	}
 
 	@Override
@@ -65,7 +69,11 @@ public class PaperServiceImpl implements PaperService {
 	public int getPaperCount(String param) {
 		return mapper.getPaperCount(param);
 	}
-
+	
+	private void setPaperClickCount(Paper paper) {
+		this.upDataPaper(paper);
+	}
+	
 	private List<Paper> getPaperByName(String param,Integer start,Integer num) throws DataAccessException {
 		if(param==null|| param=="") {
 			return mapper.getPaperList(0,13);

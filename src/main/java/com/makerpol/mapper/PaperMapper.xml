@@ -23,6 +23,7 @@
     <result column="text" property="text" jdbcType="LONGVARCHAR" />
     <result column="power" property="power" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="clickCount" property="clickCount" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
@@ -135,6 +136,9 @@
       <if test="images != null">
       	images,
       </if>
+      <if test="clickCount != null">
+      	clickCount,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="paperName != null" >
@@ -163,6 +167,9 @@
       </if>
       <if test="images != null">
         #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCount != null">
+      	#{clickCount,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -200,6 +207,9 @@
       </if>
       <if test="images != null">
       	images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="clickCount != null">
+      	clickCount = #{clickCount,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

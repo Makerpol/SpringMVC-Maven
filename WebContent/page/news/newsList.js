@@ -40,7 +40,8 @@ layui.config({
                 layer.close(index);
             },2000);
 	})
-
+	
+	
 	//添加文章
 	$(".newsAdd_btn").click(function(){
 		if(LoginUser.grade==2){
@@ -153,7 +154,17 @@ layui.config({
 		}
 		form.render('checkbox');
 	})
- 
+	
+	//预览
+	$("body").on("click", ".news_text", function(){
+		
+		var _this = $(this);
+		var id = _this.attr("data-id");
+		console.log(id);
+		window.open("page/news/newsView.jsp?"+id,"left=0,top=0,width="+(screen.availWidth - 10)+"height="+(screen.availHeight-50)+"scrollbars,resizable=yes,toolbar=no");
+	})
+	
+	
 	//操作
 	$("body").on("click",".news_edit",function(){  //编辑
 		if(LoginUser.grade==2){
@@ -286,7 +297,8 @@ layui.config({
 		    	+'<td>'
 				+  '<a class="layui-btn layui-btn-mini news_edit" data-id="'+data[i].id+'"><i class="iconfont icon-edit"></i> 编辑</a>'
 				+  '<a class="layui-btn layui-btn-danger layui-btn-mini news_del" data-id="'+data[i].id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
-		        +'</td>'
+				+  '<a class="layui-btn layui-btn-mini news_text" data-id="'+data[i].id+'"><i class="iconfont icon-text"></i> 预览</a>'
+				+'</td>'
 		    	+'</tr>';
 			}
 		}else{
