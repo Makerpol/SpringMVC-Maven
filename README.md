@@ -1,13 +1,14 @@
-# 
 ###  项目架构
+# 
 #### 后台框架：spring+springmvc+mybatis
 #### 前端框架：layui+juqery
 #### 依赖管理：maven
 #### 服务器： jetty
 #### 富文本编辑器：UEditor
 
-#
+
 ###  整合UEditor简介
+#
 准备：
 1. 下载[UEditor](http://ueditor.baidu.com/website/download.html)的JSP版
 2. 在WebContent目录下创建UEditor文件夹，将解压后文件夹下的utf8-jsp目录下的文件拷贝到UEditor目录下。（根据自己情况而定）
@@ -167,9 +168,9 @@ switch (actionCode) {
 
 原因猜测：java链式调用在编译时的问题
 
-#
 
-### 创建本地仓库，链接远程仓库，推送到远程仓库
+### 常用命令
+#
 #### $ git init   							//初始化仓库
 #### $ git add README.md 					//添加文件到本地仓库  
 #### $ git commit -m "first commit"			//添加文件描述信息
