@@ -59,12 +59,23 @@ layui.config({
             date:[/^((?:19|20)\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,'时间格式不正确']
         })
 
-        //判断是否修改过头像，如果修改过则显示修改后的头像，否则显示默认头像
+        /*//判断是否修改过头像，如果修改过则显示修改后的头像，否则显示默认头像
         if(window.sessionStorage.getItem('userFace')){
         	$("#userFace").attr("src",window.sessionStorage.getItem('userFace'));
         }else{
-        	$("#userFace").attr("src","../../images/face.jpg");
-        }
+        	$("#userFace").attr("src","../../images/luna.jpg");
+        }*/
+        
+        layui.upload({
+        	elem:"",
+        	url:"upload.do",
+        	success:function(data){
+        		console.log(data);
+        		$("#userFace").attr("src",data.URL);
+        		parent.location.reload(true);
+        	}
+        });
+        
 
         //提交个人资料
         form.on("submit(updataUser)",function(data){

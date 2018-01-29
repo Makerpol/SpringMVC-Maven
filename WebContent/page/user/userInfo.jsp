@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="layui-form-item">
 				<label for="role" class="layui-form-label">
-                    <span class="x-red">*</span>用户组
+                    	用户组
                 </label>
                     <div class="layui-input-inline">
                       <select id="grade" name="role" <c:choose><c:when test="${user.grade != 0}">disabled="disabled"</c:when></c:choose>>
@@ -71,9 +71,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="user_right">
-			<input type="file" name="" class="layui-upload-file" lay-title="我要换一个头像">
+			<input type="file" name="upfile" class="layui-upload-file" lay-title="我要换一个头像">
 			<p>预览</p>
-			<img src="" class="layui-circle" id="userFace">
+			<img src="${user.image}" class="layui-circle" id="userFace">
 		</div>
 		<div class="layui-form-item" style="margin-left: 5%;">
 		    <div class="layui-input-block">
@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </div>
 		</div>
 	</form>
+	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
 	<script type="text/javascript" src="/layui/layui.js"></script>
 	<script type="text/javascript" src="/page/user/address.js"></script>
 	<script type="text/javascript" src="/page/user/user.js"></script>

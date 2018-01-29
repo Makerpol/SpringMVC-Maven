@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</li>
 					<li class="layui-nav-item" pc>
 						<a href="javascript:;">
-							<img src="/images/luna.jpg" class="layui-circle" width="35" height="35">
+							<img src="${user.image}" class="layui-circle" width="35" height="35">
 							<cite>${user.name}</cite>
 						</a>
 						<dl class="layui-nav-child">
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- 左侧导航 -->
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
-				<a class="img" title="我的头像" ><img src="/images/luna.jpg"></a>
+				<a class="img" title="我的头像" ><img src="${user.image}"></a>
 				<p>你好！<span class="userName">${user.name}</span>, 欢迎登录</p>
 			</div>
 			<div class="navBar layui-side-scroll"></div>

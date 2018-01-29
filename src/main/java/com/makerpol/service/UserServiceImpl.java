@@ -55,7 +55,7 @@ public class UserServiceImpl<T> implements UserService<T> {
 
 	@Override
 	public void addUser(User user) throws DataAccessException {
+		user.setImage("/images/luna.jpg");
 		mapper.addUser(user);
-		
 	}
 }
