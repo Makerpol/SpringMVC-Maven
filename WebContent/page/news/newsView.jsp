@@ -36,6 +36,8 @@ height : 100%;
 .paperInfo{
 	text-align:center;
 	padding-bottom:25px;
+	font-size:12px;
+	color:gray;
 }
 .h-author, .aticle-src{
 	margin-right:45px;

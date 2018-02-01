@@ -82,12 +82,12 @@ layui.config({
         	var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
         	var param = {};
         	param.id = $("#id").val();
-        	param.name = $("#alias").val();
+        	param.realname = $("#realname").val();
         	param.grade = $("#grade").val();
         	param.phone = $("#phone").val();
         	param.birthday = $("#birthday").val();
         	param.email = $("#email").val();
-        	param.name = $("#name").val();
+        	//param.name = $("#name").val();
         	console.log(param);
         	//
         	$.ajax({'url':"updataUser.do",

@@ -50,12 +50,12 @@ public class UserServiceImpl<T> implements UserService<T> {
 
 	@Override
 	public void deleteUser(Integer id) throws DataAccessException {
-		mapper.deleteUser(id);
+		
+		//mapper.deleteUser(id);
 	}
 
 	@Override
 	public void addUser(User user) throws DataAccessException {
-		user.setImage("/images/luna.jpg");
 		mapper.addUser(user);
 	}
 }

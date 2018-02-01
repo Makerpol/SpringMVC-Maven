@@ -225,6 +225,11 @@ layui.config({
 		var dataHtml = '';
 		if(data!=null && data.length != 0){
 			for(var i=0;i<data.length;i++){
+				
+				if(data[i].status==2){
+					break;
+				}
+				
 				dataHtml += '<tr>'
 		    	+'<td><input type="checkbox" name="checked" value="'+ data[i].id+'" lay-skin="primary" lay-filter="choose"></td>'
 		    	+'<td align="left">'+data[i].name+'</td>';
@@ -232,16 +237,19 @@ layui.config({
 				var text;
 		    	switch(data[i].grade){
 		    	case 0:
-		    		text="超级管理员";
+		    		text="管理员";
 		    		break;
 		    	case 1:
-		    		text="编辑人员";
+		    		text="责任主编";
 		    		break;
 		    	case 2:
-		    		text="问题维护";
+		    		text="编辑记者";
+		    		break;
+		    	case 3:
+		    		text="普通用户";
 		    		break;
 		    	default:
-		    		text="超级管理员";
+		    		text="编辑记者";
 		    	}
 		    	
 		    	dataHtml += '<td>'+text+'</td>'

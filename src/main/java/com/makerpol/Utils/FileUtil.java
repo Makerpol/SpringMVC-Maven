@@ -18,20 +18,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.makerpol.common.Common;
 import com.makerpol.entity.User;
 
 
 public class FileUtil {
 	private static final Logger logger;
-	private static final String UTF8 = "UTF-8";
-	private static final String GBK = "GBK";
-	private static final String FILE_PATH = "\\upload\\";
-	
 	public static final RuntimeException IgnoreException;
 	
 	
 	/**
-	 * 单文件上传
+	 * ~{5%ND<~IO4+~}
 	 * @param file
 	 * @param req
 	 */
@@ -39,10 +36,10 @@ public class FileUtil {
 		Map<String,Object> map = new HashMap<String,Object>();
 		String path =req.getSession().getServletContext().getRealPath("/");
 		User user = (User)req.getSession().getAttribute("user");
-		path += FILE_PATH+user.getName();
+		path += Common.DF_UPLOAD_PATH +user.getName();
 		
 		String fileName = file.getOriginalFilename();
-		String URL = FILE_PATH+user.getName()+"\\"+fileName;
+		String URL = Common.DF_UPLOAD_PATH+user.getName()+"\\"+fileName;
 		System.out.println(URL);
 		File temp = new File(path+"\\"+fileName);
 		
@@ -65,7 +62,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * 多文件上传
+	 * ~{6`ND<~IO4+~}
 	 * @param upfile
 	 * @param req
 	 */
@@ -88,7 +85,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * 读取文件
+	 * ~{6AH!ND<~~}
 	 * @param is
 	 * @param charset
 	 * @param handler

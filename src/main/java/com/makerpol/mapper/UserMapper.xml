@@ -9,7 +9,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="INTEGER" />
     <result column="phone" property="phone" jdbcType="BIGINT" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -64,18 +64,18 @@
         <if test="sex != null">sex = #{sex,jdbcType=INTEGER},</if>
         <if test="email != null">email = #{email,jdbcType=VARCHAR},</if>
         <if test="birthday != null">birthday = #{birthday,jdbcType=VARCHAR},</if>
-        <if test="alias != null">alias = #{alias,jdbcType=VARCHAR},</if>
+        <if test="realname != null">realname = #{realname,jdbcType=VARCHAR},</if>
         <if test="phone != null">phone = #{phone,jdbcType=BIGINT},</if>
         <if test="image != null">image = #{image,jdbcType=VARCHAR}</if>
 		</set>
         
-        where name = #{name} 
+        where id = #{id} 
    </update> 
    
    <!-- 自动生成id策略 -->  
    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.User">   
-         insert into tb_user(status,grade, name, password, sex, alias, birthday, phone, email,image)   
-         values(#{status},#{grade}, #{name}, #{password}, #{sex}, #{alias}, #{birthday}, #{phone}, #{email},#{image})   
+         insert into tb_user(status,grade, name, password, sex, realname, phone, email)   
+         values(#{status},#{grade}, #{name}, #{password}, #{sex}, #{realname}, #{phone}, #{email})   
    </insert> 
     
     <delete id="deleteUser" parameterType="int">

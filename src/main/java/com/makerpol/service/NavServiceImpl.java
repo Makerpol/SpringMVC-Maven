@@ -2,17 +2,27 @@ package com.makerpol.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.makerpol.dao.NavMapper;
 import com.makerpol.entity.Nav;
+
 @Service
 public class NavServiceImpl implements NavService {
-
+	
+	@Autowired
+	private NavMapper mapper;
+	
 	@Override
 	public List<Nav> getAllNav() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.getAll();
+	}
+	
+	@Override
+	public List<Nav> getNavByType(Integer type) {
+		return mapper.getNavsByType(type);
 	}
 
 	@Override
@@ -41,8 +51,8 @@ public class NavServiceImpl implements NavService {
 
 	@Override
 	public void addNav(Nav nav) throws DataAccessException {
-		// TODO Auto-generated method stub
-
+		
+		mapper.insertSelective(nav);
 	}
 
 }

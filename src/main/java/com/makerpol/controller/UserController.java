@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.makerpol.Utils.MD5Util;
+import com.makerpol.common.Common;
 import com.makerpol.entity.User;
 import com.makerpol.service.UserService;
 
@@ -180,16 +181,56 @@ public class UserController {
 	 */
 	@RequestMapping(value="/addUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map<Object,Object> addUser(@RequestBody User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public Map<Object,Object> addUser(@RequestBody User user){
 		Map<Object,Object> map = new HashMap<Object,Object>();
-		//MD5加密
-		user.setPassword(MD5Util.EncoderByMd5(user.getPassword()));
+		
 		try {
+			//MD5加密
+			user.setPassword(MD5Util.EncoderByMd5(Common.DF_PASSWORD));
+			user.setImage(Common.DF_IMAGES);
 			service.addUser(user);
-		}catch(DataAccessException e) {
+		}catch(DataAccessException |NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			map.put("message", "error");
-			System.out.println(e);
 		}
+		return map;
+	}
+	
+	/**
+	 * 登录名验证
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping(value="/checkName")
+	@ResponseBody
+	public Map<String, Object> checkLoginName(@RequestParam String name) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		User user = service.getUser(name);
+		if(user == null) {
+			map.put("msg", "no");
+		}
+		map.put("msg", "existed");
+		return map;
+	}
+	
+	/**
+	 * 重置密码
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/reSetPassword")
+	@ResponseBody
+	public Map<String,String> reSetPassword(Integer id) {
+		Map<String,String> map = new HashMap<String,String>();
+		User user = new User();
+		
+		try {
+			user.setId(id);
+			user.setPassword(MD5Util.EncoderByMd5(Common.DF_PASSWORD));
+			service.updataUser(user);
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			map.put("msg", "error");
+		}
+		
 		return map;
 	}
 }

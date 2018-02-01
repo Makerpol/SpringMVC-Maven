@@ -25,12 +25,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-hide">
 			    <input type="text" value="${user.id }" id="id" >
 			</div>
-			<div class="layui-form-item">
+<%-- 			<div class="layui-form-item">
 			    <label class="layui-form-label">用户名</label>
 			    <div class="layui-input-block">
-			    	<input type="text" value="${user.alias}" id="alias" class="layui-input layui-disabled">
+			    	<input type="text" value="${user.realname}" id="realname" class="layui-input layui-disabled">
 			    </div>
-			</div>
+			</div> --%>
 			<div class="layui-form-item">
 				<label for="role" class="layui-form-label">
                     	用户组
@@ -38,16 +38,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="layui-input-inline">
                       <select id="grade" name="role" <c:choose><c:when test="${user.grade != 0}">disabled="disabled"</c:when></c:choose>>
                         <option value="">请选择用户组</option>
-                        <option value="0" <c:choose><c:when test="${user.grade == 0}">selected='selected'</c:when></c:choose>>超级管理员</option>
-                        <option value="1" <c:choose><c:when test="${user.grade == 1}">selected='selected'</c:when></c:choose>>编辑人员</option>
-                        <option value="2" <c:choose><c:when test="${user.grade == 2}">selected='selected'</c:when></c:choose>>问题维护</option>
+                        <option value="0" <c:choose><c:when test="${user.grade == 0}">selected='selected'</c:when></c:choose>>管理员</option>
+                        <option value="1" <c:choose><c:when test="${user.grade == 1}">selected='selected'</c:when></c:choose>>主编主任</option>
+                        <option value="2" <c:choose><c:when test="${user.grade == 2}">selected='selected'</c:when></c:choose>>编辑记者</option>
+                      	<option value="3" <c:choose><c:when test="${user.grade == 3}">selected='selected'</c:when></c:choose>>普通人员</option>
                       </select>
                  </div>
 			</div>
 			<div class="layui-form-item">
 			    <label class="layui-form-label">真实姓名</label>
 			    <div class="layui-input-block">
-			    	<input type="text" id="name" value="${user.name }" placeholder="请输入真实姓名" lay-verify="required" class="layui-input">
+			    	<input type="text" id="realname" value="${user.realname }" placeholder="请输入真实姓名" lay-verify="required" class="layui-input">
 			    </div>
 			</div>
 			<div class="layui-form-item">

@@ -60,6 +60,7 @@ public class PaperServiceImpl implements PaperService {
 		mapper.updateByPrimaryKeySelective(paper);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Map> getPaperTypeList() {
 		return mapper.getPaperTypeList();
@@ -79,14 +80,5 @@ public class PaperServiceImpl implements PaperService {
 			return mapper.getPaperList(0,13);
 		}
 		return mapper.getPaperListByName(param,start,num);
-	}
-
-	/**
-	 * 替换文章内容中的换行(\r),空格(" ")，保证文章格式不变
-	 * @param text 文章内容
-	 * @return format后的文章内容
-	 */
-	private String format(String text) {
-		return text.replaceAll("\r", "<br>").replaceAll(" ","&nbsp;&nbsp;");
 	}
 }

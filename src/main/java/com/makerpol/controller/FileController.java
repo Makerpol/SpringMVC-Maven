@@ -54,8 +54,14 @@ public class FileController {
 		User user  = new User();
 		user = (User)req.getSession().getAttribute("user");
 		map = FileUtil.upLoad(upfile, req);
-		user.setImage(map.get("URL").toString());
+		String url = replace(map.get("URL").toString());
+		
+		user.setImage(url);
 		service.updataUser(user);
 		return map;
 	} 
+	
+	private String replace(String url) {
+		return url.replace("\\", "/");
+	}
 }

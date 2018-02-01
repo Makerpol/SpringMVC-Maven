@@ -20,6 +20,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		@media(max-width:1240px){
 			.layui-form-item .layui-inline{ width:100%; float:none; }
 		}
+		.tips{
+			margin-left:20px;
+			font-size:12px;
+			color:red;
+		}
 	</style>
 </head>
 <body class="childrenBody">
@@ -27,10 +32,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 			<label class="layui-form-label">登录名</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input userName" lay-verify="required" placeholder="请输入登录名">
+				<input type="text" class="layui-input userName" lay-verify="required|username" placeholder="请输入登录名">
 			</div>
 		</div>
 		<div class="layui-form-item">
+			<label class="layui-form-label">真实姓名</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input realname" lay-verify="required|realname" placeholder="请输入真实姓名">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">身份证号</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input IDCard" lay-verify="required|IDCard" placeholder="请输入身份证号">
+			</div>
+		</div>
+		<!-- <div class="layui-form-item">
 			<label class="layui-form-label">登录密码</label>
 			<div class="layui-input-block">
 				<input type="password" class="layui-input userpassword" lay-verify="required|newPwd" id="firstPwd" placeholder="请输入密码">
@@ -41,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-input-block">
 				<input type="password" class="layui-input userpassword" lay-verify="required|confirmPwd" placeholder="请确认输入密码">
 			</div>
-		</div>
+		</div> -->
 		<div class="layui-form-item">
 			<label class="layui-form-label">电话</label>
 			<div class="layui-input-block">
@@ -58,18 +75,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-inline">
 			    <label class="layui-form-label">性别</label>
 			    <div class="layui-input-block userSex">
-			      	<input type="radio" name="sex" value="男" title="男" checked>
-			      	<input type="radio" name="sex" value="女" title="女">
-			      	<input type="radio" name="sex" value="保密" title="保密">
+			      	<input type="radio" name="sex" value="1" title="男" checked>
+			      	<input type="radio" name="sex" value="0" title="女">
 			    </div>
 		    </div>
 		    <div class="layui-inline">
 			    <label class="layui-form-label">用户等级</label>
 				<div class="layui-input-block">
 					<select name="userGrade" class="userGrade" lay-filter="userGrade">
-						<option value="0">超级管理员</option>
-						<option value="1">编辑人员</option>
-				        <option value="2">问题维修</option>
+						<option value="0">管理员</option>
+						<option value="1">主编主任</option>
+				        <option value="2">编辑记者</option>
+				        <option value="3">普通人员</option>
 				    </select>
 				</div>
 		    </div>
@@ -78,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="layui-input-block">
 					<select name="userStatus" class="userStatus" lay-filter="userStatus">
 						<option value="0">正常使用</option>
-						<option value="1">限制用户</option>
+						<option value="1">禁止使用</option>
 				    </select>
 				</div>
 		    </div> 
@@ -87,6 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit="" lay-filter="addUser">立即提交</button>
 				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				<span class="tips">默认密码：123456</span>
 		    </div>
 		</div>
 	</form>
