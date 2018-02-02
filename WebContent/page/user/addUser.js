@@ -61,7 +61,7 @@ layui.config({
                 }
             }
         }
-        if(!pass) alert(tip);
+        //if(!pass) alert(tip);
         return pass;
     }
  	
@@ -118,7 +118,7 @@ layui.config({
         	}
         	
         	var hre = /^[\u4e00-\u9fa5]+$/;
-        	if(!htr.text(value)){
+        	if(!hre.test(value)){
         		return "请输入汉字！";
         	}
         }

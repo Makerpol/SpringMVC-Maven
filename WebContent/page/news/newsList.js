@@ -118,6 +118,7 @@ layui.config({
 	})
 
 	function auditAjax(id,oldStatus){
+		var msg = null;
 		var param = {};
 		param.id = id;
 		param.status = oldStatus==0?1:0;
@@ -126,12 +127,14 @@ layui.config({
 			url : "upDataPaper.do",
 			type : "post",
 			dataType : "json",
+			async: false,
 			'contentType':'application/json',
 			data : JSON.stringify(param),
 			success : function(data){
-				return data.message;
+				msg = data.message;
 			}
 		})
+		return msg;
 	}
 
 	//全选

@@ -207,8 +207,10 @@ public class UserController {
 		User user = service.getUser(name);
 		if(user == null) {
 			map.put("msg", "no");
+		}else {
+			map.put("msg", "existed");
 		}
-		map.put("msg", "existed");
+		
 		return map;
 	}
 	
