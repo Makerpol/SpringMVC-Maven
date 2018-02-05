@@ -11,6 +11,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 %>
 <html>
 <head>
+<link rel="icon" type="image/x-icon" href="../.././images/Tech.ico"/> 
 <script type="text/javascript" src="/js/modules/jquery.min.js"></script>
 <style type="text/css">
 .main{

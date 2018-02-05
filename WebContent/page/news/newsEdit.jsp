@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-inline">		
 				<label class="layui-form-label">发布时间</label>
 				<div class="layui-input-inline">
-					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this})" value="${paper.date}">
+					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss,max:laydate.now()'})" value="${paper.date}">
 				</div>
 			</div>
 			
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 		<div class="layui-inline">
 				<label class="layui-form-label">文章类型</label>
-				<div class="layui-input-inline">
+				<div class="layui-input-inline" id="paperType">
 					<select name="type" class="type" lay-filter="type">
 						<option value="0" <c:choose><c:when test='${paper.type == 0}'>selected</c:when></c:choose>>自然科学</option>
 						<option value="1" <c:choose><c:when test='${paper.type == 1}'>selected</c:when></c:choose>>工程技术</option>
@@ -59,6 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<option value="4" <c:choose><c:when test='${paper.type == 4}'>selected</c:when></c:choose>>哲学政法</option>
 						<option value="5" <c:choose><c:when test='${paper.type == 5}'>selected</c:when></c:choose>>社会科学</option>
 						<option value="6" <c:choose><c:when test='${paper.type == 6}'>selected</c:when></c:choose>>科教文艺</option>
+						<option value="7" <c:choose><c:when test='${paper.type == 7}'>selected</c:when></c:choose>>新闻报道</option>
 					</select>
 				</div>
 			</div>

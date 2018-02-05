@@ -45,7 +45,7 @@
 				<label class="layui-form-label">发布时间</label>
 				<div class="layui-input-inline">
 					<input type="text" class="layui-input newsTime" lay-verify="date"
-						onclick="layui.laydate({elem:this})">
+						onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss'})">
 				</div>
 			</div>
 
@@ -54,8 +54,8 @@
 		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">文章类型</label>
-				<div class="layui-input-inline">
-					<select name="type" class="type" lay-filter="type">
+				<div class="layui-input-inline" id="paperType">
+					<select name="type" class="type" lay-filter="type" >
 						<option value="0">自然科学</option>
 						<option value="1">工程技术</option>
 						<option value="2">医药卫生</option>
@@ -63,6 +63,7 @@
 						<option value="4">哲学政法</option>
 						<option value="5">社会科学</option>
 						<option value="6">科教文艺</option>
+						<option value="7">新闻报道</option>
 					</select>
 				</div>
 			</div>

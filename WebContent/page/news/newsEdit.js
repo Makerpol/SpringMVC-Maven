@@ -9,7 +9,9 @@ layui.config({
 		laydate = layui.laydate,
 		upload = layui.upload;
 		$ = layui.jquery;
-		
+	
+	$("#paperType dl").css("height","130px");
+	
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");
 		

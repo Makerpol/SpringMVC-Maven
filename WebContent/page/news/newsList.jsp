@@ -53,7 +53,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 				<col width="9%">
 				<col width="9%">
 				<col width="9%">
-				<col width="9%">
+				<col width="15%">
 				<col width="15%">
 		    </colgroup>
 		    <thead>

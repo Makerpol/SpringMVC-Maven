@@ -5,8 +5,9 @@ layui.config({
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
 		laypage = layui.laypage,
 		layedit = layui.layedit,
-		laydate = layui.laydate,
 		$ = layui.jquery;
+	
+	$("#paperType dl").css("height","130px");
 	
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");

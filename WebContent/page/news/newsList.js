@@ -279,6 +279,9 @@ layui.config({
 				case 6:
 					dataHtml += '<td>科教文艺</td>';
 					break;
+				case 7:
+					dataHtml += '<td>新闻报道</td>';
+					break;
 				default:
 					dataHtml += '<td>自然科学</td>';
 				}

@@ -10,6 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>后台管理系统</title>
   <link rel="stylesheet" href="css/login.css">
+  <link rel="icon" type="image/x-icon" href="images/Tech.ico"/>  
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="/layui/layui.js" charset="utf-8"></script>
 </head>
@@ -27,6 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <hr class="hr20" >
         </form>
         <div >${LoginMessige}</div>
+        <div class="Fmsg"><a href="javascript:;">忘记密码？</a></div>
     </div>
     <script>
     layui.use(['form']);
