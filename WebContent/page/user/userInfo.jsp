@@ -32,6 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    </div>
 			</div> --%>
 			<div class="layui-form-item">
+				<div class="layui-inline">
 				<label for="role" class="layui-form-label">
                     	用户组
                 </label>
@@ -44,7 +45,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       	<option value="3" <c:choose><c:when test="${user.grade == 3}">selected='selected'</c:when></c:choose>>普通人员</option>
                       </select>
                  </div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">用户状态</label>
+					<div class="layui-input-block">
+						<select name="userStatus" class="userStatus" lay-filter="userStatus">
+							<option value="0">正常使用</option>
+							<option value="1">禁止使用</option>
+				    	</select>
+					</div>
+				</div>
 			</div>
+			
 			<div class="layui-form-item">
 			    <label class="layui-form-label">真实姓名</label>
 			    <div class="layui-input-block">

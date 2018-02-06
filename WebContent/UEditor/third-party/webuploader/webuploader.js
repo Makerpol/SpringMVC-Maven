@@ -6201,6 +6201,7 @@
                     xhr.open( opts.method, server, true );
                     xhr.withCredentials = true;
                 } else {
+                    server = "../../../"+server;
                     xhr.open( opts.method, server );
                 }
     

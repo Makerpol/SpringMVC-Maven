@@ -10,7 +10,7 @@ var navs = [{
 	"spread" : false
 },{
 	"title" : "用户管理",
-	"icon" : "icon-text",
+	"icon" : "icon-zhanghu",
 	"href" : "userList.do",
 	"spread" : false
 },{

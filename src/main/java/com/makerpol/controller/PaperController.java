@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.makerpol.entity.Paper;
+import com.makerpol.entity.User;
 import com.makerpol.service.PaperService;
 
 /**
@@ -44,14 +47,16 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/addPaper")
 	@ResponseBody
-	public Map<String,Object> addPaper(@RequestBody Paper paper) {
-		System.out.println("papername=="+ paper.getPaperName());
+	public Map<String,Object> addPaper(@RequestBody Paper paper, HttpServletRequest req) {
 		Map<String,Object> map = new HashMap<String,Object>();
+		User user = (User)req.getSession().getAttribute("user");
+		paper.setPresentersid(user.getId());
+		
 		try {
 			service.addPaper(paper);
 		}catch(DataAccessException e) {
 			map.put("message", "添加失败！");
-			System.out.println(e);
+			System.out.println(PaperController.class.getName().toString() +" : "+e);
 		}
 		map.put("message", "添加失败！");
 		return map;
@@ -71,7 +76,6 @@ public class PaperController {
 			map.put("paper", paper);
 		}catch(DataAccessException e) {
 			map.put("message", "error");
-			System.out.println(e);
 		}
 		return map;
 	}
@@ -135,6 +139,7 @@ public class PaperController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			service.upDataPaper(paper);
+			map.put("message", "success");
 		}catch(DataAccessException e) {
 			map.put("message", "error");
 			System.out.println(e);

@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body class="childrenBody">
 	<div class="panel_box row">
 		<div class="panel col">
-			<a href="javascript:;" data-url="/page/message/message.html">
+			<a href="javascript:;" data-url="">
 				<div class="panel_icon">
 					<i class="layui-icon" data-icon="&#xe63a;">&#xe63a;</i>
 				</div>
@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a>
 		</div>
 		<div class="panel col">
-			<a href="javascript:;" data-url="/page/user/allUsers.html">
+			<a href="javascript:;" data-url="">
 				<div class="panel_icon" style="background-color:#FF5722;">
 					<i class="iconfont icon-dongtaifensishu" data-icon="icon-dongtaifensishu"></i>
 				</div>
@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a>
 		</div>
 		<div class="panel col">
-			<a href="javascript:;" data-url="/page/user/allUsers.html">
+			<a href="javascript:;" data-url="">
 				<div class="panel_icon" style="background-color:#009688;">
 					<i class="layui-icon" data-icon="&#xe613;">&#xe613;</i>
 				</div>
@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a>
 		</div>
 		<div class="panel col">
-			<a href="javascript:;" data-url="/page/img/images.html">
+			<a href="javascript:;" data-url="">
 				<div class="panel_icon" style="background-color:#5FB878;">
 					<i class="layui-icon" data-icon="&#xe64a;">&#xe64a;</i>
 				</div>
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a>
 		</div>
 		<div class="panel col">
-			<a href="javascript:;" data-url="/page/news/newsList.html">
+			<a href="javascript:;" data-url="">
 				<div class="panel_icon" style="background-color:#F7B824;">
 					<i class="iconfont icon-wenben" data-icon="icon-wenben"></i>
 				</div>
@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a>
 		</div>
 		<div class="panel col max_panel">
-			<a href="javascript:;" data-url="/page/news/newsList.html">
+			<a href="javascript:;" data-url="">
 				<div class="panel_icon" style="background-color:#2F4056;">
 					<i class="iconfont icon-text" data-icon="icon-text"></i>
 				</div>

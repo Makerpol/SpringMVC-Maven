@@ -33,7 +33,11 @@ layui.config({
 			}
 		});
 	}
-
+	
+	function order(data){
+		
+	}
+	
 	//查询
 	$(".search_btn").click(function(){
 		var newArray = [];
@@ -50,9 +54,9 @@ layui.config({
 	function getStatus(status){
 		var msg;
 		if(status == 0){
-			msg = "正常用户";
+			msg = "正常使用";
 		}else if(status == 1){
-			msg = "限制用户";
+			msg = "禁用状态";
 		}
 		return msg;
 	};
@@ -60,14 +64,17 @@ layui.config({
 	function getGrade(grade){
 		var msg;
 		if(grade==0){
-			msg= "超级管理员";
+			msg= "管理员";
 		}else if(grade==1){
-			msg= "编辑人员";
+			msg= "责任主编";
 		}else if(grade==2){
-			msg= "问题维修";
+			msg= "编辑记者";
+		}else if(grade==3){
+			msg= "普通用户";
 		}
 		return msg;
 	}
+	
 	//添加新用户
 	$(".linksAdd_btn").click(function(){
 		if(LoginUser.grade==2|| LoginUser.grade==1){
@@ -146,13 +153,38 @@ layui.config({
 		}
 		form.render('checkbox');
 	})
- 
+	
+	//密码重置
+	$("body").on("click",".password_reset",function(){
+		if(LoginUser.grade!=0){
+			layer.open({
+				content: '没有权限重置密码！'
+			});     
+			return false;
+		}
+		
+		var _this = $(this);
+		var id = _this.attr("data-id");
+		layer.confirm("确定重置此用户的密码？",{icon:3,title:"提示信息"},function(index){
+			$.ajax({
+				"url":"reSetPassword.do?id="+id,
+				success:function(data){
+					if(data.msg!="error"){
+						layer.msg("密码重置成功！");
+					}
+				}
+			})
+			
+			layer.close(index);
+		})
+	})
+	
 	//操作
 	$("body").on("click",".links_edit",function(){  //编辑
 
 		if(LoginUser.grade!=0){
 			layer.open({
-				content: '没有权限编辑文章！'
+				content: '没有权限编辑用户信息！'
 			});     
 			return false;
 		}
@@ -178,7 +210,7 @@ layui.config({
 		
 		if(LoginUser.grade!=0){
 			layer.open({
-				content: '没有权限删除文章！'
+				content: '没有权限删除用户！'
 			});     
 			return false;
 		}
@@ -258,17 +290,18 @@ layui.config({
 		    	
 		    	switch(data[i].status){
 		    	case 0:
-		    		text="正常用户";
+		    		text="正常使用";
 		    		break;
 		    	case 1:
-		    		text="限制用户";
+		    		text="禁用状态";
 		    		break;
 		    	default:
-		    		text="正常用户";
+		    		text="正常使用";
 		    	}
 		    	
 		    	dataHtml += '<td>'+text+'</td>'
 		    	+'<td>'
+				+  '<a class="layui-btn layui-btn-mini password_reset" data-id="'+data[i].id+'"><i class="iconfont icon-shuaxin1"></i> 密码重置</a>'
 				+  '<a class="layui-btn layui-btn-mini links_edit" data-id="'+data[i].id+'"><i class="iconfont icon-edit"></i> 编辑</a>'
 				+  '<a class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="'+data[i].id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
 		        +'</td>'

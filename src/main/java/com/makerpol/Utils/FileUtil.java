@@ -28,7 +28,7 @@ public class FileUtil {
 	
 	
 	/**
-	 * ~{5%ND<~IO4+~}
+	 * 单文件上传
 	 * @param file
 	 * @param req
 	 */
@@ -62,7 +62,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * ~{6`ND<~IO4+~}
+	 * 多文件上传
 	 * @param upfile
 	 * @param req
 	 */
@@ -85,7 +85,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * ~{6AH!ND<~~}
+	 * 读取文件
 	 * @param is
 	 * @param charset
 	 * @param handler

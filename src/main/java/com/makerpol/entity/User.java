@@ -2,29 +2,29 @@ package com.makerpol.entity;
 
 public class User {
 	
-    private Integer id;			//Î¨Ò»±êÊ¶  
+    private Integer id;			//å”¯ä¸€æ ‡è¯†  
     
-    private String image;		//Í·Ïñ
+    private String image;		//å¤´åƒ
     
-    private Integer grade;		//0 £º¹ÜÀíÔ±  1£ºÖ÷±àÖ÷ÈÎ  2£º±à¼­¼ÇÕß  3£ºÆÕÍ¨ÈËÔ±
+    private Integer grade;		//0 ï¼šç®¡ç†å‘˜  1ï¼šä¸»ç¼–ä¸»ä»»  2ï¼šç¼–è¾‘è®°è€…  3ï¼šæ™®é€šäººå‘˜
 
-    private String name;		//µÇÂ¼Ãû
+    private String name;		//ç™»å½•å
 
-    private String password;	//µÇÂ¼ÃÜÂë
+    private String password;	//ç™»å½•å¯†ç 
 
-    private String realname;	//ÕæÊµĞÕÃû
+    private String realname;	//çœŸå®å§“å
 
-    private Integer sex;		//ĞÔ±ğ
+    private Integer sex;		//æ€§åˆ«
 
-    private Long phone;			//µç»°
+    private Long phone;			//ç”µè¯
 
-    private String email;		//ÓÊÏä
+    private String email;		//é‚®ç®±
 
-    private String birthday;	//ÉúÈÕ
+    private String birthday;	//ç”Ÿæ—¥
 
-    private Integer status;		//0£ºÕı³£Ê¹ÓÃ  1£º½ûÖ¹Ê¹ÓÃ  2£ºÉ¾³ı×´Ì¬
+    private Integer status;		//0ï¼šæ­£å¸¸ä½¿ç”¨  1ï¼šç¦æ­¢ä½¿ç”¨  2ï¼šåˆ é™¤çŠ¶æ€
     
-    private Integer IDCard;		//Éí·İÖ¤
+    private Integer IDCard;		//èº«ä»½è¯
     
     public Integer getIDCard() {
 		return IDCard;

@@ -97,11 +97,11 @@ layui.config({
         				if(oldStatus==1){
         					text = "审核通过";
         					//修改列表中的文字
-    						$checked.eq(j).parents("tr").find("td:eq(3)").text(text).removeAttr("style");
+    						$checked.eq(j).parents("tr").find("td:eq(4)").text(text).removeAttr("style");
         				}else{
         					text = "未审核";
         					//修改列表中的文字
-    						$checked.eq(j).parents("tr").find("td:eq(3)").text(text).attr("style","color:#f00");
+    						$checked.eq(j).parents("tr").find("td:eq(4)").text(text).attr("style","color:#f00");
         				}
         				
 						//将选中状态删除

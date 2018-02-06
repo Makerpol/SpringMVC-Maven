@@ -26,7 +26,6 @@ String userInfo = JSONObject.fromObject(user).toString();
 	<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
 	<script type="text/javascript">
 		var user = '<%=userInfo%>';
-		console.log(user);
 	</script>
 </head>
 <body class="childrenBody">

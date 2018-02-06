@@ -229,6 +229,7 @@ public class UserController {
 			user.setId(id);
 			user.setPassword(MD5Util.EncoderByMd5(Common.DF_PASSWORD));
 			service.updataUser(user);
+			map.put("msg", "success");
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			map.put("msg", "error");
 		}
