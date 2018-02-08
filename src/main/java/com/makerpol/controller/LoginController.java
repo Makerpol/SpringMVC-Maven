@@ -52,7 +52,7 @@ public class LoginController {
 			return "login";
 		}
 		
-		session.setAttribute("user", user);
+		session.setAttribute("LoginUser", user);
 		model.addAttribute("user", user);
 		return "/page/index";
 	}
@@ -64,7 +64,7 @@ public class LoginController {
 	@ResponseBody
 	public Map<String,String> userLogout(HttpSession session,HttpServletResponse resp){
 		Map<String,String> map = new HashMap<String,String>();
-		session.removeAttribute("user");
+		session.removeAttribute("LoginUser");
 		map.put("message", "ok");
 		return map;
 	}

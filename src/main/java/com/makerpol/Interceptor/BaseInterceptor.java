@@ -40,7 +40,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		HttpSession session = req.getSession();
-		User user = (User)session.getAttribute("user");
+		User user = (User)session.getAttribute("LoginUser");
 		System.out.println(BaseInterceptor.class.getName()+"  URL: "+url);
 		if(user==null) {
 			PrintWriter out = resp.getWriter();

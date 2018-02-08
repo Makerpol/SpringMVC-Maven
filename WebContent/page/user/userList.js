@@ -195,7 +195,7 @@ layui.config({
 			title : "编辑用户信息",
 			type : 2,
 			shadeClose: false,
-			content : "toUpdataUser.do?id="+id,
+			content : "searchUser.do?id="+id,
 			area : ['1400px', '600px'],
 			success : function(layero, index){
 				

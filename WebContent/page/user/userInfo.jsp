@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<form class="layui-form" action="updataUser.do" method="post">
 		<div class="user_left">
 			<div class="layui-hide">
-			    <input type="text" value="${user.id }" id="id" >
+			    <input type="text" value="${User.id }" id="id" >
 			</div>
 <%-- 			<div class="layui-form-item">
 			    <label class="layui-form-label">用户名</label>
@@ -34,24 +34,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-form-item">
 				<div class="layui-inline">
 				<label for="role" class="layui-form-label">
-                    	用户组
+                    	用户组 
                 </label>
                     <div class="layui-input-inline">
-                      <select id="grade" name="role" <c:choose><c:when test="${user.grade != 0}">disabled="disabled"</c:when></c:choose>>
+                      <select id="grade" name="role" <c:choose><c:when test="${sessionScope.LoginUser.grade != 0}">disabled="disabled"</c:when></c:choose>>
                         <option value="">请选择用户组</option>
-                        <option value="0" <c:choose><c:when test="${user.grade == 0}">selected='selected'</c:when></c:choose>>管理员</option>
-                        <option value="1" <c:choose><c:when test="${user.grade == 1}">selected='selected'</c:when></c:choose>>主编主任</option>
-                        <option value="2" <c:choose><c:when test="${user.grade == 2}">selected='selected'</c:when></c:choose>>编辑记者</option>
-                      	<option value="3" <c:choose><c:when test="${user.grade == 3}">selected='selected'</c:when></c:choose>>普通人员</option>
+                        <option value="0" <c:choose><c:when test="${User.grade == 0}">selected='selected'</c:when></c:choose>>管理员</option>
+                        <option value="1" <c:choose><c:when test="${User.grade == 1}">selected='selected'</c:when></c:choose>>主编主任</option>
+                        <option value="2" <c:choose><c:when test="${User.grade == 2}">selected='selected'</c:when></c:choose>>编辑记者</option>
+                      	<option value="3" <c:choose><c:when test="${User.grade == 3}">selected='selected'</c:when></c:choose>>普通人员</option>
                       </select>
                  </div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">用户状态</label>
 					<div class="layui-input-block">
-						<select name="userStatus" class="userStatus" lay-filter="userStatus">
-							<option value="0">正常使用</option>
-							<option value="1">禁止使用</option>
+						<select name="userStatus" class="userStatus" lay-filter="userStatus" <c:choose><c:when test="${sessionScope.LoginUser.grade != 0}">disabled="disabled"</c:when></c:choose>>
+							<option value="0" <c:choose><c:when test="${User.status == 0}">selected='selected'</c:when></c:choose>>正常使用</option>
+							<option value="1" <c:choose><c:when test="${User.status == 0}">selected='selected'</c:when></c:choose>>禁止使用</option>
 				    	</select>
 					</div>
 				</div>
@@ -60,33 +60,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-form-item">
 			    <label class="layui-form-label">真实姓名</label>
 			    <div class="layui-input-block">
-			    	<input type="text" id="realname" value="${user.realname }" placeholder="请输入真实姓名" lay-verify="required" class="layui-input">
+			    	<input type="text" id="realname" value="${User.realname }" placeholder="请输入真实姓名" lay-verify="required" class="layui-input">
 			    </div>
 			</div>
 			<div class="layui-form-item">
 			    <label class="layui-form-label">手机号码</label>
 			    <div class="layui-input-block">
-			    	<input type="tel" id="phone" value="<c:choose><c:when test="${user.phone!=0}">${user.phone}</c:when></c:choose>" placeholder="请输入手机号码" lay-verify="phone" class="layui-input">
+			    	<input type="tel" id="phone" value="<c:choose><c:when test="${User.phone!=0}">${User.phone}</c:when></c:choose>" placeholder="请输入手机号码" lay-verify="phone" class="layui-input">
 			    </div>
 			</div>
 			<div class="layui-form-item">
 			    <label class="layui-form-label">出生年月</label>
 			    <div class="layui-input-block">
-			    	<input type="text" id="birthday" value="${user.birthday}" placeholder="请输入出生年月" lay-verify="required|date" onclick="layui.laydate({elem: this,max: laydate.now()})" class="layui-input">
+			    	<input type="text" id="birthday" value="${User.birthday}" placeholder="请输入出生年月" lay-verify="required|date" onclick="layui.laydate({elem: this,max: laydate.now()})" class="layui-input">
 			    </div>
 			</div>
 			
 			<div class="layui-form-item">
 			    <label class="layui-form-label">邮箱</label>
 			    <div class="layui-input-block">
-			    	<input type="text" id="email" value="${user.email}" placeholder="请输入邮箱" lay-verify="required|email" class="layui-input">
+			    	<input type="text" id="email" value="${User.email}" placeholder="请输入邮箱" lay-verify="required|email" class="layui-input">
 			    </div>
 			</div>
 		</div>
 		<div class="user_right">
-			<input type="file" name="upfile" class="layui-upload-file" lay-title="我要换一个头像">
+			<input type="file" name="upfile" class="layui-upload-file" lay-title="我要换一个头像" <c:choose><c:when test="${sessionScope.LoginUser.id != User.id}">disabled="disabled"</c:when></c:choose>>
 			<p>预览</p>
-			<img src="${user.image}" class="layui-circle" id="userFace">
+			<img src="${User.image}" class="layui-circle" id="userFace">
 		</div>
 		<div class="layui-form-item" style="margin-left: 5%;">
 		    <div class="layui-input-block">

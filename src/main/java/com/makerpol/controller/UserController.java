@@ -41,8 +41,12 @@ public class UserController {
 	 */
 	@RequestMapping(value="/searchUser")
 	public String searchUser(Integer id, Model model) {
-		User user = (User)service.getUser(id);
-		model.addAttribute("user",user);
+		System.out.println(UserController.class.getName().toString() + "  id :"+ id);
+		User user = service.getUser(id);
+		
+		System.out.println(UserController.class.getName().toString() + "  name :"+ user.getName());
+		model.addAttribute("User",user);
+
 		return "/page/user/userInfo";
 	}
 	

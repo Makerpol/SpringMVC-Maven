@@ -49,7 +49,7 @@ public class PaperController {
 	@ResponseBody
 	public Map<String,Object> addPaper(@RequestBody Paper paper, HttpServletRequest req) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		User user = (User)req.getSession().getAttribute("user");
+		User user = (User)req.getSession().getAttribute("LoginUser");
 		paper.setPresentersid(user.getId());
 		
 		try {
