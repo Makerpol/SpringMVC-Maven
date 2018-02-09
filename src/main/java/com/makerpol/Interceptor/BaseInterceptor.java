@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,7 +20,7 @@ import com.makerpol.entity.User;
  *
  */
 public class BaseInterceptor implements HandlerInterceptor {
-
+	private static final Logger log = LoggerFactory.getLogger(BaseInterceptor.class);
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
@@ -41,7 +43,9 @@ public class BaseInterceptor implements HandlerInterceptor {
 		}
 		HttpSession session = req.getSession();
 		User user = (User)session.getAttribute("LoginUser");
-		System.out.println(BaseInterceptor.class.getName()+"  URL: "+url);
+		
+		log.debug("URL : "+ url);
+		
 		if(user==null) {
 			PrintWriter out = resp.getWriter();
 			/**
@@ -56,6 +60,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 			out.println("</script>");
 			out.println("</html>");
 			
+			log.debug("retuen login page!");
 			//req.getRequestDispatcher("/login.jsp").forward(req, resp);	//重定向
 			//resp.sendRedirect(req.getContextPath()+"login.jsp");			//转发
 			return false;

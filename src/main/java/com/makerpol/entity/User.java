@@ -16,7 +16,7 @@ public class User {
 
     private Integer sex;		//性别
 
-    private Long phone;			//电话
+    private String phone;			//电话
 
     private String email;		//邮箱
 
@@ -24,13 +24,14 @@ public class User {
 
     private Integer status;		//0：正常使用  1：禁止使用  2：删除状态
     
-    private Integer IDCard;		//身份证
+    private String IDCard;		//身份证
     
-    public Integer getIDCard() {
+
+	public String getIDCard() {
 		return IDCard;
 	}
 
-	public void setIDCard(Integer iDCard) {
+	public void setIDCard(String iDCard) {
 		IDCard = iDCard;
 	}
 
@@ -83,15 +84,15 @@ public class User {
         this.sex = sex;
     }
 
-    public Long getPhone() {
-        return phone;
-    }
+    public String getPhone() {
+		return phone;
+	}
 
-    public void setPhone(Long phone) {
-        this.phone = phone;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public String getEmail() {
+	public String getEmail() {
         return email;
     }
 

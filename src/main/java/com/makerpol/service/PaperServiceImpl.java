@@ -41,7 +41,7 @@ public class PaperServiceImpl implements PaperService {
 	}
 
 	@Override
-	public List<Paper> getPaper(String param) {
+	public List<Paper> getPaper(String param) throws DataAccessException {
 		return mapper.getPaperListByName(param, 0, 13);
 	}
 
@@ -51,7 +51,7 @@ public class PaperServiceImpl implements PaperService {
 	}
 	
 	@Override
-	public List<Paper> getPaper(String starTime, String endTime) {
+	public List<Paper> getPaper(String starTime, String endTime) throws DataAccessException {
 		return mapper.getPaperListByTime(starTime,endTime);
 	}
 
@@ -62,16 +62,16 @@ public class PaperServiceImpl implements PaperService {
 	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List<Map> getPaperTypeList() {
+	public List<Map> getPaperTypeList() throws DataAccessException {
 		return mapper.getPaperTypeList();
 	}
 	
 	@Override
-	public int getPaperCount(String param) {
+	public int getPaperCount(String param) throws DataAccessException {
 		return mapper.getPaperCount(param);
 	}
 	
-	private void setPaperClickCount(Paper paper) {
+	private void setPaperClickCount(Paper paper) throws DataAccessException {
 		this.upDataPaper(paper);
 	}
 	

@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -32,7 +36,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService<?> service;
-	
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	/**
 	 * 访问编辑用户信息页面
 	 * @param id  用户ID
@@ -40,13 +44,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/searchUser")
-	public String searchUser(Integer id, Model model) {
-		System.out.println(UserController.class.getName().toString() + "  id :"+ id);
+	public String searchUser(Integer id, Model model) throws DataAccessException{
 		User user = service.getUser(id);
-		
-		System.out.println(UserController.class.getName().toString() + "  name :"+ user.getName());
 		model.addAttribute("User",user);
-
 		return "/page/user/userInfo";
 	}
 	
@@ -68,10 +68,12 @@ public class UserController {
 	 */
 	@RequestMapping(value="/getUserList")
 	@ResponseBody
-	public Map<String, Object> getUserList(@RequestParam String param ,@RequestParam int start, @RequestParam int num) {
+	public Map<String, Object> getUserList(@RequestParam String param ,@RequestParam int start, @RequestParam int num) 
+			throws DataAccessException{
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<User> list = new ArrayList<User>();
-
+		
 		list = service.getUserList(param,start, num);
 		int total = service.getCount(param);
 		map.put("userList", list);
@@ -86,7 +88,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/changePsw")
-	public String changePsw(@RequestParam Integer id, Model model) {
+	public String changePsw(@RequestParam Integer id, Model model) throws DataAccessException{
 		User user = service.getUser(id);
 		model.addAttribute("user",user);
 		return "/page/user/changePwd";
@@ -99,7 +101,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/toUpdataUser")
-	public String toUpdataUser(@RequestParam Integer id, Model model) {
+	public String toUpdataUser(@RequestParam Integer id, Model model) throws DataAccessException{
 		User user = service.getUser(id);
 		model.addAttribute("user",user);
 		return "/page/user/userInfo";
@@ -114,15 +116,19 @@ public class UserController {
 	 */
 	@RequestMapping(value="/updataUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map<Object,Object> updataUser(@RequestBody User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public Map<Object,Object> updataUser(@RequestBody User user) throws Exception {
 		Map<Object,Object> map = new HashMap<Object,Object>();
-		//MD5加密
-		user.setPassword(MD5Util.EncoderByMd5(user.getPassword()));
+		
+		if(user.getPassword() != null) {
+			//MD5加密
+			user.setPassword(MD5Util.EncoderByMd5(user.getPassword()));
+		}
+		
 		try {
 			service.updataUser(user);
 		}catch(DataAccessException e) {
-			System.out.println(e);
 			map.put("message", "error");
+			throw e;
 		}
 		return map;
 	}
@@ -134,13 +140,13 @@ public class UserController {
 	 */
 	@RequestMapping(value="/deleteUser")
 	@ResponseBody
-	public Map<Object,Object> deleteUser(@RequestParam Integer id) {
+	public Map<Object,Object> deleteUser(@RequestParam Integer id) throws DataAccessException{
 		Map<Object,Object> map = new HashMap<Object,Object>();
 		try {
 			service.deleteUser(id);
 		}catch(DataAccessException e) {
 			map.put("message", "error");
-			System.out.println(e);
+			throw e;
 		}
 		
 		return map;
@@ -152,7 +158,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/deleteUserList")
-	public Map<Object, Object> deleteUserList(@RequestParam List<Integer> list) {
+	public Map<Object, Object> deleteUserList(@RequestParam List<Integer> list) throws DataAccessException{
 		
 		Map<Object,Object> map = new HashMap<Object,Object>();
 		try {
@@ -161,7 +167,7 @@ public class UserController {
 			}
 		}catch(DataAccessException e) {
 			map.put("message", "error");
-			System.out.println(e);
+			throw e;
 		}
 		
 		return map;		
@@ -185,9 +191,15 @@ public class UserController {
 	 */
 	@RequestMapping(value="/addUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map<Object,Object> addUser(@RequestBody User user){
+	/*public Map<Object,Object> addUser(String name, String realname, String IDCard, String phone,
+			Integer sex , String email , Integer grade , Integer status, HttpServletRequest req) throws Exception{*/
+	public Map<Object,Object> addUser(@RequestBody User user, HttpServletRequest req) throws Exception{
 		Map<Object,Object> map = new HashMap<Object,Object>();
 		
+		log.debug("name : {}", user.getName());
+		log.debug("realname : {}", user.getRealname());
+		
+		//User user = new User();
 		try {
 			//MD5加密
 			user.setPassword(MD5Util.EncoderByMd5(Common.DF_PASSWORD));
@@ -195,6 +207,7 @@ public class UserController {
 			service.addUser(user);
 		}catch(DataAccessException |NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			map.put("message", "error");
+			log.error(e.toString());
 		}
 		return map;
 	}
@@ -206,7 +219,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/checkName")
 	@ResponseBody
-	public Map<String, Object> checkLoginName(@RequestParam String name) {
+	public Map<String, Object> checkLoginName(@RequestParam String name) throws DataAccessException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		User user = service.getUser(name);
 		if(user == null) {
@@ -225,7 +238,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/reSetPassword")
 	@ResponseBody
-	public Map<String,String> reSetPassword(Integer id) {
+	public Map<String,String> reSetPassword(Integer id) throws Exception{
 		Map<String,String> map = new HashMap<String,String>();
 		User user = new User();
 		
@@ -234,8 +247,9 @@ public class UserController {
 			user.setPassword(MD5Util.EncoderByMd5(Common.DF_PASSWORD));
 			service.updataUser(user);
 			map.put("msg", "success");
-		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+		} catch (DataAccessException|NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			map.put("msg", "error");
+			throw e;
 		}
 		
 		return map;

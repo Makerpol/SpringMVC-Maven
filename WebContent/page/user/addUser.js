@@ -131,25 +131,36 @@ layui.config({
  		param.realname = $(".realname").val();
  		param.IDCard = $(".IDCard").val();
  		param.phone = $(".userphone").val();
- 		param.sex = $(".userSex").val();
+ 		param.sex = data.field.sex;
  		param.email = $(".userEmail").val();
  		param.grade = $(".userGrade").val()
  		param.status = $(".userStatus").val()
  		
- 		$.ajax({'url':"addUser.do",
-        			'data': JSON.stringify(param),
-        			'type':"POST",
-        			'dataType':"json",
-        			'contentType':'application/json',
-        			'success':function(data){
-        				if("error"==data.message){
-        					setTimeout(function(){
-        						layer.close(index);
-        						layer.msg("提交失败！");
-        					},2000);
-        				}
-        			}
-        	});
+ 		var pa = "name="+param.name;
+ 		pa = pa + "&" + "realname="+param.realname;
+ 		pa = pa + "&" + "IDCard="+param.IDCard;
+ 		pa = pa + "&" + "phone="+param.phone;
+ 		pa = pa + "&" + "sex="+param.sex;
+ 		pa = pa + "&" + "email="+param.email;
+ 		pa = pa + "&" + "grade="+param.grade;
+ 		pa = pa + "&" + "status="+param.status;
+ 		
+ 		
+ 		$.ajax({
+ 			url:"addUser.do",
+        	data: JSON.stringify(param),
+        	type:"post",
+        	dataType:"json",
+        	contentType:'application/json',
+        	success:function(data){
+        		if("error"==data.message){
+					setTimeout(function(){
+						layer.close(index);
+						layer.msg("提交失败！");
+					},2000);
+				}
+			}
+        });
  		
  		var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
         setTimeout(function(){

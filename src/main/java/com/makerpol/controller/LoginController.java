@@ -52,6 +52,7 @@ public class LoginController {
 			return "login";
 		}
 		
+		
 		session.setAttribute("LoginUser", user);
 		model.addAttribute("user", user);
 		return "/page/index";

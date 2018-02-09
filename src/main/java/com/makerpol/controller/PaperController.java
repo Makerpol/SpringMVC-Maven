@@ -47,18 +47,18 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/addPaper")
 	@ResponseBody
-	public Map<String,Object> addPaper(@RequestBody Paper paper, HttpServletRequest req) {
+	public Map<String,Object> addPaper(@RequestBody Paper paper, HttpServletRequest req) throws DataAccessException{
 		Map<String,Object> map = new HashMap<String,Object>();
 		User user = (User)req.getSession().getAttribute("LoginUser");
 		paper.setPresentersid(user.getId());
 		
 		try {
 			service.addPaper(paper);
+			map.put("message", "添加成功！");
 		}catch(DataAccessException e) {
 			map.put("message", "添加失败！");
-			System.out.println(PaperController.class.getName().toString() +" : "+e);
+			throw e;
 		}
-		map.put("message", "添加失败！");
 		return map;
 	}
 	
@@ -69,13 +69,15 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/page/news/getPaper")
 	@ResponseBody
-	public Map<String, Object> getPaper(Integer id) {
+	public Map<String, Object> getPaper(Integer id) throws DataAccessException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			Paper paper = service.getPaper(id);
 			map.put("paper", paper);
+			map.put("message", "success");
 		}catch(DataAccessException e) {
 			map.put("message", "error");
+			throw e;
 		}
 		return map;
 	}
@@ -97,12 +99,14 @@ public class PaperController {
 	 * @return
 	 */
 	@RequestMapping(value="/toUpdataPaper")
-	public String toUpdataPaper(@RequestParam Integer id, Model model) {
+	public String toUpdataPaper(@RequestParam Integer id, Model model) throws DataAccessException{
 		try {
 			Paper paper = service.getPaper(id);
 			model.addAttribute("paper", paper);
+			model.addAttribute("message", "success");
 		}catch(DataAccessException e) {
 			model.addAttribute("message", "error");
+			throw e;
 		}
 		
 		return "/page/news/newsEdit";
@@ -116,7 +120,7 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/getAllPaper")
 	@ResponseBody
-	public Map<String, Object> getAllPaper(@RequestParam String param ,@RequestParam Integer start,@RequestParam Integer num) {
+	public Map<String, Object> getAllPaper(@RequestParam String param ,@RequestParam Integer start,@RequestParam Integer num) throws DataAccessException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Paper> list = new ArrayList<Paper>();
 
@@ -135,14 +139,14 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/upDataPaper")
 	@ResponseBody
-	public Map<String, Object> upDataPaper(@RequestBody Paper paper) {
+	public Map<String, Object> upDataPaper(@RequestBody Paper paper) throws DataAccessException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			service.upDataPaper(paper);
 			map.put("message", "success");
 		}catch(DataAccessException e) {
 			map.put("message", "error");
-			System.out.println(e);
+			throw e;
 		}
 		return map;
 	}
@@ -154,23 +158,24 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/deletePaper")
 	@ResponseBody
-	public Map<String, Object> deletePaper(@RequestParam Integer id) {
+	public Map<String, Object> deletePaper(@RequestParam Integer id) throws DataAccessException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			service.deletePaper(id);
+			map.put("message", "success");
 		}catch(DataAccessException e) {
 			map.put("message", "error");
 		}
 		return map;
 	}
 	
-	@RequestMapping(value="/getPaperTypeList")
+	/*@RequestMapping(value="/getPaperTypeList")
 	@ResponseBody
-	public Map<String, Object> getPaperTypeList() {
+	public Map<String, Object> getPaperTypeList() throws DataAccessException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Map> list = new ArrayList<Map>();
 		list = service.getPaperTypeList();
 		map.put("typeList", list);
 		return map;
-	}
+	}*/
 }

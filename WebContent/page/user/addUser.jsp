@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
 </head>
 <body class="childrenBody">
-	<form class="layui-form" style="width:80%;" action="addUser.do" model="post">
+	<form class="layui-form" style="width:80%;">
 		<div class="layui-form-item">
 			<label class="layui-form-label">登录名</label>
 			<div class="layui-input-block">

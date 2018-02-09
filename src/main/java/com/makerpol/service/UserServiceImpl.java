@@ -39,7 +39,7 @@ public class UserServiceImpl<T> implements UserService<T> {
 	}
 	
 	@Override
-	public int getCount(String param) {
+	public int getCount(String param) throws DataAccessException {
 		return mapper.getCount(param);
 	}
 
