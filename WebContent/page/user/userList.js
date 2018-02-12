@@ -264,7 +264,7 @@ layui.config({
 				
 				dataHtml += '<tr>'
 		    	+'<td><input type="checkbox" name="checked" value="'+ data[i].id+'" lay-skin="primary" lay-filter="choose"></td>'
-		    	+'<td align="left">'+data[i].name+'</td>';
+		    	+'<td align="left">'+data[i].realname+'</td>';
 		    	
 				var text;
 		    	switch(data[i].grade){

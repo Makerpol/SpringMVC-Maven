@@ -129,22 +129,12 @@ layui.config({
  		var param = {};
  		param.name = $(".userName").val();
  		param.realname = $(".realname").val();
- 		param.IDCard = $(".IDCard").val();
+ 		param.idcard = $(".IDCard").val();
  		param.phone = $(".userphone").val();
  		param.sex = data.field.sex;
  		param.email = $(".userEmail").val();
  		param.grade = $(".userGrade").val()
  		param.status = $(".userStatus").val()
- 		
- 		var pa = "name="+param.name;
- 		pa = pa + "&" + "realname="+param.realname;
- 		pa = pa + "&" + "IDCard="+param.IDCard;
- 		pa = pa + "&" + "phone="+param.phone;
- 		pa = pa + "&" + "sex="+param.sex;
- 		pa = pa + "&" + "email="+param.email;
- 		pa = pa + "&" + "grade="+param.grade;
- 		pa = pa + "&" + "status="+param.status;
- 		
  		
  		$.ajax({
  			url:"addUser.do",

@@ -24,15 +24,16 @@ public class User {
 
     private Integer status;		//0：正常使用  1：禁止使用  2：删除状态
     
-    private String IDCard;		//身份证
+    private String idcard;		//身份证
     
 
-	public String getIDCard() {
-		return IDCard;
+
+	public String getIdcard() {
+		return idcard;
 	}
 
-	public void setIDCard(String iDCard) {
-		IDCard = iDCard;
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
 	}
 
 	public String getImage() {

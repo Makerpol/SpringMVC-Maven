@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="layui-input-block">
 						<select name="userStatus" class="userStatus" lay-filter="userStatus" <c:choose><c:when test="${sessionScope.LoginUser.grade != 0}">disabled="disabled"</c:when></c:choose>>
 							<option value="0" <c:choose><c:when test="${User.status == 0}">selected='selected'</c:when></c:choose>>正常使用</option>
-							<option value="1" <c:choose><c:when test="${User.status == 0}">selected='selected'</c:when></c:choose>>禁止使用</option>
+							<option value="1" <c:choose><c:when test="${User.status == 1}">selected='selected'</c:when></c:choose>>禁止使用</option>
 				    	</select>
 					</div>
 				</div>

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.makerpol.Utils.EmailUtil;
 import com.makerpol.Utils.MD5Util;
+import com.makerpol.Utils.VerifyCodeUtil;
 import com.makerpol.common.Common;
 import com.makerpol.entity.User;
 import com.makerpol.service.UserService;
@@ -191,15 +195,9 @@ public class UserController {
 	 */
 	@RequestMapping(value="/addUser", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	/*public Map<Object,Object> addUser(String name, String realname, String IDCard, String phone,
-			Integer sex , String email , Integer grade , Integer status, HttpServletRequest req) throws Exception{*/
 	public Map<Object,Object> addUser(@RequestBody User user, HttpServletRequest req) throws Exception{
 		Map<Object,Object> map = new HashMap<Object,Object>();
 		
-		log.debug("name : {}", user.getName());
-		log.debug("realname : {}", user.getRealname());
-		
-		//User user = new User();
 		try {
 			//MD5加密
 			user.setPassword(MD5Util.EncoderByMd5(Common.DF_PASSWORD));
@@ -253,5 +251,19 @@ public class UserController {
 		}
 		
 		return map;
+	}
+	
+	@RequestMapping(value="/sendVerifyCode")
+	@ResponseBody
+	public void sendVerifyCode(@RequestParam String userMail,HttpServletRequest req) throws AddressException, MessagingException {
+		String verifyCode = VerifyCodeUtil.getVerifyCode();
+		EmailUtil.mailSend(userMail, "密码重置", verifyCode);
+		req.getSession().setAttribute("verifyCode", verifyCode);
+	}
+	
+	@RequestMapping(value="/toEmailVerifyPage")
+	public String toEmailVerifyPage() {
+		
+		return "";
 	}
 }
