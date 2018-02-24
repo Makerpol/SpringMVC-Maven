@@ -11,8 +11,16 @@ String userInfo = JSONObject.fromObject(user).toString();
 %>
 <html>
 <head>
-<link rel="icon" type="image/x-icon" href="../.././images/Tech.ico"/> 
-<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<title>文章预览--后台管理模板</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" type="image/x-icon" href="../.././images/Tech.ico"/> 
+	<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
 <style type="text/css">
 .main{
 width : 100%;

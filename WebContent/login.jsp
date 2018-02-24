@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <hr class="hr20" >
         </form>
         <div >${LoginMessige}</div>
-        <div class="Fmsg"><a href="javascript:;">忘记密码？</a></div>
+        <div class="Fmsg"><a href="verifyCode.jsp">忘记密码？</a></div>
     </div>
     <script>
     layui.use(['form']);

@@ -255,10 +255,44 @@ public class UserController {
 	
 	@RequestMapping(value="/sendVerifyCode")
 	@ResponseBody
-	public void sendVerifyCode(@RequestParam String userMail,HttpServletRequest req) throws AddressException, MessagingException {
+	public Map<String, Object> sendVerifyCode(@RequestParam String userMail,HttpServletRequest req) throws AddressException, MessagingException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		User user = service.getUserByEmail(userMail);
+		if(user.equals(null)) {
+			map.put("msg", "error");
+			return map;
+		}
+		
 		String verifyCode = VerifyCodeUtil.getVerifyCode();
-		EmailUtil.mailSend(userMail, "密码重置", verifyCode);
-		req.getSession().setAttribute("verifyCode", verifyCode);
+		EmailUtil.mailSend(user, "验证码", verifyCode);
+		
+		req.getSession().setAttribute("verifyUser", user);
+		req.getSession().setMaxInactiveInterval(360);
+		map.put("verifyCode", verifyCode);
+		map.put("msg", "success");
+		return map;
+	}
+	
+	@RequestMapping(value="/toReSetPwd")
+	public String toReSetPwd(HttpServletRequest req, Model model) {
+		System.out.println("toReSetPwd");
+		//Userreq.getSession().getAttribute("verifyUser");
+		return "/page/user/reSetPwd";
+	}
+	
+	@RequestMapping(value="/checkVerifyCode")
+	@ResponseBody
+	public Map<String, Object> checkVerifyCode(@RequestParam String code,HttpServletRequest req) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String verifyCode = req.getSession().getAttribute("verifyCode").toString();
+		
+		if(code.equals(verifyCode)) {
+			map.put("msg", "success");
+		}else {
+			map.put("msg", "error");
+		}
+		return map;
 	}
 	
 	@RequestMapping(value="/toEmailVerifyPage")

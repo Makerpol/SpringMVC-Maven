@@ -59,6 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
 				<a class="img" title="我的头像" ><img src="${user.image}"></a>
+				<input id="userGrade" value="${user.grade}" class="layui-hide">
 				<p>你好！<span class="userName">${user.name}</span>, 欢迎登录</p>
 			</div>
 			<div class="navBar layui-side-scroll"></div>
@@ -96,7 +97,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="site-tree-mobile layui-hide"><i class="layui-icon">&#xe602;</i></div>
 	<div class="site-mobile-shade"></div>
 
-	<!--  script type="text/javascript" src="/weblib/layui/layui.js"></script>-->
 	<script type="text/javascript" src="/js/nav.js"></script>
 	<script type="text/javascript" src="/js/leftNav.js"></script>
 	<script type="text/javascript" src="/js/index.js"></script>

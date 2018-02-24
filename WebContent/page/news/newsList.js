@@ -44,7 +44,7 @@ layui.config({
 	
 	//添加文章
 	$(".newsAdd_btn").click(function(){
-		if(LoginUser.grade==2){
+		if(LoginUser.grade==3){
 			layer.open({
 				content: '没有权限添加文章！'
 			});     
@@ -73,7 +73,7 @@ layui.config({
 
 	//审核文章
 	$(".audit_btn").click(function(){
-		if(LoginUser.grade==2){
+		if(LoginUser.grade >= 2){
 			layer.open({
 				content: '没有权限审核文章！'
 			});     
@@ -170,7 +170,7 @@ layui.config({
 	
 	//操作
 	$("body").on("click",".news_edit",function(){  //编辑
-		if(LoginUser.grade==2){
+		if(LoginUser.grade==3){
 			layer.open({
 				content: '没有权限编辑文章！'
 			});     
@@ -203,7 +203,7 @@ layui.config({
 	})
 
 	$("body").on("click",".news_del",function(){  //删除
-		if(LoginUser.grade==2){
+		if(LoginUser.grade==3){
 			layer.open({
 				content: '没有权限删除文章！'
 			});     

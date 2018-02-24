@@ -13,7 +13,7 @@ var navs = [{
 	"icon" : "icon-zhanghu",
 	"href" : "userList.do",
 	"spread" : false
-},{
+}/*,{
 	"title" : "友情链接",
 	"icon" : "icon-text",
 	"href" : "page/links/linksList.html",
@@ -47,4 +47,4 @@ var navs = [{
 			"spread" : false
 		}
 	]
-}]
+}*/]

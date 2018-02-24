@@ -52,7 +52,7 @@ public class FileController {
 	public Map<String, Object> upload(@RequestParam MultipartFile upfile,HttpServletRequest req){
 		Map<String,Object> map = new HashMap<String,Object>();
 		User user  = new User();
-		user = (User)req.getSession().getAttribute("user");
+		user = (User)req.getSession().getAttribute("LoginUser");
 		map = FileUtil.upLoad(upfile, req);
 		String url = replace(map.get("URL").toString());
 		

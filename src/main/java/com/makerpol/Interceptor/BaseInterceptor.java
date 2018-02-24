@@ -38,11 +38,17 @@ public class BaseInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object obj) throws Exception {
 		String url = req.getRequestURI();
-		if(url.indexOf("login")>0||url.indexOf("userLogin")>0){
+		if(url.indexOf("login")>0||url.indexOf("userLogin")>0
+				||url.indexOf("sendVerifyCode")>0||url.indexOf("toReSetPwd")>0){
 			return true;
 		}
 		HttpSession session = req.getSession();
 		User user = (User)session.getAttribute("LoginUser");
+		
+		User veirfyUser = (User)session.getAttribute("verifyUser");
+		if(url.indexOf("updataUser")>0 && veirfyUser!=null) {
+			return true;
+		}
 		
 		log.debug("URL : "+ url);
 		
@@ -56,6 +62,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 			 */
 			out.println("<html>");
 			out.println("<script>");
+			out.println("window.sessionStorage.clear();");
 			out.println("window.open('"+req.getContextPath()+"/login.jsp','_top')");
 			out.println("</script>");
 			out.println("</html>");

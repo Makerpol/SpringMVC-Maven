@@ -43,6 +43,12 @@ public class UserServiceImpl<T> implements UserService<T> {
 		return mapper.getCount(param);
 	}
 
+	
+	@Override
+	public User getUserByEmail(String email) throws DataAccessException {
+		return mapper.getUserByEmail(email);
+	}
+
 	@Override
 	public void updataUser(User user) throws DataAccessException {
 		mapper.updataUser(user);
@@ -50,7 +56,10 @@ public class UserServiceImpl<T> implements UserService<T> {
 
 	@Override
 	public void deleteUser(Integer id) throws DataAccessException {
-		
+		User user = new User();
+		user.setId(id);
+		user.setStatus(2);
+		mapper.updataUser(user);
 		//mapper.deleteUser(id);
 	}
 

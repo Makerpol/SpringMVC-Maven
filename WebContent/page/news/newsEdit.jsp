@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-inline">		
 				<label class="layui-form-label">发布时间</label>
 				<div class="layui-input-inline">
-					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss,max:laydate.now()'})" value="${paper.date}">
+					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss',max:laydate.now()})" value="${paper.date}">
 				</div>
 			</div>
 			

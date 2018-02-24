@@ -35,7 +35,7 @@ public class FileUtil {
 	public static Map<String,Object> upLoad(MultipartFile file, HttpServletRequest req) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		String path =req.getSession().getServletContext().getRealPath("/");
-		User user = (User)req.getSession().getAttribute("user");
+		User user = (User)req.getSession().getAttribute("LoginUser");
 		path += Common.DF_UPLOAD_PATH +user.getName();
 		
 		String fileName = file.getOriginalFilename();

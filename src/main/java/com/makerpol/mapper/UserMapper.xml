@@ -56,6 +56,10 @@
          limit #{1},#{2}
 	</select>
 	
+	<select id="getUserByEmail" parameterType="string" resultMap="userResultMap">
+		select  * from tb_user where email = #{email}
+	</select>
+	
 	<update id="updataUser" parameterType="com.makerpol.entity.User">
 		update tb_user 
 		<set>

@@ -11,6 +11,13 @@ layui.config({
 	
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");
+	ue.addListener('afterUpVideo',function(t, arg) {
+		console.log(arg);  
+		for(var i=0;i<arg.length;i++){
+			console.log(arg[i].url);  
+		}
+        
+	})
 
  	form.on("submit(addNews)",function(data){
  		var index = layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});

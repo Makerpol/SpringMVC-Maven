@@ -9,19 +9,19 @@
     "imageCompressBorder": 1600,
     "imageInsertAlign": "none", 
     "imageUrlPrefix": "http://192.168.211.16:8080", 
-    "imagePathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "imagePathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
                               
 
     "scrawlActionName": "uploadscrawl", 
     "scrawlFieldName": "upfile", 
-    "scrawlPathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "scrawlPathFormat": "/upload/scrawl/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "scrawlMaxSize": 2048000, 
     "scrawlUrlPrefix": "http://192.168.211.16:8080", 
     "scrawlInsertAlign": "none",
 
   
     "snapscreenActionName": "uploadimage", 
-    "snapscreenPathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "snapscreenPathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "snapscreenUrlPrefix": "http://192.168.211.16:8080", 
     "snapscreenInsertAlign": "none", 
 
@@ -29,7 +29,7 @@
     "catcherLocalDomain": ["127.0.0.1", "localhost", "img.baidu.com"],
     "catcherActionName": "catchimage", 
     "catcherFieldName": "source", 
-    "catcherPathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "catcherPathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "catcherUrlPrefix": "http://192.168.211.16:8080", 
     "catcherMaxSize": 2048000, 
     "catcherAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
@@ -37,7 +37,7 @@
  
     "videoActionName": "uploadvideo", 
     "videoFieldName": "upfile", 
-    "videoPathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "videoPathFormat": "/upload/video/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "videoUrlPrefix": "http://192.168.211.16:8080", 
     "videoMaxSize": 102400000, 
     "videoAllowFiles": [
@@ -46,7 +46,7 @@
 
     "fileActionName": "uploadfile", 
     "fileFieldName": "upfile", 
-    "filePathFormat": "/upload/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "filePathFormat": "/upload/file/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "fileUrlPrefix": "http://192.168.211.16:8080", 
     "fileMaxSize": 51200000, 
     "fileAllowFiles": [
