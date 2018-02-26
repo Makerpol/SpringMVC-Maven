@@ -22,8 +22,8 @@ public class PaperServiceImpl implements PaperService {
 	private PaperMapper mapper;
 	
 	@Override
-	public void addPaper(Paper paper) throws DataAccessException {
-		mapper.insertSelective(paper);
+	public int addPaper(Paper paper) throws DataAccessException {
+		return mapper.insertSelective(paper);
 	}
 
 	@Override

@@ -15,12 +15,10 @@ layui.config({
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");
 	
-	ue.addListener('afterUpVideo',function(t, arg) {
-		console.log(arg);  
+	ue.addListener('afterUpVideo',function(t, arg) { 
 		for(var i=0;i<arg.length;i++){
-			console.log(arg[i].url);  
+			path = arg[i].url 
 		}
-        
 	})
 		
  	function renderCheckbox(paper){
@@ -54,7 +52,11 @@ layui.config({
 			contentType:'application/json',
 			data:JSON.stringify(param),
 			success : function(data){
-				if("error"==data.message){
+				if("error" != data.msg){
+					if(path!=null){
+						addVideoContent(param.id,path);
+					}
+				}else{
 					setTimeout(function(){
 						layer.close(index);
 						layer.msg("提交失败！");
@@ -72,5 +74,21 @@ layui.config({
         layer.close(FrameIndex); //再执行关闭 
  		return false;
  	})
-	
+ 	
+ 	function addVideoContent(paperID, path){
+		var param = {};
+		param.path = path;
+		param.paperid = paperID;
+		$.ajax({
+			url:"addVideo.do",
+			data:JSON.stringify(param),
+			type:'post',
+			dataType : "json",
+			contentType:'application/json',
+			success:function(data){
+				console.log(data.msg);
+			}
+		})
+	}
+ 	
 })

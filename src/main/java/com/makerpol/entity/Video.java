@@ -9,6 +9,10 @@ public class Video {
 	
 	private int paperid;
 	
+	private String date;
+	
+	private int userid;
+	
 	public int getId() {
 		return id;
 	}
@@ -49,6 +53,13 @@ public class Video {
 		this.date = date;
 	}
 
-	private String date;
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
 }
 

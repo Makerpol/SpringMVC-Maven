@@ -110,6 +110,14 @@ public class FileUtil {
 		}
 	}
 	
+	/**
+	 * 删除文件
+	 * @param path
+	 */
+	public static void  remove(String path) {
+		File file = new File(path);
+		file.delete();
+	}
 	
 	static {
         logger = Logger.getLogger(FileUtil.class.getName());

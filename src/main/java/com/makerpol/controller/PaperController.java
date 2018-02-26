@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,7 @@ public class PaperController {
 	
 	@Autowired
 	private PaperService service;
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	/**
 	 * 访问添加文章界面
@@ -54,9 +57,10 @@ public class PaperController {
 		
 		try {
 			service.addPaper(paper);
-			map.put("message", "添加成功！");
+			map.put("paperID", paper.getId());
+			map.put("message", "success");
 		}catch(DataAccessException e) {
-			map.put("message", "添加失败！");
+			map.put("message", "error");
 			throw e;
 		}
 		return map;

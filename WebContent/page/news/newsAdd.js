@@ -9,16 +9,17 @@ layui.config({
 	
 	$("#paperType dl").css("height","130px");
 	
+	urlArray = null;
+	
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");
-	ue.addListener('afterUpVideo',function(t, arg) {
-		console.log(arg);  
+	ue.addListener('afterUpVideo',function(t, arg) { 
 		for(var i=0;i<arg.length;i++){
-			console.log(arg[i].url);  
+			console.log(arg[i].url); 
+			urlArray = arg[i].url;
 		}
-        
 	})
-
+	
  	form.on("submit(addNews)",function(data){
  		var index = layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
  		var param = {};
@@ -30,8 +31,6 @@ layui.config({
  		param.show = data.field.show=="on" ? 1 : 0;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
  		param.text = ue.getContent();
- 		console.log(param.text);
- 		
  		
  		$.ajax({
 			url : "addPaper.do",
@@ -40,7 +39,10 @@ layui.config({
 			contentType:'application/json',
 			data:JSON.stringify(param),
 			success : function(data){
-				if("error"==data.message){
+				
+				if("success" == data.message){
+					addVideoContent(data.paperID,urlArray);
+				}else{
 					setTimeout(function(){
 						layer.close(index);
 						layer.msg("提交失败！");
@@ -58,5 +60,21 @@ layui.config({
         layer.close(FrameIndex); //再执行关闭 
  		return false;
  	})
+ 	
+ 	function addVideoContent(paperID, path){
+		var param = {};
+		param.path = path;
+		param.paperid = paperID;
+		$.ajax({
+			url:"addVideo.do",
+			data:JSON.stringify(param),
+			type:'post',
+			dataType : "json",
+			contentType:'application/json',
+			success:function(data){
+				console.log(data.msg);
+			}
+		})
+	}
 	
 })

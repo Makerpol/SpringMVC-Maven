@@ -48,8 +48,10 @@ public class LoginController {
 		if(user==null||user.getPassword()==null||!MD5Util.checkPassword(password,user.getPassword())) {
 			model.addAttribute("LoginMessige", "用户名或密码错误！");
 			return "login";
+		}else if(user.getStatus()!=0) {
+			model.addAttribute("LoginMessige","当前用户无法使用，请联系管理员！");
+			return "login";
 		}
-		
 		
 		session.setAttribute("LoginUser", user);
 		model.addAttribute("user", user);

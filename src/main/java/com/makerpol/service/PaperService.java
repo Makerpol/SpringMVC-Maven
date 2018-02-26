@@ -10,7 +10,7 @@ import com.makerpol.entity.Paper;
 public interface PaperService {
 	
 	//添加文章
-	public void addPaper(Paper paper) throws DataAccessException ;  
+	public int addPaper(Paper paper) throws DataAccessException ;  
 	//删除文章
 	public void deletePaper(Integer id) throws DataAccessException ;
 	//更新文章信息

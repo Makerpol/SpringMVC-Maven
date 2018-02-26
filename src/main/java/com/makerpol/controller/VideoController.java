@@ -3,6 +3,7 @@ package com.makerpol.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +39,45 @@ public class VideoController {
 		Map<String, Object> map = new HashMap<String,Object>();
 		SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
 		User user = (User)req.getSession().getAttribute("LoginUser");
-		video.setPaperid(user.getId());
+		
+		video.setVideoname(getVideoName(video.getPath()));
+		video.setUserid(user.getId());
+		video.setPaperid(video.getPaperid());
 		video.setDate(sf.format(new Date()));
 		
 		try {
 			service.addVideo(video);
+			map.put("msg", "success");
+		}catch(DataAccessException e) {
+			log.error(e.toString());
+			map.put("msg", "error");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/getVideoList")
+	@ResponseBody
+	public Map<String, Object> getVideoList(int start,int num){
+		Map<String, Object> map = new HashMap<String,Object>();
+		
+		try {
+			List<Video> list = service.getAllVideos(start, num);
+			map.put("videos", list);
+			map.put("msg", "success");
+		}catch(DataAccessException e) {
+			log.error(e.toString());
+			map.put("msg", "error");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/getVideoByName")
+	@ResponseBody
+	public Map<String, Object> getVideoByName(int start,int num,String name){
+		Map<String, Object> map = new HashMap<String,Object>();
+		try {
+			List<Video> list = service.getVideoList(name, start, num);
+			map.put("videos", list);
 			map.put("msg", "success");
 		}catch(DataAccessException e) {
 			log.error(e.toString());
@@ -67,5 +102,9 @@ public class VideoController {
 	
 	
 	
-	
+	private String getVideoName(String path) {
+		int index = path.lastIndexOf("/");
+		String temp = path.substring(index+1);
+		return temp.substring(0,temp.indexOf("."));
+	}
 }

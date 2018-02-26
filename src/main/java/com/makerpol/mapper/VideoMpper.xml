@@ -7,6 +7,7 @@
     	<result column="path" property="path" jdbcType="VARCHAR" />
     	<result column="date" property="date" jdbcType="VARCHAR" />
     	<result column="paperid" property="paperid" jdbcType="INTEGER" />
+    	<result column="userid" property="userid" jdbcType="INTEGER" />
 	</resultMap>
 	
 	
@@ -49,14 +50,15 @@
 		<if test="path != null">path = #{path,jdbcType=VARCHAR},</if>   
         <if test="date != null">date = #{date,jdbcType=VARCHAR},</if>
         <if test="paperid != null">paperid = #{paperid,jdbcType=INTEGER},</if>
+        <if test="userid != null">userid = #{userid,jdbcType=INTEGER,}</if>
 		</set>
         
         where id = #{id} 
    </update>
    
    <insert id="addVideo" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.Video">   
-         insert into tb_video(videoname,path, date, paperid)   
-         values(#{videoname},#{path}, #{date}, #{paperid})   
+         insert into tb_video(videoname,path, date, paperid, userid)   
+         values(#{videoname},#{path}, #{date}, #{paperid}, #{userid})   
    </insert>
    
    <delete id="deleteVideo" parameterType="int">
