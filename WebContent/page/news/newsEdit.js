@@ -17,7 +17,7 @@ layui.config({
 	
 	ue.addListener('afterUpVideo',function(t, arg) { 
 		for(var i=0;i<arg.length;i++){
-			path = arg[i].url 
+			window.path = arg[i].url 
 		}
 	})
 		
@@ -44,6 +44,7 @@ layui.config({
  		param.show = data.field.show=="on" ? 0 : 1;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
  		param.text = ue.getContent();
+ 		param.images = getFirstImg(param.text);
  		
  		$.ajax({
 			url : "upDataPaper.do",
@@ -53,8 +54,8 @@ layui.config({
 			data:JSON.stringify(param),
 			success : function(data){
 				if("error" != data.msg){
-					if(path!=null){
-						addVideoContent(param.id,path);
+					if(window.path!=null){
+						addVideoContent(param.id,window.path);
 					}
 				}else{
 					setTimeout(function(){
@@ -89,6 +90,20 @@ layui.config({
 				console.log(data.msg);
 			}
 		})
+	}
+ 	
+ 	function getFirstImg(content){
+		var imgReg = /<img.*?(?:>|\/>)/gi;
+		var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+		
+		if(imgReg.test(content)){
+			var arr = content.match(imgReg);
+			var imgPath = arr[0].match(srcReg);
+			var path = imgPath[0].replace(/src=/i, "");
+			path = path.replace("\"","");
+			console.log(path);
+			return path;
+		}
 	}
  	
 })

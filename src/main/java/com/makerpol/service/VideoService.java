@@ -5,7 +5,7 @@ import org.springframework.dao.DataAccessException;
 import com.makerpol.entity.Video;
 
 public interface VideoService {
-	public List<Video> getAllVideos(Integer start, Integer num) throws DataAccessException;
+	public List<Video> getAllVideos(String param, Integer start, Integer num) throws DataAccessException;
 	public int getCount(String param) throws DataAccessException;
 	public List<Video> getVideoList(String param,Integer start, Integer num) throws DataAccessException ;
 	public Video getVideo(Integer id) throws DataAccessException ;

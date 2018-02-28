@@ -15,8 +15,7 @@ layui.config({
 	var ue = UE.getEditor("paper_content");
 	ue.addListener('afterUpVideo',function(t, arg) { 
 		for(var i=0;i<arg.length;i++){
-			console.log(arg[i].url); 
-			urlArray = arg[i].url;
+			window.path = arg[i].url;
 		}
 	})
 	
@@ -31,6 +30,7 @@ layui.config({
  		param.show = data.field.show=="on" ? 1 : 0;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
  		param.text = ue.getContent();
+ 		param.images = getFirstImg(param.text);
  		
  		$.ajax({
 			url : "addPaper.do",
@@ -41,7 +41,9 @@ layui.config({
 			success : function(data){
 				
 				if("success" == data.message){
-					addVideoContent(data.paperID,urlArray);
+					if(window.path!=null){
+						addVideoContent(data.paperID,window.path);
+					}
 				}else{
 					setTimeout(function(){
 						layer.close(index);
@@ -77,4 +79,17 @@ layui.config({
 		})
 	}
 	
+	function getFirstImg(content){
+		var imgReg = /<img.*?(?:>|\/>)/gi;
+		var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+		
+		if(imgReg.test(content)){
+			var arr = content.match(imgReg);
+			var imgPath = arr[0].match(srcReg);
+			var path = imgPath[0].replace(/src=/i, "");
+			path = path.replace("\"","");
+			console.log(path);
+			return path;
+		}
+	}
 })

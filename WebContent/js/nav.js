@@ -13,12 +13,12 @@ var navs = [{
 	"icon" : "icon-zhanghu",
 	"href" : "userList.do",
 	"spread" : false
-}/*,{
-	"title" : "友情链接",
-	"icon" : "icon-text",
-	"href" : "page/links/linksList.html",
-	"spread" : false
 },{
+	"title" : "视频管理",
+	"icon" : "icon-text",
+	"href" : "page/video/videoList.jsp",
+	"spread" : false
+},/*{
 	"title" : "404页面",
 	"icon" : "&#xe61c;",
 	"href" : "page/404.html",

@@ -50,7 +50,7 @@ layui.config({
         
         layui.upload({
         	elem:"",
-        	url:"upload.do",
+        	url:"uploadUserImage.do",
         	success:function(data){
         		console.log(data);
         		$("#userFace").attr("src",data.URL);

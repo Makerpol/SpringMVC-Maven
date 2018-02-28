@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.makerpol.entity.User;
@@ -57,27 +58,14 @@ public class VideoController {
 	
 	@RequestMapping(value="/getVideoList")
 	@ResponseBody
-	public Map<String, Object> getVideoList(int start,int num){
+	public Map<String, Object> getVideoList(@RequestParam String name, @RequestParam int start, @RequestParam int num){
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 		try {
-			List<Video> list = service.getAllVideos(start, num);
+			List<Video> list = service.getAllVideos(name, start, num);
+			int total = service.getCount(name);
 			map.put("videos", list);
-			map.put("msg", "success");
-		}catch(DataAccessException e) {
-			log.error(e.toString());
-			map.put("msg", "error");
-		}
-		return map;
-	}
-	
-	@RequestMapping(value="/getVideoByName")
-	@ResponseBody
-	public Map<String, Object> getVideoByName(int start,int num,String name){
-		Map<String, Object> map = new HashMap<String,Object>();
-		try {
-			List<Video> list = service.getVideoList(name, start, num);
-			map.put("videos", list);
+			map.put("total", total);
 			map.put("msg", "success");
 		}catch(DataAccessException e) {
 			log.error(e.toString());

@@ -79,6 +79,19 @@
   	select * from tb_paper where date  &gt; #{starTime,jdbcType=VARCHAR} and date  &lt; #{endTime,jdbcType=VARCHAR}
   </select>
   
+  <select id="checkVideo" resultType="object" parameterType="java.lang.Integer">
+  	select 
+  		v.id
+  	from
+  		tb_paper as p
+  	inner join
+  		tb_video as v
+  	on
+  		p.id = v.paperid
+  	where
+  		p.id = #{0}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated

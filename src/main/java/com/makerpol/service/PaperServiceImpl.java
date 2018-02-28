@@ -28,7 +28,11 @@ public class PaperServiceImpl implements PaperService {
 
 	@Override
 	public void deletePaper(Integer id) throws DataAccessException {
-		mapper.deleteByPrimaryKey(id);
+		if(mapper.checkVideo(id)!=null) {
+			mapper.deleteByInnerJoin(id);
+		}else {
+			mapper.deleteByPrimaryKey(id);
+		}
 	}
 
 	@Override

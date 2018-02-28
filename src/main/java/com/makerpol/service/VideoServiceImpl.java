@@ -15,7 +15,10 @@ public class VideoServiceImpl implements VideoService {
 	private VideoMapper mapper;
 	
 	@Override
-	public List<Video> getAllVideos(Integer start, Integer num) throws DataAccessException {
+	public List<Video> getAllVideos(String param, Integer start, Integer num) throws DataAccessException {
+		if(param!=null&& param !="") {
+			return mapper.getVideoList(param, start, num);
+		}
 		return mapper.getAllVideos(start, num);
 	}
 

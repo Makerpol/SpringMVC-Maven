@@ -10,21 +10,21 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.makerpol.common.Common;
+import com.makerpol.controller.FileController;
 import com.makerpol.entity.User;
 
 
 public class FileUtil {
-	private static final Logger logger;
-	public static final RuntimeException IgnoreException;
+	private static final Logger log = LoggerFactory.getLogger(FileController.class);
 	
 	
 	/**
@@ -35,18 +35,14 @@ public class FileUtil {
 	public static Map<String,Object> upLoad(MultipartFile file, HttpServletRequest req) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		String path =req.getSession().getServletContext().getRealPath("/");
-		User user = (User)req.getSession().getAttribute("LoginUser");
-		path += Common.DF_UPLOAD_PATH +user.getName();
 		
 		String fileName = file.getOriginalFilename();
-		String URL = Common.DF_UPLOAD_PATH+user.getName()+"\\"+fileName;
-		System.out.println(URL);
-		File temp = new File(path+"\\"+fileName);
+		String URL = getPath(req,fileName);
 		
-		if(!temp.getParentFile().exists()) {
-			temp.getParentFile().mkdir();
-		}
-	
+		File temp = new File(path+URL);
+		
+		checkParentFile(temp);
+		
 		try {
 			if(!temp.exists()) {
 				temp.createNewFile();
@@ -60,6 +56,69 @@ public class FileUtil {
 		}
 		return map;
 	}
+	
+	private static void checkParentFile(File temp) {
+		if(!temp.getParentFile().exists()) {
+			checkParentFile(temp.getParentFile());
+		}
+		temp.mkdir();
+	}
+	
+	private static String getFileType(String end) {
+		if(checkImageType(end)!=null) {
+			return "images";
+		}else if(checkVideoType(end)!=null) {
+			return "video";
+		}else if(checkFileType(end)!=null) {
+			return "file";
+		}
+		return null;
+	} 
+	
+	private static String checkImageType(String end) {
+		String image = "png,jpg,jpeg,gif,bmp";
+		if(image.indexOf(end)>0) {
+			return "images";
+		}
+		return null;
+	}
+	
+	private static String checkVideoType(String end) {
+		String video = "flv,swf, mkv, avi,rm, rmvb, mpeg, mpg,ogg,ogv, mov, wmv, mp4, webm, mp3, wav, mid";
+		if(video.indexOf(end)>0) {
+			return "video";
+		}
+		return null;
+	}
+	
+	private static String checkFileType(String end) {
+		String file = "rar, zip, tar, gz, 7z, bz2, cab, iso,doc, docx, xls, xlsx, ppt, pptx, pdf, txt, md, xml";
+		if(file.indexOf(end)>0) {
+			return "file";
+		}
+		return null;
+	}
+	
+	/**
+	 * 获取上传文件的路径
+	 * @param req
+	 * @param filename
+	 * @return
+	 */
+	private static String getPath(HttpServletRequest req, String filename) {
+		String type = getFileType(getStrIndexOf(filename,"."));
+		if("images".equals(type)) {
+			User user = (User)req.getSession().getAttribute("LoginUser");
+			return Common.DF_UPLOAD_PATH +type+"\\"+user.getName()+"\\"+filename;
+		}
+		return Common.DF_UPLOAD_PATH +type+"\\"+filename;
+	}
+	
+	
+	private static String getStrIndexOf(String s,String i) {
+		return s.substring(s.indexOf(i)+1);
+	}
+	
 	
 	/**
 	 * 多文件上传
@@ -98,13 +157,13 @@ public class FileUtil {
 				handler.doHandle(lineString);
 			}
 		} catch (IOException e) {
-			FileUtil.logger.warning(e.getMessage());
+			log.debug(e.getMessage());
 		}finally {
 			if(reader!=null) {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					FileUtil.logger.warning(e.getMessage());
+					log.debug(e.getMessage());
 				}
 			}
 		}
@@ -118,11 +177,6 @@ public class FileUtil {
 		File file = new File(path);
 		file.delete();
 	}
-	
-	static {
-        logger = Logger.getLogger(FileUtil.class.getName());
-        IgnoreException = new RuntimeException();
-    }
 	
 	public interface Handler
     {
