@@ -1,0 +1,493 @@
+2018-02-11  08:34:28.294 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  08:34:28.368 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  08:34:28.563 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  08:34:28.577 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  08:34:28.587 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  08:34:39.994 [qtp70978270-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:34:39.997 [qtp70978270-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5f432994] was not registered for synchronization because synchronization is not active
+2018-02-11  08:34:40.026 [qtp70978270-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@5223d456] will not be managed by Spring
+2018-02-11  08:34:40.028 [qtp70978270-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@5223d456]
+2018-02-11  08:34:40.030 [qtp70978270-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  08:34:40.046 [qtp70978270-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: admin(String)
+2018-02-11  08:34:40.058 [qtp70978270-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5f432994]
+2018-02-11  08:34:42.129 [qtp70978270-26] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  08:34:42.337 [qtp70978270-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  08:34:42.341 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:34:42.341 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3b1c5375] was not registered for synchronization because synchronization is not active
+2018-02-11  08:34:42.353 [qtp70978270-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@5a07566d] will not be managed by Spring
+2018-02-11  08:34:42.353 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@5a07566d]
+2018-02-11  08:34:42.354 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  08:34:42.357 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  08:34:42.364 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3b1c5375]
+2018-02-11  08:34:42.364 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:34:42.364 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e21332f] was not registered for synchronization because synchronization is not active
+2018-02-11  08:34:42.387 [qtp70978270-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@4fbc9b39] will not be managed by Spring
+2018-02-11  08:34:42.388 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@4fbc9b39]
+2018-02-11  08:34:42.388 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  08:34:42.390 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  08:34:42.394 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e21332f]
+2018-02-11  08:34:43.973 [qtp70978270-25] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /toAddUser.do
+2018-02-11  08:35:18.348 [qtp70978270-26] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /checkName.do
+2018-02-11  08:35:18.348 [qtp70978270-26] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:35:18.349 [qtp70978270-26] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6741b306] was not registered for synchronization because synchronization is not active
+2018-02-11  08:35:18.357 [qtp70978270-26] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@33e9b83f] will not be managed by Spring
+2018-02-11  08:35:18.357 [qtp70978270-26] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@33e9b83f]
+2018-02-11  08:35:18.357 [qtp70978270-26] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  08:35:18.359 [qtp70978270-26] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: zhaow(String)
+2018-02-11  08:35:18.363 [qtp70978270-26] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6741b306]
+2018-02-11  08:35:18.374 [qtp70978270-14] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /addUser.do
+2018-02-11  08:35:18.397 [qtp70978270-14] DEBUG com.makerpol.controller.UserController - name : zhaow
+2018-02-11  08:35:18.398 [qtp70978270-14] DEBUG com.makerpol.controller.UserController - realname : ÕÔÎ¡
+2018-02-11  08:35:18.406 [qtp70978270-14] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:35:18.406 [qtp70978270-14] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2f031b14] was not registered for synchronization because synchronization is not active
+2018-02-11  08:35:18.413 [qtp70978270-14] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@697630a4] will not be managed by Spring
+2018-02-11  08:35:18.413 [qtp70978270-14] DEBUG com.makerpol.dao.UserMapper.addUser - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@697630a4]
+2018-02-11  08:35:18.414 [qtp70978270-14] DEBUG com.makerpol.dao.UserMapper.addUser - ==>  Preparing: insert into tb_user(status,grade, name, password, sex, realname, phone, email, idcard) values(?,?, ?, ?, ?, ?, ?, ?,?) 
+2018-02-11  08:35:18.415 [qtp70978270-14] DEBUG com.makerpol.dao.UserMapper.addUser - ==> Parameters: 0(Integer), 3(Integer), zhaow(String), E10ADC3949BA59ABBE56E057F20F883E(String), 1(Integer), ÕÔÎ¡(String), 15838127435(String), web.zx@outlook.com(String), 410225198907026139(String)
+2018-02-11  08:35:18.461 [qtp70978270-14] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2f031b14]
+2018-02-11  08:35:18.462 [qtp70978270-14] ERROR com.makerpol.controller.UserController - org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: Field 'image' doesn't have a default value
+### The error may involve com.makerpol.dao.UserMapper.addUser-Inline
+### The error occurred while setting parameters
+### SQL: insert into tb_user(status,grade, name, password, sex, realname, phone, email, idcard)             values(?,?, ?, ?, ?, ?, ?, ?,?)
+### Cause: java.sql.SQLException: Field 'image' doesn't have a default value
+; uncategorized SQLException for SQL []; SQL state [HY000]; error code [1364]; Field 'image' doesn't have a default value; nested exception is java.sql.SQLException: Field 'image' doesn't have a default value
+2018-02-11  08:35:20.400 [qtp70978270-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  08:35:20.495 [qtp70978270-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  08:35:20.497 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:35:20.498 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c53f718] was not registered for synchronization because synchronization is not active
+2018-02-11  08:35:20.505 [qtp70978270-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@4b7d47b9] will not be managed by Spring
+2018-02-11  08:35:20.506 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@4b7d47b9]
+2018-02-11  08:35:20.507 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  08:35:20.507 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  08:35:20.519 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c53f718]
+2018-02-11  08:35:20.520 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:35:20.523 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1cfc017a] was not registered for synchronization because synchronization is not active
+2018-02-11  08:35:20.528 [qtp70978270-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@113d6eda] will not be managed by Spring
+2018-02-11  08:35:20.528 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@113d6eda]
+2018-02-11  08:35:20.539 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  08:35:20.539 [qtp70978270-21] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  08:35:20.546 [qtp70978270-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1cfc017a]
+2018-02-11  08:37:14.952 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  08:37:15.048 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  08:37:15.288 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  08:37:15.316 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  08:37:15.329 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  08:38:05.984 [qtp1869177530-14] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:38:05.989 [qtp1869177530-14] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@45db0a52] was not registered for synchronization because synchronization is not active
+2018-02-11  08:38:06.014 [qtp1869177530-14] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@58af3a08] will not be managed by Spring
+2018-02-11  08:38:06.016 [qtp1869177530-14] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@58af3a08]
+2018-02-11  08:38:06.018 [qtp1869177530-14] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  08:38:06.035 [qtp1869177530-14] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: admin(String)
+2018-02-11  08:38:06.047 [qtp1869177530-14] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@45db0a52]
+2018-02-11  08:38:06.726 [qtp1869177530-20] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  08:38:07.007 [qtp1869177530-18] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  08:38:07.012 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:38:07.013 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e919247] was not registered for synchronization because synchronization is not active
+2018-02-11  08:38:07.028 [qtp1869177530-18] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@60ae4ba4] will not be managed by Spring
+2018-02-11  08:38:07.029 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@60ae4ba4]
+2018-02-11  08:38:07.037 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  08:38:07.038 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  08:38:07.046 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e919247]
+2018-02-11  08:38:07.047 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:38:07.047 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@51a33081] was not registered for synchronization because synchronization is not active
+2018-02-11  08:38:07.080 [qtp1869177530-18] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@7fd2022b] will not be managed by Spring
+2018-02-11  08:38:07.080 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@7fd2022b]
+2018-02-11  08:38:07.081 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  08:38:07.082 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  08:38:07.087 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@51a33081]
+2018-02-11  08:38:08.225 [qtp1869177530-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /toAddUser.do
+2018-02-11  08:39:47.539 [qtp1869177530-18] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /checkName.do
+2018-02-11  08:39:47.539 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:39:47.541 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37980e98] was not registered for synchronization because synchronization is not active
+2018-02-11  08:39:47.547 [qtp1869177530-18] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@44a2a274] will not be managed by Spring
+2018-02-11  08:39:47.548 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@44a2a274]
+2018-02-11  08:39:47.548 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  08:39:47.551 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: zhaowei(String)
+2018-02-11  08:39:47.558 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37980e98]
+2018-02-11  08:39:47.568 [qtp1869177530-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /addUser.do
+2018-02-11  08:39:47.592 [qtp1869177530-19] DEBUG com.makerpol.controller.UserController - name : zhaowei
+2018-02-11  08:39:47.593 [qtp1869177530-19] DEBUG com.makerpol.controller.UserController - realname : ÕÔÎ¡
+2018-02-11  08:39:47.601 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:39:47.601 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5138b9e5] was not registered for synchronization because synchronization is not active
+2018-02-11  08:39:47.612 [qtp1869177530-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@191db1cc] will not be managed by Spring
+2018-02-11  08:39:47.613 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.addUser - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@191db1cc]
+2018-02-11  08:39:47.636 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.addUser - ==>  Preparing: insert into tb_user(status,grade, name, password, sex, realname, phone, email, idcard, image) values(?,?, ?, ?, ?, ?, ?, ?,?, ?) 
+2018-02-11  08:39:47.637 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.addUser - ==> Parameters: 0(Integer), 3(Integer), zhaowei(String), E10ADC3949BA59ABBE56E057F20F883E(String), 1(Integer), ÕÔÎ¡(String), 15838127435(String), web.zx@outlook.com(String), 410225198907026139(String), /images/luna.jpg(String)
+2018-02-11  08:39:47.664 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5138b9e5]
+2018-02-11  08:39:49.597 [qtp1869177530-14] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  08:39:49.679 [qtp1869177530-18] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  08:39:49.680 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:39:49.681 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14bd2eb7] was not registered for synchronization because synchronization is not active
+2018-02-11  08:39:49.693 [qtp1869177530-18] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@5d6499ea] will not be managed by Spring
+2018-02-11  08:39:49.694 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@5d6499ea]
+2018-02-11  08:39:49.694 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  08:39:49.697 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  08:39:49.700 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14bd2eb7]
+2018-02-11  08:39:49.701 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:39:49.701 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3fd2dbaf] was not registered for synchronization because synchronization is not active
+2018-02-11  08:39:49.719 [qtp1869177530-18] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@1afc93c9] will not be managed by Spring
+2018-02-11  08:39:49.720 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@1afc93c9]
+2018-02-11  08:39:49.729 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  08:39:49.730 [qtp1869177530-18] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  08:39:49.743 [qtp1869177530-18] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3fd2dbaf]
+2018-02-11  08:47:58.829 [qtp1869177530-14] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:47:58.831 [qtp1869177530-14] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e5e1c10] was not registered for synchronization because synchronization is not active
+2018-02-11  08:47:58.851 [qtp1869177530-14] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@18ad2d23] will not be managed by Spring
+2018-02-11  08:47:58.851 [qtp1869177530-14] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@18ad2d23]
+2018-02-11  08:47:58.853 [qtp1869177530-14] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  08:47:58.856 [qtp1869177530-14] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: admin(String)
+2018-02-11  08:47:58.868 [qtp1869177530-14] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e5e1c10]
+2018-02-11  08:47:59.088 [qtp1869177530-18] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  08:47:59.164 [qtp1869177530-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  08:47:59.165 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:47:59.171 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a618f40] was not registered for synchronization because synchronization is not active
+2018-02-11  08:47:59.175 [qtp1869177530-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@2053c27a] will not be managed by Spring
+2018-02-11  08:47:59.179 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@2053c27a]
+2018-02-11  08:47:59.180 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  08:47:59.188 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  08:47:59.192 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a618f40]
+2018-02-11  08:47:59.196 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:47:59.196 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31450c09] was not registered for synchronization because synchronization is not active
+2018-02-11  08:47:59.203 [qtp1869177530-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@1b0db9b3] will not be managed by Spring
+2018-02-11  08:47:59.203 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@1b0db9b3]
+2018-02-11  08:47:59.204 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  08:47:59.229 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  08:47:59.230 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31450c09]
+2018-02-11  08:48:19.806 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:48:19.807 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20f6b4ea] was not registered for synchronization because synchronization is not active
+2018-02-11  08:48:19.813 [qtp1869177530-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@13c56050] will not be managed by Spring
+2018-02-11  08:48:19.813 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@13c56050]
+2018-02-11  08:48:19.814 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  08:48:19.816 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: admin(String)
+2018-02-11  08:48:19.826 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20f6b4ea]
+2018-02-11  08:48:21.296 [qtp1869177530-18] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  08:48:21.366 [qtp1869177530-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  08:48:21.367 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:48:21.369 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@469ddd73] was not registered for synchronization because synchronization is not active
+2018-02-11  08:48:21.378 [qtp1869177530-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@7b0dd90e] will not be managed by Spring
+2018-02-11  08:48:21.378 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@7b0dd90e]
+2018-02-11  08:48:21.379 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  08:48:21.388 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  08:48:21.393 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@469ddd73]
+2018-02-11  08:48:21.394 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  08:48:21.394 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a11a0af] was not registered for synchronization because synchronization is not active
+2018-02-11  08:48:21.402 [qtp1869177530-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@24d20680] will not be managed by Spring
+2018-02-11  08:48:21.402 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@24d20680]
+2018-02-11  08:48:21.402 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  08:48:21.410 [qtp1869177530-19] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  08:48:21.412 [qtp1869177530-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a11a0af]
+2018-02-11  11:38:35.762 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  11:38:35.851 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  11:38:36.060 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  11:38:36.079 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  11:38:36.092 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  15:28:58.619 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  15:28:58.712 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  15:28:58.932 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  15:28:58.949 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  15:28:58.960 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  15:32:50.694 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  15:32:50.787 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  15:32:51.027 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  15:32:51.041 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  15:32:51.051 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  15:36:32.886 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  15:36:32.976 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  15:36:33.190 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  15:36:33.210 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  15:36:33.222 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  15:39:26.693 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  15:39:26.792 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  15:39:27.022 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  15:39:27.040 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  15:39:27.054 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  15:44:55.493 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  15:44:55.585 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  15:44:55.806 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  15:44:55.825 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  15:44:55.835 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  15:47:29.442 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  15:47:29.535 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  15:47:29.782 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  15:47:29.798 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  15:47:29.813 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  15:57:45.553 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  15:57:45.634 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  15:57:45.853 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  15:57:45.870 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  15:57:45.880 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  16:01:23.745 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2018-02-11  16:01:23.831 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [spring-mybatis.xml]'
+2018-02-11  16:01:24.083 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\NavMapper.xml]'
+2018-02-11  16:01:24.099 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\PaperMapper.xml]'
+2018-02-11  16:01:24.113 [main] DEBUG org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [F:\JAVAworkspace\SpringMVC-Maven\target\classes\com\makerpol\mapper\UserMapper.xml]'
+2018-02-11  16:01:32.111 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:32.114 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78efe35] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:32.139 [qtp1715686600-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@5d616c7f] will not be managed by Spring
+2018-02-11  16:01:32.141 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@5d616c7f]
+2018-02-11  16:01:32.143 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  16:01:32.159 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: admin(String)
+2018-02-11  16:01:32.168 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78efe35]
+2018-02-11  16:01:34.078 [qtp1715686600-15] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:01:34.280 [qtp1715686600-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:01:34.284 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:34.284 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7f67f9cb] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:34.293 [qtp1715686600-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@6202fef1] will not be managed by Spring
+2018-02-11  16:01:34.293 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@6202fef1]
+2018-02-11  16:01:34.294 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:01:34.304 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:01:34.308 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7f67f9cb]
+2018-02-11  16:01:34.310 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:34.310 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c70d3a3] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:34.333 [qtp1715686600-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@6d5e02a] will not be managed by Spring
+2018-02-11  16:01:34.334 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@6d5e02a]
+2018-02-11  16:01:34.334 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:01:34.339 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:01:34.340 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c70d3a3]
+2018-02-11  16:01:38.899 [qtp1715686600-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /searchUser.do
+2018-02-11  16:01:38.901 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:38.901 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@623a4125] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:38.909 [qtp1715686600-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@2ab8107a] will not be managed by Spring
+2018-02-11  16:01:38.910 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserById - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@2ab8107a]
+2018-02-11  16:01:38.911 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserById - ==>  Preparing: select * from tb_user where id = ? 
+2018-02-11  16:01:38.944 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserById - ==> Parameters: 6(Integer)
+2018-02-11  16:01:38.952 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@623a4125]
+2018-02-11  16:01:43.732 [qtp1715686600-26] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /updataUser.do
+2018-02-11  16:01:43.754 [qtp1715686600-26] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:43.754 [qtp1715686600-26] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3cb8a1a8] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:43.762 [qtp1715686600-26] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@f6262fa] will not be managed by Spring
+2018-02-11  16:01:43.763 [qtp1715686600-26] DEBUG com.makerpol.dao.UserMapper.updataUser - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@f6262fa]
+2018-02-11  16:01:43.763 [qtp1715686600-26] DEBUG com.makerpol.dao.UserMapper.updataUser - ==>  Preparing: update tb_user SET grade = ?, email = ?, birthday = ?, realname = ?, phone = ? where id = ? 
+2018-02-11  16:01:43.766 [qtp1715686600-26] DEBUG com.makerpol.dao.UserMapper.updataUser - ==> Parameters: 0(Integer), 189@qq.com(String), 2018-02-11(String), ÓÃ»§(String), 18922221111(String), 6(Integer)
+2018-02-11  16:01:43.861 [qtp1715686600-26] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3cb8a1a8]
+2018-02-11  16:01:43.956 [qtp1715686600-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:01:44.108 [qtp1715686600-15] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:01:44.109 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:44.111 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@774ebff5] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:44.123 [qtp1715686600-15] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@38c39bd8] will not be managed by Spring
+2018-02-11  16:01:44.123 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@38c39bd8]
+2018-02-11  16:01:44.124 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:01:44.126 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:01:44.130 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@774ebff5]
+2018-02-11  16:01:44.132 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:44.133 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df0a15c] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:44.145 [qtp1715686600-15] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@74298f9f] will not be managed by Spring
+2018-02-11  16:01:44.146 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@74298f9f]
+2018-02-11  16:01:44.148 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:01:44.149 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:01:44.153 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4df0a15c]
+2018-02-11  16:01:46.588 [qtp1715686600-23] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /searchUser.do
+2018-02-11  16:01:46.588 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:46.590 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15663ba2] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:46.596 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@4959f486] will not be managed by Spring
+2018-02-11  16:01:46.597 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserById - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@4959f486]
+2018-02-11  16:01:46.597 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserById - ==>  Preparing: select * from tb_user where id = ? 
+2018-02-11  16:01:46.599 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserById - ==> Parameters: 7(Integer)
+2018-02-11  16:01:46.602 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15663ba2]
+2018-02-11  16:01:49.672 [qtp1715686600-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /updataUser.do
+2018-02-11  16:01:49.673 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:49.673 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68000a2a] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:49.682 [qtp1715686600-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@373b98bb] will not be managed by Spring
+2018-02-11  16:01:49.683 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.updataUser - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@373b98bb]
+2018-02-11  16:01:49.683 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.updataUser - ==>  Preparing: update tb_user SET grade = ?, email = ?, birthday = ?, realname = ?, phone = ? where id = ? 
+2018-02-11  16:01:49.690 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.updataUser - ==> Parameters: 3(Integer), web.zx@outlook.com(String), 2018-02-11(String), ÕÔÎ¡(String), 15838127435(String), 7(Integer)
+2018-02-11  16:01:49.732 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68000a2a]
+2018-02-11  16:01:49.887 [qtp1715686600-26] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:01:49.957 [qtp1715686600-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:01:49.958 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:49.959 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5b0adcbf] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:49.969 [qtp1715686600-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@6aa103b1] will not be managed by Spring
+2018-02-11  16:01:49.970 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@6aa103b1]
+2018-02-11  16:01:49.970 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:01:49.973 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:01:49.978 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5b0adcbf]
+2018-02-11  16:01:49.979 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:49.991 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@74f5f2d0] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:50.002 [qtp1715686600-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@7d3b642a] will not be managed by Spring
+2018-02-11  16:01:50.003 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@7d3b642a]
+2018-02-11  16:01:50.004 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:01:50.007 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:01:50.008 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@74f5f2d0]
+2018-02-11  16:01:50.941 [qtp1715686600-15] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /searchUser.do
+2018-02-11  16:01:50.941 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:50.944 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15c0235c] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:50.952 [qtp1715686600-15] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@67fb4155] will not be managed by Spring
+2018-02-11  16:01:50.952 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserById - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@67fb4155]
+2018-02-11  16:01:50.953 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserById - ==>  Preparing: select * from tb_user where id = ? 
+2018-02-11  16:01:50.976 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserById - ==> Parameters: 7(Integer)
+2018-02-11  16:01:50.978 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15c0235c]
+2018-02-11  16:01:53.568 [qtp1715686600-23] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:01:53.636 [qtp1715686600-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:01:53.637 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:53.637 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6120aad6] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:53.646 [qtp1715686600-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@365f6e52] will not be managed by Spring
+2018-02-11  16:01:53.647 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@365f6e52]
+2018-02-11  16:01:53.648 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:01:53.660 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:01:53.662 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6120aad6]
+2018-02-11  16:01:53.673 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:01:53.674 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@48953880] was not registered for synchronization because synchronization is not active
+2018-02-11  16:01:53.682 [qtp1715686600-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@25607c0a] will not be managed by Spring
+2018-02-11  16:01:53.683 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@25607c0a]
+2018-02-11  16:01:53.683 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:01:53.690 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:01:53.691 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@48953880]
+2018-02-11  16:03:28.610 [qtp1715686600-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /searchUser.do
+2018-02-11  16:03:32.333 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:03:32.333 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1faa5ab] was not registered for synchronization because synchronization is not active
+2018-02-11  16:03:32.338 [qtp1715686600-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@5c018968] will not be managed by Spring
+2018-02-11  16:03:32.339 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserById - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@5c018968]
+2018-02-11  16:03:32.339 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserById - ==>  Preparing: select * from tb_user where id = ? 
+2018-02-11  16:03:32.340 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserById - ==> Parameters: 7(Integer)
+2018-02-11  16:03:32.341 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1faa5ab]
+2018-02-11  16:03:49.671 [qtp1715686600-15] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:03:49.733 [qtp1715686600-23] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:03:49.734 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:03:49.734 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4bec5e86] was not registered for synchronization because synchronization is not active
+2018-02-11  16:03:49.738 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@63d4c285] will not be managed by Spring
+2018-02-11  16:03:49.738 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@63d4c285]
+2018-02-11  16:03:49.739 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:03:49.739 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:03:49.741 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4bec5e86]
+2018-02-11  16:03:49.743 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:03:49.743 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c6f7c03] was not registered for synchronization because synchronization is not active
+2018-02-11  16:03:49.747 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@72a9fd99] will not be managed by Spring
+2018-02-11  16:03:49.747 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@72a9fd99]
+2018-02-11  16:03:49.748 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:03:49.748 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:03:49.752 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c6f7c03]
+2018-02-11  16:03:51.848 [qtp1715686600-19] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /searchUser.do
+2018-02-11  16:03:51.849 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:03:51.851 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@42f72c45] was not registered for synchronization because synchronization is not active
+2018-02-11  16:03:51.855 [qtp1715686600-19] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@35b7d1c9] will not be managed by Spring
+2018-02-11  16:03:51.855 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserById - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@35b7d1c9]
+2018-02-11  16:03:51.856 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserById - ==>  Preparing: select * from tb_user where id = ? 
+2018-02-11  16:03:51.857 [qtp1715686600-19] DEBUG com.makerpol.dao.UserMapper.getUserById - ==> Parameters: 7(Integer)
+2018-02-11  16:03:51.859 [qtp1715686600-19] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@42f72c45]
+2018-02-11  16:06:03.651 [qtp1715686600-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:06:03.747 [qtp1715686600-15] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:06:03.747 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:03.748 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d206ac8] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:03.755 [qtp1715686600-15] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@66cd961] will not be managed by Spring
+2018-02-11  16:06:03.755 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@66cd961]
+2018-02-11  16:06:03.755 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:06:03.755 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:06:03.758 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d206ac8]
+2018-02-11  16:06:03.758 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:03.758 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f37b22a] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:03.764 [qtp1715686600-15] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@3971abb6] will not be managed by Spring
+2018-02-11  16:06:03.764 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@3971abb6]
+2018-02-11  16:06:03.766 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:06:03.769 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:06:03.770 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f37b22a]
+2018-02-11  16:06:05.998 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:05.998 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@586436d6] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:06.004 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@534e83f0] will not be managed by Spring
+2018-02-11  16:06:06.007 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@534e83f0]
+2018-02-11  16:06:06.007 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  16:06:06.009 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: admin(String)
+2018-02-11  16:06:06.010 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@586436d6]
+2018-02-11  16:06:06.225 [qtp1715686600-15] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:06:06.274 [qtp1715686600-27] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:06:06.275 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:06.276 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2891e461] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:06.282 [qtp1715686600-27] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@744ea77] will not be managed by Spring
+2018-02-11  16:06:06.282 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@744ea77]
+2018-02-11  16:06:06.283 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:06:06.283 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:06:06.285 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2891e461]
+2018-02-11  16:06:06.288 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:06.288 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@233dc0d0] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:06.305 [qtp1715686600-27] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@3a9db19b] will not be managed by Spring
+2018-02-11  16:06:06.305 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@3a9db19b]
+2018-02-11  16:06:06.310 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:06:06.310 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:06:06.319 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@233dc0d0]
+2018-02-11  16:06:20.355 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:20.356 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@365958b9] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:20.362 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@5389aab7] will not be managed by Spring
+2018-02-11  16:06:20.363 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@5389aab7]
+2018-02-11  16:06:20.363 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==>  Preparing: select * from tb_user where name = ? 
+2018-02-11  16:06:20.364 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserByName - ==> Parameters: admin(String)
+2018-02-11  16:06:20.365 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@365958b9]
+2018-02-11  16:06:21.530 [qtp1715686600-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:06:21.614 [qtp1715686600-27] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:06:21.614 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:21.616 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1460b4d6] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:21.622 [qtp1715686600-27] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@10b438d8] will not be managed by Spring
+2018-02-11  16:06:21.623 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@10b438d8]
+2018-02-11  16:06:21.623 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:06:21.623 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:06:21.625 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1460b4d6]
+2018-02-11  16:06:21.626 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:21.627 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26763d59] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:21.632 [qtp1715686600-27] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@50a00828] will not be managed by Spring
+2018-02-11  16:06:21.632 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@50a00828]
+2018-02-11  16:06:21.633 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:06:21.633 [qtp1715686600-27] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:06:21.634 [qtp1715686600-27] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26763d59]
+2018-02-11  16:06:23.271 [qtp1715686600-15] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /searchUser.do
+2018-02-11  16:06:23.272 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:23.274 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d6c660c] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:23.281 [qtp1715686600-15] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@2a4b2ef9] will not be managed by Spring
+2018-02-11  16:06:23.281 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserById - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@2a4b2ef9]
+2018-02-11  16:06:23.281 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserById - ==>  Preparing: select * from tb_user where id = ? 
+2018-02-11  16:06:23.283 [qtp1715686600-15] DEBUG com.makerpol.dao.UserMapper.getUserById - ==> Parameters: 7(Integer)
+2018-02-11  16:06:23.285 [qtp1715686600-15] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d6c660c]
+2018-02-11  16:06:28.475 [qtp1715686600-27] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:06:28.580 [qtp1715686600-23] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:06:28.581 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:28.582 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f0de3b1] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:28.591 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@3315b619] will not be managed by Spring
+2018-02-11  16:06:28.592 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@3315b619]
+2018-02-11  16:06:28.592 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:06:28.595 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:06:28.597 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f0de3b1]
+2018-02-11  16:06:28.597 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:28.598 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c2f4e01] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:28.607 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@749042fd] will not be managed by Spring
+2018-02-11  16:06:28.607 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@749042fd]
+2018-02-11  16:06:28.608 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:06:28.614 [qtp1715686600-23] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:06:28.616 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c2f4e01]
+2018-02-11  16:06:30.844 [qtp1715686600-29] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /searchUser.do
+2018-02-11  16:06:30.845 [qtp1715686600-29] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:06:30.846 [qtp1715686600-29] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44f1f2d5] was not registered for synchronization because synchronization is not active
+2018-02-11  16:06:30.853 [qtp1715686600-29] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@6b24e14f] will not be managed by Spring
+2018-02-11  16:06:30.853 [qtp1715686600-29] DEBUG com.makerpol.dao.UserMapper.getUserById - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@6b24e14f]
+2018-02-11  16:06:30.854 [qtp1715686600-29] DEBUG com.makerpol.dao.UserMapper.getUserById - ==>  Preparing: select * from tb_user where id = ? 
+2018-02-11  16:06:30.854 [qtp1715686600-29] DEBUG com.makerpol.dao.UserMapper.getUserById - ==> Parameters: 1(Integer)
+2018-02-11  16:06:30.861 [qtp1715686600-29] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44f1f2d5]
+2018-02-11  16:07:18.677 [qtp1715686600-30] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /userList.do
+2018-02-11  16:07:18.731 [qtp1715686600-21] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getUserList.do
+2018-02-11  16:07:18.732 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:07:18.739 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@21f7fae] was not registered for synchronization because synchronization is not active
+2018-02-11  16:07:18.746 [qtp1715686600-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@36cdc806] will not be managed by Spring
+2018-02-11  16:07:18.747 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@36cdc806]
+2018-02-11  16:07:18.747 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ==>  Preparing: select * from (select * from tb_user where name like concat('%',?,'%')) as u limit ?,? 
+2018-02-11  16:07:18.756 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getUserList - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:07:18.758 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@21f7fae]
+2018-02-11  16:07:18.762 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:07:18.762 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7be91329] was not registered for synchronization because synchronization is not active
+2018-02-11  16:07:18.769 [qtp1715686600-21] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@4da78cc5] will not be managed by Spring
+2018-02-11  16:07:18.769 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@4da78cc5]
+2018-02-11  16:07:18.771 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getCount - ==>  Preparing: select count(id) from tb_user where name like concat('%',?,'%') 
+2018-02-11  16:07:18.778 [qtp1715686600-21] DEBUG com.makerpol.dao.UserMapper.getCount - ==> Parameters: (String)
+2018-02-11  16:07:18.779 [qtp1715686600-21] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7be91329]
+2018-02-11  16:07:20.858 [qtp1715686600-15] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /toPaperList.do
+2018-02-11  16:07:20.961 [qtp1715686600-23] DEBUG com.makerpol.Interceptor.BaseInterceptor - URL : /getAllPaper.do
+2018-02-11  16:07:20.963 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:07:20.963 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44225f6f] was not registered for synchronization because synchronization is not active
+2018-02-11  16:07:20.970 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@53b3589c] will not be managed by Spring
+2018-02-11  16:07:20.970 [qtp1715686600-23] DEBUG com.makerpol.dao.PaperMapper.getPaperListByName - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@53b3589c]
+2018-02-11  16:07:20.970 [qtp1715686600-23] DEBUG com.makerpol.dao.PaperMapper.getPaperListByName - ==>  Preparing: select * from (select * from tb_paper where paper_name like concat('%',?,'%')) as p limit ?,? 
+2018-02-11  16:07:20.972 [qtp1715686600-23] DEBUG com.makerpol.dao.PaperMapper.getPaperListByName - ==> Parameters: (String), 0(Integer), 13(Integer)
+2018-02-11  16:07:20.988 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44225f6f]
+2018-02-11  16:07:20.990 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2018-02-11  16:07:20.990 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@710dc711] was not registered for synchronization because synchronization is not active
+2018-02-11  16:07:21.002 [qtp1715686600-23] DEBUG org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [com.mysql.jdbc.JDBC4Connection@2357288f] will not be managed by Spring
+2018-02-11  16:07:21.002 [qtp1715686600-23] DEBUG com.makerpol.dao.PaperMapper.getPaperCount - ooo Using Connection [com.mysql.jdbc.JDBC4Connection@2357288f]
+2018-02-11  16:07:21.005 [qtp1715686600-23] DEBUG com.makerpol.dao.PaperMapper.getPaperCount - ==>  Preparing: select count(id) from tb_paper where paper_name like concat('%',?,'%') 
+2018-02-11  16:07:21.005 [qtp1715686600-23] DEBUG com.makerpol.dao.PaperMapper.getPaperCount - ==> Parameters: (String)
+2018-02-11  16:07:21.013 [qtp1715686600-23] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@710dc711]

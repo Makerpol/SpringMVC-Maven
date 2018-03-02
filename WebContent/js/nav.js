@@ -18,12 +18,12 @@ var navs = [{
 	"icon" : "icon-text",
 	"href" : "page/video/videoList.jsp",
 	"spread" : false
-},/*{
-	"title" : "404页面",
-	"icon" : "&#xe61c;",
-	"href" : "page/404.html",
-	"spread" : false
 },{
+	"title" : "图片管理",
+	"icon" : "icon-text",
+	"href" : "page/img/images.html",
+	"spread" : false
+},/*{
 	"title" : "系统基本参数",
 	"icon" : "&#xe631;",
 	"href" : "page/systemParameter/systemParameter.html",

@@ -1,7 +1,9 @@
 package com.makerpol.Utils;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,7 +13,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.http.HttpServletRequest;
+
+import org.icepdf.core.exceptions.PDFException;
+import org.icepdf.core.exceptions.PDFSecurityException;
+import org.icepdf.core.pobjects.Document;
+import org.icepdf.core.pobjects.Page;
+import org.icepdf.core.util.GraphicsRenderingHints;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,23 +49,62 @@ public class FileUtil {
 		
 		String fileName = file.getOriginalFilename();
 		String URL = getPath(req,fileName);
+		String type = getStrIndexOf(fileName, ".");
 		
 		File temp = new File(path+URL);
 		
 		checkParentFile(temp);
+		String icon = null;
 		
 		try {
 			if(!temp.exists()) {
 				temp.createNewFile();
 			}
 			file.transferTo(temp);
+			
+			if("pdf".equals(type)) {
+				icon = generateBookIamge(path+URL);
+				map.put("icon", icon);
+			}
+			
 			map.put("code", 200);
 			map.put("msg", "success");
 			map.put("URL", URL);
+			
 		}catch(IOException | IllegalStateException e) {
 			map.put("msg", "error");
 		}
 		return map;
+	}
+	
+	/**
+	 * 生成PDF的略缩图
+	 * @param pdfPath	pdf路径
+	 * @return outputFile 生成略缩图路径
+	 */
+	private static String generateBookIamge(String pdfPath) {
+		String outputFile = getBookIamgePath(pdfPath);
+		Document document = new Document();
+		try {
+			document.setFile(pdfPath);
+			BufferedImage image = (BufferedImage) document.getPageImage(0, GraphicsRenderingHints.SCREEN, Page.BOUNDARY_CROPBOX, 0f, 1);
+			Iterator iter = ImageIO.getImageWritersBySuffix("jpg");
+			ImageWriter writer = (ImageWriter) iter.next();
+			
+			FileOutputStream out = new FileOutputStream(new File(outputFile));
+            ImageOutputStream outImage = ImageIO.createImageOutputStream(out);
+			
+			writer.setOutput(outImage);
+			writer.write(image);
+			
+		} catch (PDFException | PDFSecurityException | IOException | InterruptedException e) {
+			log.error(e.getMessage());
+		}
+		return outputFile;
+	}
+	
+	private static String getBookIamgePath(String path) {
+		return path.replace(".pdf", ".jpg");
 	}
 	
 	private static void checkParentFile(File temp) {
@@ -116,7 +166,7 @@ public class FileUtil {
 	
 	
 	private static String getStrIndexOf(String s,String i) {
-		return s.substring(s.indexOf(i)+1);
+		return s.substring(s.indexOf(i)+1).toLowerCase();
 	}
 	
 	
