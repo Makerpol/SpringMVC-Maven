@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>个人资料--layui后台管理模板</title>
+	<title>个人资料--后台管理模板</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -97,7 +97,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</form>
 	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
 	<script type="text/javascript" src="/layui/layui.js"></script>
-	<script type="text/javascript" src="/page/user/address.js"></script>
 	<script type="text/javascript" src="/page/user/user.js"></script>
 </body>
 </html>

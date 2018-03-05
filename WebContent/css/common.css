@@ -19,3 +19,27 @@
 	/*用户信息*/
 	#Images li{ width:99%;}
 }
+
+.file-addBtn{
+	margin-left:10px;
+	background-color:#5FB878
+}
+ 
+ .file-delBtn{
+ 	margin-left:10px;
+ }
+ 
+ .bookTitle{
+ 	width:"180px";
+ 	display:"block";
+ }
+ 
+ .pdflistimg{
+ 	width: 200px; 
+ 	height: 250px;
+ }
+ 
+ .hiddenInput{
+    display:  none;
+ }
+

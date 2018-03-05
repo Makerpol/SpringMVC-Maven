@@ -208,6 +208,7 @@
     			<artifactId>jetty-maven-plugin</artifactId>
     			<version>9.2.2.v20140723</version>
     			<configuration>
+    				<contextXml>src/main/resources/jetty-contexts.xml</contextXml>
     			<webAppConfig>
     				<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
     			</webAppConfig>
@@ -249,5 +250,22 @@
                 </configuration>  
             </plugin> 
     	</plugins>
+    	<resources>
+    		<resource>
+    			<directory>src/main/java</directory>
+    			<includes>
+    				<include>**/*.xml</include>
+    			</includes>
+    			<filtering>false</filtering>
+    		</resource>
+    		<resource>
+    			<directory>src/main/resources</directory>
+    			<includes>
+    				<include>**/*.xml</include>
+    				<include>**/*.properties</include>
+    			</includes>
+    			<filtering>false</filtering>
+    		</resource>
+    	</resources>
     </build>  
 </project>

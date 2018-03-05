@@ -2,6 +2,8 @@ package com.makerpol.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -79,12 +82,15 @@ public class FileController {
 		return FileUtil.upLoad(upfile, req);
 	}
 	
-	@RequestMapping(value="/addFile")
+	@RequestMapping(value="/addFile", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
 	public Map<String, Object> addFile(@RequestParam File file, HttpServletRequest req) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		User user  = (User)req.getSession().getAttribute("LoginUser");
 		file.setUserid(user.getId());
+		file.setDate(getNow());
+		
+		
 		try {
 			fileservice.addFile(file);
 		}catch(DataAccessException e) {
@@ -139,6 +145,21 @@ public class FileController {
 		return map;
 	}
 	
+	@RequestMapping(value="/toPDFListPage")
+	public String toPDFListPage() {
+		return "/page/file/fileList";
+	}
+	
+	@RequestMapping(value="/toAddPDFPage")
+	public String toAddPDFPage() {
+		return "/page/file/addPDF";
+	}
+	
+	@RequestMapping(value="/toPDFInfoPage")
+	public String toPDFInfoPage() {
+		return "/page/file/PDFInfo";
+	}
+	
 	@RequestMapping(value="/getAllFiles")
 	@ResponseBody
 	public Map<String, Object> getAllFiles(@RequestParam int start, @RequestParam int num){
@@ -181,6 +202,11 @@ public class FileController {
 			map.put("msg", "error");
 		}
 		return map;
+	}
+	
+	private String getNow() {
+		SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
+		return sf.format(new Date());
 	}
 	
 	private String replace(String url) {

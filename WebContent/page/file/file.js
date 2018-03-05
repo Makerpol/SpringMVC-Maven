@@ -1,17 +1,77 @@
 layui.config({
 	base : "../../js/"
-}).use(['flow','form','layer'],function(){
+}).use(['flow','form','layer','upload'],function(){
     var flow = layui.flow,
         form = layui.form(),
         layer = parent.layer === undefined ? layui.layer : parent.layer,
+        upload = layui.upload;
         $ = layui.jquery;
-
+    
+	//总数
+	var total = 0;
+	//开始位置
+	var start = 0;
+	//每页显示数
+	var num = 16;
+	//当前页
+	var currPage = 1;
+    
+	getFileList(start, num);
+	
+    function getFileList(start,num){
+    	var param = $(".search_input").val();
+    	
+    	$.ajax({
+    		url:"getFileList.do?param="+param+"&start="+start+"&num="+num,
+    		type:"get",
+    		success:function(data){
+    			console.log(data.fileList);
+    			
+    		}
+    	})
+    }
+    
+   $(".pdflistimg").click(function(){
+	   var index = layui.layer.open({
+		   title:"预览",
+		   type:2,
+		   area:['1200px','600px'],
+		   content:"PDFJS/web/viewer.html?file=/upload/file/20180364034919.pdf"
+	   })
+   })
+    
+    $(".file-addBtn").click(function(){
+    	var index = layui.layer.open({
+    		title : "添加文件",
+			type : 2,
+			content : "toAddPDFPage.do",
+			success : function(layero, index){
+			
+			},
+			end: function () {
+                location.reload();
+            }
+    	})
+    	
+    	//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+    })
+    
+    function renderDate(fileList){
+    	
+    }
+    
+    
+    
     //流加载图片
-    var imgNums = 15;  //单页显示图片数量
-    flow.load({
-        elem: '#Images', //流加载容器
+    var imgNums = 16;  //单页显示图片数量
+    /*flow.load({
+        elem: '#Files', //流加载容器
         done: function(page, next){ //加载下一页
-            $.get("../../json/images.json",function(data){
+            $.get("getFileList.do",function(data){
                 //模拟插入
                 var imgList = [];
                 var maxPage = imgNums*page < data.length ? imgNums*page : data.length;
@@ -24,7 +84,7 @@ layui.config({
                 }, 500);
             }); 
         }
-    });
+    });*/
 
     //删除单张图片
     $("body").on("click",".img_del",function(){

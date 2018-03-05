@@ -19,9 +19,9 @@ var navs = [{
 	"href" : "page/video/videoList.jsp",
 	"spread" : false
 },{
-	"title" : "图片管理",
+	"title" : "PDF管理",
 	"icon" : "icon-text",
-	"href" : "page/img/images.html",
+	"href" : "toPDFListPage.do",
 	"spread" : false
 },/*{
 	"title" : "系统基本参数",

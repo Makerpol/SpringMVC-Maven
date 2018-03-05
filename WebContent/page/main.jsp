@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a>
 		</div>
 		<div class="panel col">
-			<a href="javascript:;" data-url="">
+			<a href="javascript:;" data-url="page/img/images.html">
 				<div class="panel_icon" style="background-color:#5FB878;">
 					<i class="layui-icon" data-icon="&#xe64a;">&#xe64a;</i>
 				</div>

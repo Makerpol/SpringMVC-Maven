@@ -7,7 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -48,8 +50,9 @@ public class FileUtil {
 		String path =req.getSession().getServletContext().getRealPath("/");
 		
 		String fileName = file.getOriginalFilename();
-		String URL = getPath(req,fileName);
 		String type = getStrIndexOf(fileName, ".");
+		fileName = getFileName(type);
+		String URL = getPath(req,fileName);
 		
 		File temp = new File(path+URL);
 		
@@ -63,7 +66,7 @@ public class FileUtil {
 			file.transferTo(temp);
 			
 			if("pdf".equals(type)) {
-				icon = generateBookIamge(path+URL);
+				icon = generateBookIamge(path,URL);
 				map.put("icon", icon);
 			}
 			
@@ -82,25 +85,31 @@ public class FileUtil {
 	 * @param pdfPath	pdf路径
 	 * @return outputFile 生成略缩图路径
 	 */
-	private static String generateBookIamge(String pdfPath) {
-		String outputFile = getBookIamgePath(pdfPath);
+	private static String generateBookIamge(String path,String pdfName) {
+		String outputFile = getBookIamgePath(pdfName);
 		Document document = new Document();
 		try {
-			document.setFile(pdfPath);
+			document.setFile(path+pdfName);
 			BufferedImage image = (BufferedImage) document.getPageImage(0, GraphicsRenderingHints.SCREEN, Page.BOUNDARY_CROPBOX, 0f, 1);
 			Iterator iter = ImageIO.getImageWritersBySuffix("jpg");
 			ImageWriter writer = (ImageWriter) iter.next();
 			
-			FileOutputStream out = new FileOutputStream(new File(outputFile));
+			FileOutputStream out = new FileOutputStream(new File(path+outputFile));
             ImageOutputStream outImage = ImageIO.createImageOutputStream(out);
 			
 			writer.setOutput(outImage);
 			writer.write(image);
-			
+			out.close();
+            outImage.close();
 		} catch (PDFException | PDFSecurityException | IOException | InterruptedException e) {
 			log.error(e.getMessage());
 		}
 		return outputFile;
+	}
+	
+	private static String getFileName(String type) {
+		SimpleDateFormat sf = new SimpleDateFormat("YYYYMMDDhhmmss");
+		return sf.format(new Date())+"."+type;
 	}
 	
 	private static String getBookIamgePath(String path) {
