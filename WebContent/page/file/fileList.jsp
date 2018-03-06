@@ -28,40 +28,24 @@
 <link rel="stylesheet" href="../../css/common.css" media="all" />
 </head>
 <body class="childrenBody">
-	<form class="layui-form">
-		<blockquote class="layui-elem-quote news_search">
-			<div class="layui-inline">
-				<div class="layui-input-inline">
-					<input type="text" value="" placeholder="请输入关键字"
-						class="layui-input search_input">
-				</div>
-				<a class="layui-btn search_btn">查询</a>
+	<blockquote class="layui-elem-quote news_search">
+		<div class="layui-inline">
+			<div class="layui-input-inline">
+				<input type="text" value="" placeholder="请输入关键字"
+					class="layui-input search_input">
 			</div>
-			<div class="layui-inline">
-				<a class="layui-btn file-addBtn">添加PDF</a>
-			</div>
-			<div class="layui-inline">
-				<a class="layui-btn layui-btn-danger file-delBtn">批量删除</a>
-			</div>
-		</blockquote>
-		<ul id="Files">
-			<li>
-				<img class="pdflistimg" src="/upload/file/20180364034919.jpg">
-				<div class="layui-hide">
-					<input type="text" id="pdfPath" value="/upload/file/20180364034919.pdf">
-				</div>
-			
-				<div class="operate">
-					<div class="check">
-						<input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="weixixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
-					</div>
-					<i class="layui-icon img_del"></i>
-				</div>
-			</li>
-
+			<a class="layui-btn search_btn">查询</a>
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn file-addBtn">添加PDF</a>
+		</div>
+	</blockquote>
+	<div class="layui-form">
+		<ul id="Images">
 
 		</ul>
-	</form>
+	</div>
+	<div id="PDFpage"></div>
 	<script type="text/javascript" src="../../layui/layui.js"></script>
 	<script type="text/javascript" src="/page/file/file.js"></script>
 </body>

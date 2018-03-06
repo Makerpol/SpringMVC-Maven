@@ -1,10 +1,9 @@
 layui.config({
 	base : "../../js/"
-}).use(['flow','form','layer','upload'],function(){
-    var flow = layui.flow,
-        form = layui.form(),
+}).use(['form','layer','laypage'],function(){
+    var form = layui.form(),
         layer = parent.layer === undefined ? layui.layer : parent.layer,
-        upload = layui.upload;
+        laypage = layui.laypage,
         $ = layui.jquery;
     
 	//总数
@@ -12,7 +11,7 @@ layui.config({
 	//开始位置
 	var start = 0;
 	//每页显示数
-	var num = 16;
+	var num = 20;
 	//当前页
 	var currPage = 1;
     
@@ -25,34 +24,43 @@ layui.config({
     		url:"getFileList.do?param="+param+"&start="+start+"&num="+num,
     		type:"get",
     		success:function(data){
-    			console.log(data.fileList);
-    			
+    			console.log(data);
+    			total = data.total;
+    			renderDate(data.fileList);
+    			toPage();
     		}
     	})
     }
     
-   $(".pdflistimg").click(function(){
-	   var index = layui.layer.open({
-		   title:"预览",
-		   type:2,
-		   area:['1200px','600px'],
-		   content:"PDFJS/web/viewer.html?file=/upload/file/20180364034919.pdf"
-	   })
-   })
+    //预览
+	$(document).on("click",".pdflistimg",function(){
+		   var pdfpath = getPDFPath($(this));
+		   console.log(pdfpath);
+		   var index = layui.layer.open({
+			   title:"预览",
+			   type:2,
+			   area:['1200px','600px'],
+			   content:"PDFJS/web/viewer.html?file="+pdfpath
+		   })
+	  })
+   
     
+   function getPDFPath(dom){
+	   var path = dom[0].attributes[1].value;
+	   return path.replace(".jpg",".pdf");
+   }
+   
+   //添加
     $(".file-addBtn").click(function(){
     	var index = layui.layer.open({
     		title : "添加文件",
 			type : 2,
 			content : "toAddPDFPage.do",
-			success : function(layero, index){
-			
-			},
+			success : function(layero, index){},
 			end: function () {
                 location.reload();
             }
     	})
-    	
     	//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
 		$(window).resize(function(){
 			layui.layer.full(index);
@@ -60,85 +68,63 @@ layui.config({
 		layui.layer.full(index);
     })
     
+    //渲染列表
     function renderDate(fileList){
+    	var html = "";
     	
+    	if(fileList.length>0){
+    		for(var i = 0;i<fileList.length;i++){
+        		html += "<li>";
+        		html += '<img class="pdflistimg" src="'+fileList[i].icon+'">';
+        		html += '<div class="operate">';
+        		html += '<p class="check">'+fileList[i].filename+'</p>';
+        		html += '<i class="layui-icon pdfdel" data-id="'+fileList[i].id+'"></i>';
+        		html += '</div></li>';
+        	}
+    	}
+    	
+    	$("#Images").html(html);
+    	form.render();
     }
+        
+    //分页
+    function toPage(){
+		laypage({
+			cont : "PDFpage",
+			pages : total,
+			curr : currPage,
+			skip: false,
+			jump : function(obj,first){
+				currPage = obj.curr;
+				start = (obj.curr-1)*num;
+				
+				if(!first){
+					getFileList(start,num);
+				}
+			}
+		})
+	}
     
-    
-    
-    //流加载图片
-    var imgNums = 16;  //单页显示图片数量
-    /*flow.load({
-        elem: '#Files', //流加载容器
-        done: function(page, next){ //加载下一页
-            $.get("getFileList.do",function(data){
-                //模拟插入
-                var imgList = [];
-                var maxPage = imgNums*page < data.length ? imgNums*page : data.length;
-                setTimeout(function(){
-                    for(var i=imgNums*(page-1); i<maxPage; i++){
-                        imgList.push('<li><img src="'+ data[i].imgSrc +'"><div class="operate"><div class="check"><input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="'+data[i].imgTitle+'"></div><i class="layui-icon img_del">&#xe640;</i></div></li>')
-                    }
-                    next(imgList.join(''), page < (data.length/imgNums));
-                    form.render();
-                }, 500);
-            }); 
-        }
-    });*/
-
-    //删除单张图片
-    $("body").on("click",".img_del",function(){
+    //删除
+    $("body").on("click",".pdfdel",function(){
         var _this = $(this);
-        layer.confirm('确定删除图片"'+_this.siblings().find("input").attr("title")+'"吗？',{icon:3, title:'提示信息'},function(index){
-            _this.parents("li").hide(1000);
-            setTimeout(function(){_this.parents("li").remove();},950);
+        var id = _this.attr("data-id");
+        layer.confirm('确定删除此文件？',{icon:3, title:'提示信息'},function(index){
+        	$.ajax({
+        		'url':"deleteFile.do",
+				'data': {'id':id},
+				'success':function(data){
+					if("error"==data.message){
+						setTimeout(function(){
+							layer.close(index);
+							layer.msg("提交失败！");
+						},2000);
+					}
+					_this.parents("li").remove();
+				}
+			});
             layer.close(index);
         });
-    })
-
-    //全选
-    form.on('checkbox(selectAll)', function(data){
-        var child = $("#Images li input[type='checkbox']");
-        child.each(function(index, item){
-            item.checked = data.elem.checked;
-        });
-        form.render('checkbox');
-    });
-
-    //通过判断文章是否全部选中来确定全选按钮是否选中
-    form.on("checkbox(choose)",function(data){
-        var child = $(data.elem).parents('#Images').find('li input[type="checkbox"]');
-        var childChecked = $(data.elem).parents('#Images').find('li input[type="checkbox"]:checked');
-        if(childChecked.length == child.length){
-            $(data.elem).parents('#Images').siblings("blockquote").find('input#selectAll').get(0).checked = true;
-        }else{
-            $(data.elem).parents('#Images').siblings("blockquote").find('input#selectAll').get(0).checked = false;
-        }
-        form.render('checkbox');
-    })
-
-    //批量删除
-    $(".batchDel").click(function(){
-        var $checkbox = $('#Images li input[type="checkbox"]');
-        var $checked = $('#Images li input[type="checkbox"]:checked');
-        if($checkbox.is(":checked")){
-            layer.confirm('确定删除选中的图片？',{icon:3, title:'提示信息'},function(index){
-                var index = layer.msg('删除中，请稍候',{icon: 16,time:false,shade:0.8});
-                setTimeout(function(){
-                    //删除数据
-                    $checked.each(function(){
-                        $(this).parents("li").hide(1000);
-                        setTimeout(function(){$(this).parents("li").remove();},950);
-                    })
-                    $('#Images li input[type="checkbox"]').prop("checked",false);
-                    form.render();
-                    layer.close(index);
-                    layer.msg("删除成功");
-                },2000);
-            })
-        }else{
-            layer.msg("请选择需要删除的图片");
-        }
     })
 
 })

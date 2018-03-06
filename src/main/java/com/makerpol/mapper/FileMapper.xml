@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.makerpol.dao.FileMapper">
-	<resultMap type="com.makerpol.entity.File" id="fileResultMap">
+	<resultMap type="com.makerpol.entity.PDF" id="fileResultMap">
 		<id column="id" property="id" jdbcType="INTEGER"/>
 		<result column="path" property="path" jdbcType="VARCHAR"/>
 		<result column="filename" property="filename" jdbcType="VARCHAR"/>
@@ -10,7 +10,7 @@
 		<result column="date" property="date" jdbcType="VARCHAR"/>
 		<result column="icon" property="icon" jdbcType="VARCHAR"/>
 		<result column="summary" property="summary" jdbcType="VARCHAR"/>
-		<result column="clickCount" property="clickCount" jdbcType="INTEGER"/>
+		<result column="clickcount" property="clickcount" jdbcType="INTEGER"/>
 	</resultMap>
 	
 	<select id="getAllFiles" resultType="list" resultMap="fileResultMap" parameterType="int">
@@ -45,7 +45,7 @@
          limit #{1},#{2}
 	</select>
 	
-	<update id="updataFile" parameterType="com.makerpol.entity.File">
+	<update id="updataFile" parameterType="com.makerpol.entity.PDF">
 		update tb_file 
 		<set>
 		<if test="filename != null">filename = #{filename,jdbcType=VARCHAR},</if>   
@@ -55,13 +55,13 @@
         <if test="userid != null">userid = #{userid,jdbcType=INTEGER,}</if>
         <if test="icon != null">icon = #{icon,jdbcType=VARCHAR},</if>
         <if test="summary != null">summary = #{summary,jdbcType=VARCHAR},</if>
-        <if test="clickCount != null">clickCount = #{clickCount,jdbcType=INTEGER},</if>
+        <if test="clickcount != null">clickcount = #{clickcount,jdbcType=INTEGER},</if>
 		</set>
         
         where id = #{id} 
    </update>
    
-   <insert id="addFile" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.File">   
+   <insert id="addFile" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.PDF">   
          insert into tb_file(filename,path, date, type, userid, icon, summary, clickcount)   
          values(#{filename},#{path}, #{date}, #{type}, #{userid},#{icon},#{summary},#{clickcount})   
    </insert>

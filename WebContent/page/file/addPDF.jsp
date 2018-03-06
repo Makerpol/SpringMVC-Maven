@@ -27,7 +27,14 @@
 </style>
 </head>
 <body class="childrenBody">
-	<form class="layui-form">
+	<div class="layui-inline">
+			<label class="layui-form-label">选择文件</label>
+			<div class="layui-input-block">
+				<input type="file" name="upfile" class="layui-upload-file" lay-title="选择PDF文件">
+				<img src="/images/shuji-005.jpg" class="PDFimage">
+			</div>
+	</div>
+	<div class="layui-form">
 		<div class="layui-form-item">
 			<label class="layui-form-label">文件名字</label>
 			<div class="layui-input-block">
@@ -69,22 +76,15 @@
 				<textarea placeholder="请输入内容摘要" class="layui-textarea summary"></textarea>
 			</div>
 		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">选择文件</label>
-			<div class="layui-input-block">
-				<input type="file" name="upfile" class="layui-upload-file" lay-title="选择PDF文件">
-				<img src="/images/shuji-005.jpg" class="PDFimage">
-			</div>
-		</div>
 		
 		
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit="" lay-filter="addPDF">立即提交</button>
+				<a class="layui-btn submit_btn" >立即提交</a>
 				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 			</div>
 		</div>
-	</form>
+	</div>
 	<script type="text/javascript" src="/layui/layui.js"></script>
 	<script type="text/javascript" src="/page/file/addFile.js"></script>
 </body>

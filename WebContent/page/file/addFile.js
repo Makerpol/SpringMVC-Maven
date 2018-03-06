@@ -1,3 +1,4 @@
+
 layui.config({
 	base:"../../js/"
 }).use(['flow','form','layer','upload'],function(){
@@ -7,6 +8,7 @@ layui.config({
     upload = layui.upload;
     $ = layui.jquery;
     
+    $(".layui-btn").attr("disabled","true");
    
     layui.upload({
     	elem:"",
@@ -14,15 +16,23 @@ layui.config({
     	type:"file",
     	ext:"pdf|PDF",
     	success:function(data){
-    		console.log(data.URL);
-    		console.log(data.icon);
     		window.path = data.URL;
     		window.icon = data.icon;
     		$(".PDFimage").attr("src",data.icon);
+    		$(".layui-btn").removeAttr("disabled");
+    		$(".layui-upload-file").attr("disabled","true");
+    		$(".layui-upload-file").removeAttr("name");
     	}
     })
     
-    form.on("submit(addPDF)",function(){
+   $(".submit_btn").click(function(){
+    	console.log(window.path);
+    	console.log(window.icon);
+    	if(window.path==null){
+    		layer.msg("未选择PDF文件，请先选择上传文件！");
+    		return;
+    	}
+    	
     	var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
     	var param = {};
     	
@@ -31,6 +41,7 @@ layui.config({
     	param.summary = $(".summary").val();
     	param.icon = window.icon;
     	param.path = window.path;
+    	console.log(param.path);
     	
     	$.ajax({'url':"addFile.do",
 			'data': JSON.stringify(param),

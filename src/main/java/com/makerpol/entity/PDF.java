@@ -1,6 +1,6 @@
 package com.makerpol.entity;
 
-public class File {
+public class PDF {
 	private int id;
 	private String filename; //文件名
 	private String path;	//路径
@@ -9,19 +9,20 @@ public class File {
 	private String date;	//上传时间
 	private String icon;	//封面略缩图路径
 	private String summary;	//简介说明
-	private int clickCount;	//点击次数
+	private int clickcount;	//点击次数
 	
+	
+	public int getClickcount() {
+		return clickcount;
+	}
+	public void setClickcount(int clickcount) {
+		this.clickcount = clickcount;
+	}
 	public String getSummary() {
 		return summary;
 	}
 	public void setSummary(String summary) {
 		this.summary = summary;
-	}
-	public int getClickCount() {
-		return clickCount;
-	}
-	public void setClickCount(int clickCount) {
-		this.clickCount = clickCount;
 	}
 	public int getId() {
 		return id;

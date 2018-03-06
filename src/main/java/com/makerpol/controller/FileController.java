@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.makerpol.Utils.FileUtil;
-import com.makerpol.entity.File;
+import com.makerpol.entity.PDF;
 import com.makerpol.entity.User;
 import com.makerpol.service.FileService;
 import com.makerpol.service.UserService;
@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,17 +83,16 @@ public class FileController {
 		return FileUtil.upLoad(upfile, req);
 	}
 	
-	@RequestMapping(value="/addFile", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value="/addFile")
 	@ResponseBody
-	public Map<String, Object> addFile(@RequestParam File file, HttpServletRequest req) {
+	public Map<String, Object> addFile(@RequestBody PDF pdf, HttpServletRequest req) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		User user  = (User)req.getSession().getAttribute("LoginUser");
-		file.setUserid(user.getId());
-		file.setDate(getNow());
-		
+		pdf.setUserid(user.getId());
+		pdf.setDate(getNow());
 		
 		try {
-			fileservice.addFile(file);
+			fileservice.addFile(pdf);
 		}catch(DataAccessException e) {
 			log.error(e.getMessage());
 			map.put("msg", "error");
@@ -105,7 +105,7 @@ public class FileController {
 	public Map<String, Object> getFileById(@RequestParam int id){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			File file = fileservice.getFile(id);
+			PDF file = fileservice.getFile(id);
 			map.put("file", file);
 			map.put("msg", "success");
 		}catch(DataAccessException e) {
@@ -120,7 +120,7 @@ public class FileController {
 	public Map<String, Object> getFileByName(@RequestParam String name){
 		Map<String, Object> map = new HashMap<String,Object>();
 		try {
-			File file = fileservice.getFile(name);
+			PDF file = fileservice.getFile(name);
 			map.put("file", file);
 			map.put("msg", "success");
 		}catch(DataAccessException e) {
@@ -135,8 +135,10 @@ public class FileController {
 	public Map<String, Object> getFileList(@RequestParam String param,@RequestParam int start,@RequestParam int num){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			List<File> list = fileservice.getFileList(param, start, num);
+			List<PDF> list = fileservice.getFileList(param, start, num);
+			int total = fileservice.getCount(param);
 			map.put("fileList", list);
+			map.put("total", total);
 			map.put("msg", "success");
 		}catch(DataAccessException e) {
 			log.error(e.getMessage());
@@ -165,7 +167,7 @@ public class FileController {
 	public Map<String, Object> getAllFiles(@RequestParam int start, @RequestParam int num){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			List<File> list = fileservice.getAllFiles(start, num);
+			List<PDF> list = fileservice.getAllFiles(start, num);
 			map.put("fileList", list);
 			map.put("msg", "success");
 		}catch(DataAccessException e) {
@@ -177,7 +179,7 @@ public class FileController {
 	
 	@RequestMapping(value="/updataFile")
 	@ResponseBody
-	public Map<String, Object> updataFile(@RequestParam File file){
+	public Map<String, Object> updataFile(@RequestParam PDF file){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
 			fileservice.updataFile(file);
@@ -191,11 +193,12 @@ public class FileController {
 	
 	@RequestMapping(value="/deleteFile")
 	@ResponseBody
-	public Map<String, Object> deleteFile(@RequestParam int id){
+	public Map<String, Object> deleteFile(@RequestParam int id, HttpServletRequest req){
+		
 		Map<String, Object> map = new HashMap<String, Object>();
+		String path = req.getSession().getServletContext().getRealPath("/");
 		try {
-			fileservice.deleteFile(id);
-			FileUtil.remove(null);
+			fileservice.deleteFile(id, path);
 			map.put("msg", "success");
 		}catch(DataAccessException e) {
 			log.error(e.getMessage());

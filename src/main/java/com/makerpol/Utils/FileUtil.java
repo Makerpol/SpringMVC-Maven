@@ -1,5 +1,6 @@
 package com.makerpol.Utils;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -64,7 +65,6 @@ public class FileUtil {
 				temp.createNewFile();
 			}
 			file.transferTo(temp);
-			
 			if("pdf".equals(type)) {
 				icon = generateBookIamge(path,URL);
 				map.put("icon", icon);
@@ -90,7 +90,12 @@ public class FileUtil {
 		Document document = new Document();
 		try {
 			document.setFile(path+pdfName);
-			BufferedImage image = (BufferedImage) document.getPageImage(0, GraphicsRenderingHints.SCREEN, Page.BOUNDARY_CROPBOX, 0f, 1);
+			Image img = document.getPageImage(0, GraphicsRenderingHints.SCREEN, Page.BOUNDARY_CROPBOX, 0f, 1);
+			if(img.equals(null)) {
+				img = document.getPageImage(1, GraphicsRenderingHints.SCREEN, Page.BOUNDARY_CROPBOX, 0f, 1);
+			}
+			BufferedImage image = (BufferedImage)img;
+			
 			Iterator iter = ImageIO.getImageWritersBySuffix("jpg");
 			ImageWriter writer = (ImageWriter) iter.next();
 			
@@ -175,7 +180,7 @@ public class FileUtil {
 	
 	
 	private static String getStrIndexOf(String s,String i) {
-		return s.substring(s.indexOf(i)+1).toLowerCase();
+		return s.substring(s.lastIndexOf(i)+1).toLowerCase();
 	}
 	
 	
@@ -234,7 +239,11 @@ public class FileUtil {
 	 */
 	public static void  remove(String path) {
 		File file = new File(path);
-		file.delete();
+		if(file.delete()) {
+			log.debug("文件{}删除成功！",path);
+		}else {
+			log.debug("文件{}删除失败！",path);
+		}
 	}
 	
 	public interface Handler
