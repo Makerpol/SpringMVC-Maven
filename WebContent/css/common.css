@@ -33,7 +33,12 @@
 	margin-left:10px;
 	background-color:#5FB878
 }
- 
+
+.file-eitBtn{
+	margin-left:10px;
+	background-color:#009688;
+}
+
  .file-delBtn{
  	margin-left:10px;
  }
@@ -56,4 +61,10 @@
 	clear:both;
 	position: fixed;
 	bottom: 0px;
+}
+
+.box { position:relative; }
+.box input { position:absolute; left:0px; top:0px;bottom:250px; }
+.layui-form-checkbox{
+	bottom:250px;
 }

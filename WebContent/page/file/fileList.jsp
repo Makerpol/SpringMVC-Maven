@@ -25,7 +25,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
 <link rel="stylesheet" href="../../css/common.css" media="all" />
+<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
+<script type="text/javascript">
+		var user = '<%=userInfo%>';
+</script>
 </head>
 <body class="childrenBody">
 	<blockquote class="layui-elem-quote news_search">
@@ -38,6 +43,9 @@
 		</div>
 		<div class="layui-inline">
 			<a class="layui-btn file-addBtn">添加PDF</a>
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn file-eitBtn">编辑信息</a>
 		</div>
 	</blockquote>
 	<div class="layui-form">
