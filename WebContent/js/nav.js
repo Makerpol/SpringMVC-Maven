@@ -16,7 +16,7 @@ var navs = [{
 },{
 	"title" : "视频管理",
 	"icon" : "icon-text",
-	"href" : "page/video/videoList.jsp",
+	"href" : "toVideoList.do",
 	"spread" : false
 },{
 	"title" : "PDF管理",

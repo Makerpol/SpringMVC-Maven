@@ -1,8 +1,3 @@
-/**
- * 
- */
-
-var LoginUser = $.parseJSON(user);
 layui.config({
 	base:"/js"
 }).use(["form","layer","jquery","laypage"],function(){
@@ -20,6 +15,7 @@ layui.config({
 	//当前页
 	var currPage = 1;
 	
+	getVideoList(start,num);
 	function getVideoList(start,num){
 		var param = $(".search_input").val();
 		$.ajax({
@@ -34,15 +30,29 @@ layui.config({
 	}
 	
 	function renderDate(data){
-		
+		console.log(data);
+		var html = "";
+		for(var i=0;i<data.length;i++){
+			html += '<li>';
+			html += '<div  style="float: left;margin-right: 50px;background-color: #369e4c;width: 360px;height: 200px;">';
+			html += '<video width="360" height="200" controls>';
+			html += ' <source src="'+data[i].path+'" type="video/mp4">';
+			html += '</video></div>';
+			html += '<div style="float:left;position:relative;width:250px;height:200px; border-bottom: 1px solid #e5e9ef;">';
+			html += '<a href="'+data[i].path+'" title="'+data[i].videoname+'">'+data[i].videoname+'</a>';
+			html += '<div style="padding-top: 14px;color: #99a2aa;">'+data[i].date+'</div>';
+			html += '</div></li>';
+		}
+		$("#videoList").html(html);
+		//form.render();
 	}
 	
 	function toPage(){
 		laypage({
-			cont : "page",
+			cont : "PDFpage",
 			pages : total,
 			curr : currPage,
-			skip: true,
+			skip: false,
 			jump : function(obj,first){
 				currPage = obj.curr;
 				start = (obj.curr-1)*num;
@@ -64,5 +74,25 @@ layui.config({
             layer.close(index);
         },2000);
 	})
+	
+	//添加
+	$(".file-addBtn").click(function(){
+		var index = layui.layer.open({
+    		title : "添加视频",
+			type : 2,
+			content : "toAddVideoPage.do",
+			success : function(layero, index){},
+			end: function () {
+                location.reload();
+            }
+    	})
+    	//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+	})
+	
+	
 	
 })

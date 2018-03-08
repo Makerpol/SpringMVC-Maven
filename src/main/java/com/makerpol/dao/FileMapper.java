@@ -13,6 +13,7 @@ public interface FileMapper {
 	
 	List<PDF> getAllFiles(Integer start, Integer num) throws DataAccessException ;
 	List<PDF> getFileList(String param, Integer start, Integer num) throws DataAccessException ;
+	List<PDF> getFileListByType(String type,Integer start,Integer num) throws DataAccessException ;
 	PDF getFileById(Integer id) throws DataAccessException ;
 	PDF getFileByName(String name) throws DataAccessException ;
 	int getCount(String param) throws DataAccessException ;

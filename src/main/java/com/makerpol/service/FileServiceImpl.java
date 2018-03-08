@@ -46,6 +46,11 @@ public class FileServiceImpl implements FileService {
 	}
 
 	@Override
+	public List<PDF> getFileListByType(String type, Integer start, Integer num) throws DataAccessException {
+		return mapper.getFileListByType(type, start, num);
+	}
+
+	@Override
 	public PDF getFile(Integer id) throws DataAccessException {
 		return mapper.getFileById(id);
 	}

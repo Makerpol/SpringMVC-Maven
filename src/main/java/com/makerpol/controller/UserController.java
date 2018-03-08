@@ -275,8 +275,6 @@ public class UserController {
 	
 	@RequestMapping(value="/toReSetPwd")
 	public String toReSetPwd(HttpServletRequest req, Model model) {
-		System.out.println("toReSetPwd");
-		//Userreq.getSession().getAttribute("verifyUser");
 		return "/page/user/reSetPwd";
 	}
 	
@@ -290,6 +288,30 @@ public class UserController {
 		if(code.equals(verifyCode)) {
 			map.put("msg", "success");
 		}else {
+			map.put("msg", "error");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/getUserAnaData")
+	@ResponseBody
+	public Map<String, Object> getUserAnaData(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/getUserCount")
+	@ResponseBody
+	public Map<String,Object> getCount(){
+		Map<String, Object> map = new HashMap<String,Object>();
+		
+		try {
+			int total = service.getCount(null);
+			map.put("total", total);
+			map.put("msg","success");
+		}catch(DataAccessException e) {
+			log.error(e.getMessage());
 			map.put("msg", "error");
 		}
 		return map;

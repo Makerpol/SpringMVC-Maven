@@ -24,7 +24,7 @@ String userInfo = JSONObject.fromObject(user).toString();
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
-    <link rel="stylesheet" href="/css/news.css" media="all" />
+    <link rel="stylesheet" href="/css/common.css" media="all" />
 </head>
 
 <body class="childrenBody">
@@ -35,69 +35,21 @@ String userInfo = JSONObject.fromObject(user).toString();
             </div>
             <a class="layui-btn search_btn">查询</a>
         </div>
+        <div class="layui-inline">
+        	<a class="layui-btn file-addBtn">添加视频</a>
+        </div>
+        <div class="layui-inline">
+        	<a class="layui-btn file-eitBtn">编辑信息</a>
+        </div>
     </blockquote>
     <div class="layui-form">
-        <ul >
-            <li style="padding-top: 20px;clear: both;">
-               <div id="div1" style="float: left;margin-right: 50px;background-color: #369e4c;width: 360px;height: 200px;">
-               	<embed type="application/x-shockwave-flash" class="edui-faked-video" pluginspage="http://www.macromedia.com/go/getflashplayer" src="http://v.ifeng.com/include/exterior.swf?guid=b0c019ac-d594-4c6b-8c69-3ac84788d11b&amp;fromweb=baiduvideo&amp;AutoPlay=true" width="360" height="200" wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true">
-               </div>
-               <div id="div2" style="float:left;position:relative;width:600px;height:200px; border-bottom: 1px solid #e5e9ef;">
-               		<a href="1517879946026041650.mp4" title="重启后只能用密码解锁">重启后只能用密码解锁</a>
-               		<div style="padding-top: 14px;color: #99a2aa;">内容简介</div>
-               </div>
-            </li>
+        <ul id="videoList">
             
-            <li style="padding-top: 20px;clear: both;">
-               <div id="div1" style="float: left;margin-right: 50px;background-color: #369e4c;width: 360px;height: 200px;">
-               	
-					<video width="360" height="200" controls>
-					    <source src="https://bpic.588ku.com/video_listen/588ku_preview/18/01/12/11/22/03/46/video5a5829db5c2d8.mp4" type="video/mp4">
-					    
-					    您的浏览器不支持 video 标签。
-					</video>
-
-               </div>
-               <div id="div2" style="float:left;position:relative;width:600px;height:200px; border-bottom: 1px solid #e5e9ef;">
-               		<a href="1517879946026041650.mp4" title="重启后只能用密码解锁">重启后只能用密码解锁</a>
-               		<div style="padding-top: 14px;color: #99a2aa;">内容简介</div>
-               </div>
-            </li>
-             <li style="padding-top: 20px;clear: both;">
-               <div id="div1" style="float: left;margin-right: 50px;background-color: #369e4c;width: 360px;height: 200px;">
-               	
-					<video width="360" height="200" controls>
-					    <source src="https://bpic.588ku.com/video_listen/588ku_preview/18/01/12/11/22/03/46/video5a5829db5c2d8.mp4" type="video/mp4">
-					    
-					    您的浏览器不支持 video 标签。
-					</video>
-
-               </div>
-               <div id="div2" style="float:left;position:relative;width:600px;height:200px; border-bottom: 1px solid #e5e9ef;">
-               		<a href="1517879946026041650.mp4" title="重启后只能用密码解锁">重启后只能用密码解锁</a>
-               		<div style="padding-top: 14px;color: #99a2aa;">内容简介</div>
-               </div>
-            </li>
-             <li style="padding-top: 20px;clear: both;">
-               <div id="div1" style="float: left;margin-right: 50px;background-color: #369e4c;width: 360px;height: 200px;">
-               	
-					<video width="360" height="200" controls>
-					    <source src="https://bpic.588ku.com/video_listen/588ku_preview/18/01/12/11/22/03/46/video5a5829db5c2d8.mp4" type="video/mp4">
-					    
-					    您的浏览器不支持 video 标签。
-					</video>
-
-               </div>
-               <div id="div2" style="float:left;position:relative;width:600px;height:200px; border-bottom: 1px solid #e5e9ef;">
-               		<a href="1517879946026041650.mp4" title="重启后只能用密码解锁">重启后只能用密码解锁</a>
-               		<div style="padding-top: 14px;color: #99a2aa;">内容简介</div>
-               </div>
-            </li>
         </ul>
     </div>
-    <div id="page"></div>
+    <div id="PDFpage"></div>
     <script type="text/javascript" src="/layui/layui.js"></script>
-    <script type="text/javascript" src="videoList.js"></script>
+    <script type="text/javascript" src="/page/video/videoList.js"></script>
 </body>
 
 </html>

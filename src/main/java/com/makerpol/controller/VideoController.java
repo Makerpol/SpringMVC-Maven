@@ -41,7 +41,6 @@ public class VideoController {
 		SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
 		User user = (User)req.getSession().getAttribute("LoginUser");
 		
-		video.setVideoname(getVideoName(video.getPath()));
 		video.setUserid(user.getId());
 		video.setPaperid(video.getPaperid());
 		video.setDate(sf.format(new Date()));
@@ -56,14 +55,24 @@ public class VideoController {
 		return map;
 	}
 	
+	@RequestMapping(value="toVideoList")
+	public String toVideoList(){
+		return "/page/video/videoList";
+	}
+	
+	@RequestMapping(value="/toAddVideoPage")
+	public String toAddVideo() {
+		return "/page/video/addVideo";
+	}
+	
 	@RequestMapping(value="/getVideoList")
 	@ResponseBody
-	public Map<String, Object> getVideoList(@RequestParam String name, @RequestParam int start, @RequestParam int num){
+	public Map<String, Object> getVideoList(@RequestParam String param, @RequestParam int start, @RequestParam int num){
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 		try {
-			List<Video> list = service.getAllVideos(name, start, num);
-			int total = service.getCount(name);
+			List<Video> list = service.getAllVideos(param, start, num);
+			int total = service.getCount(param);
 			map.put("videos", list);
 			map.put("total", total);
 			map.put("msg", "success");
@@ -85,14 +94,5 @@ public class VideoController {
 		}
 		
 		return map;
-	}
-	
-	
-	
-	
-	private String getVideoName(String path) {
-		int index = path.lastIndexOf("/");
-		String temp = path.substring(index+1);
-		return temp.substring(0,temp.indexOf("."));
 	}
 }

@@ -19,6 +19,8 @@ public interface PaperService {
 	public Paper getPaper(Integer id) throws DataAccessException ;
 	//获取文章总数
 	public int getPaperCount(String param) throws DataAccessException ;
+	//获取待审核数量
+	public int getWaitPaperCount() throws DataAccessException;
 	
 	public List<Paper> getPaper(String param) throws DataAccessException ;
 	public List<Paper> getPaper(String param,Integer start, Integer num) throws DataAccessException ;

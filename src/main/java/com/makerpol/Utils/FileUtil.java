@@ -112,6 +112,8 @@ public class FileUtil {
 		return outputFile;
 	}
 	
+	
+	
 	private static String getFileName(String type) {
 		SimpleDateFormat sf = new SimpleDateFormat("YYYYMMDDhhmmss");
 		return sf.format(new Date())+"."+type;

@@ -12,7 +12,8 @@ public interface FileService {
 	public int updataFile(PDF file) throws DataAccessException ;
 	
 	public List<PDF> getAllFiles(Integer start, Integer num) throws DataAccessException ;
-	public  List<PDF> getFileList(String param, Integer start, Integer num) throws DataAccessException ;
+	public List<PDF> getFileList(String param, Integer start, Integer num) throws DataAccessException ;
+	public List<PDF> getFileListByType(String type,Integer start,Integer num) throws DataAccessException;
 	public PDF getFile(Integer id) throws DataAccessException ;
 	public PDF getFile(String name) throws DataAccessException ;
 	public int getCount(String param) throws DataAccessException ;

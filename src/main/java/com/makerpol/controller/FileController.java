@@ -193,6 +193,20 @@ public class FileController {
 		}
 		return map;
 	}
+	@RequestMapping(value="/getPDFCount")
+	@ResponseBody
+	public Map<String,Object> getCount(){
+		Map<String, Object> map = new HashMap<String,Object>();
+		try {
+			int total = fileservice.getCount(null);
+			map.put("total", total);
+			map.put("msg", "success");
+		}catch(DataAccessException e) {
+			log.error(e.getMessage());
+			map.put("msg","error");
+		}
+		return map;
+	}
 	
 	@RequestMapping(value="/deleteFile")
 	@ResponseBody

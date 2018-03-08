@@ -15,7 +15,7 @@
 	
 	<select id="getAllFiles" resultType="list" resultMap="fileResultMap" parameterType="int">
 		<![CDATA[         
-              select * from tb_file limit #{0},#{1}
+              select * from tb_file limit #{0},#{1} order by date desc
          ]]> 
 	</select>
 	
@@ -40,9 +40,16 @@
 	
 	<select id="getFileList" parameterType="string" resultType="list"  resultMap="fileResultMap">         
          select * from
-           (select * from tb_file where filename like concat('%',#{0},'%'))
+           (select * from tb_file where filename like concat('%',#{0},'%') order by date desc)
          as u
          limit #{1},#{2}
+	</select>
+	
+	<select id="getFileListByType" parameterType="string" resultType="list"  resultMap="fileResultMap">
+		select * from 
+			(select * from tb_file where type = #{0} order by date desc)
+		as u
+		limit #{1},#{2}
 	</select>
 	
 	<update id="updataFile" parameterType="com.makerpol.entity.PDF">

@@ -173,13 +173,20 @@ public class PaperController {
 		return map;
 	}
 	
-	/*@RequestMapping(value="/getPaperTypeList")
+	@RequestMapping(value="/getPaperListInfo")
 	@ResponseBody
-	public Map<String, Object> getPaperTypeList() throws DataAccessException{
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<Map> list = new ArrayList<Map>();
-		list = service.getPaperTypeList();
-		map.put("typeList", list);
+	public Map<String, Object> getPaperListInfo(){
+		Map<String,Object> map = new HashMap<String, Object>();
+		try {
+			int total = service.getPaperCount(null);
+			int wait = service.getWaitPaperCount();
+			map.put("total", total);
+			map.put("wait", wait);
+			map.put("msg", "success");
+		}catch(DataAccessException e) {
+			log.error(e.getMessage());
+			map.put("msg", "error");
+		}
 		return map;
-	}*/
+	}
 }

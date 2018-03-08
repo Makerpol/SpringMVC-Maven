@@ -75,6 +75,11 @@ public class PaperServiceImpl implements PaperService {
 		return mapper.getPaperCount(param);
 	}
 	
+	@Override
+	public int getWaitPaperCount() throws DataAccessException {
+		return mapper.getWaitPaperCount();
+	}
+
 	private void setPaperClickCount(Paper paper) throws DataAccessException {
 		this.upDataPaper(paper);
 	}

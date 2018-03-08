@@ -43,12 +43,12 @@ layui.config({
 		var newArray = [];
 		var param = $(".search_input").val();
 		
-			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
-            setTimeout(function(){
-            	getUserList(start,num);
-            	toPage();
-                layer.close(index);
-            },2000);
+		var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
+        setTimeout(function(){
+        	getUserList(start,num);
+        	toPage();
+            layer.close(index);
+        },2000);
 	})
 	
 	function getStatus(status){
