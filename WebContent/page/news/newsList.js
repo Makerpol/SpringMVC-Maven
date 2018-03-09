@@ -23,12 +23,19 @@ layui.config({
 	
 	function getPaperList(start,limit){
 		var param = $(".search_input").val();
-		$.get("getAllPaper.do?param="+param+"&start="+start+"&num="+limit, function(data){
+		var order = $(".order").attr("value");
+		console.log(order);
+		$.get("getAllPaper.do?param="+param+"&start="+start+"&num="+limit+"&order="+order, function(data){
 			paperCount = data.total;
 			renderDate(data.paperList);
 			toPage();
 		})
 	}
+	
+	$(".order").click(function(){
+		$(".order").attr("value",$(".order").attr("value")=="desc"?"asc":"desc");
+		getPaperList(start,limit);
+	})
 	
 	//查询
 	$(".search_btn").click(function(){
@@ -38,7 +45,7 @@ layui.config({
             	getPaperList(start,limit);
             	toPage();
                 layer.close(index);
-            },2000);
+            },500);
 	})
 	
 	

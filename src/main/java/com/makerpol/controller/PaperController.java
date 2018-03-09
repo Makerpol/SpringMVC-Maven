@@ -124,11 +124,11 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/getAllPaper")
 	@ResponseBody
-	public Map<String, Object> getAllPaper(@RequestParam String param ,@RequestParam Integer start,@RequestParam Integer num) throws DataAccessException{
+	public Map<String, Object> getAllPaper(@RequestParam String param ,@RequestParam Integer start,@RequestParam Integer num,@RequestParam String order) throws DataAccessException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Paper> list = new ArrayList<Paper>();
 
-		list = service.getPaper(param, start, num);
+		list = service.getPaper(param, start, num,order);
 		int total = service.getPaperCount(param);
 		
 		map.put("paperList", list);

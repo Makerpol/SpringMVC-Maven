@@ -18,13 +18,13 @@ public interface PaperMapper {
     
     int deleteByInnerJoin(Integer id) throws DataAccessException;
     
-    public List<Paper> getPaperList(Integer start,Integer num) throws DataAccessException;
+    public List<Paper> getPaperList(Map map) throws DataAccessException;
     
     public int getPaperCount(String param) throws DataAccessException;
     
     public int getWaitPaperCount() throws DataAccessException;
     
-    public List<Paper> getPaperListByName(String param,Integer start, Integer num) throws DataAccessException;
+    public List<Paper> getPaperListByName(Map map) throws DataAccessException;
     
     public List<Paper> getPaperListByTime(String starTime, String endTime) throws DataAccessException;
     

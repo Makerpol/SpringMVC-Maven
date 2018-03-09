@@ -63,7 +63,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 					<th>作者</th>
 					<th>审核状态</th>
 					<th>浏览权限</th>
-					<th>发布时间</th>
+					<th class="order" value="desc">发布时间</th>
 					<th>操作</th>
 				</tr> 
 		    </thead>

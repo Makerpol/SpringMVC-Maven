@@ -47,11 +47,18 @@
     select * from tb_paper where id = #{id,jdbcType=INTEGER}
   </select>
   
-  <select id="getPaperListByName" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="string">
+  <select id="getPaperListByName" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="map">
   	select * from
-  	  (select * from tb_paper where paper_name like concat('%',#{0},'%') order by date desc)
+  	  (select * from tb_paper where paper_name like concat('%',#{param},'%') 
+  	  <if test="order == 'desc'">
+  	  	order by date desc)
+  	  </if>
+  	  <if test="order == 'asc'">
+  	  	order by date asc)
+  	  </if>
+  	  
   	as p 
-  	limit #{1},#{2}
+  	limit #{start},#{num}
   </select>
    
   <select id="getPaperTypeList" resultType="map">
@@ -62,8 +69,14 @@
   	select count(id) from tb_paper where status=1
   </select>
   
-  <select id="getPaperList" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
-  	select * from tb_paper limit #{0},#{1} order by date desc
+  <select id="getPaperList" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="map">
+  	select * from tb_paper limit #{start},#{num} 
+  		<if test="order == 'desc'">
+  			order by date desc
+  		</if>
+  		<if test="order == 'asc'">
+  			order by date asc
+  		</if>
   </select>
   
   <select id="getPaperCount" resultType="int" parameterType="string">

@@ -23,7 +23,7 @@ public interface PaperService {
 	public int getWaitPaperCount() throws DataAccessException;
 	
 	public List<Paper> getPaper(String param) throws DataAccessException ;
-	public List<Paper> getPaper(String param,Integer start, Integer num) throws DataAccessException ;
+	public List<Paper> getPaper(String param,Integer start, Integer num,String order) throws DataAccessException ;
 	
 	public List<Paper> getPaper(String starTime,String endTime) throws DataAccessException ;
 	public List<Map> getPaperTypeList() throws DataAccessException ;	

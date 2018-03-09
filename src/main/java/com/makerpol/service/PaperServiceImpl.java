@@ -1,5 +1,6 @@
 package com.makerpol.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,12 +47,22 @@ public class PaperServiceImpl implements PaperService {
 
 	@Override
 	public List<Paper> getPaper(String param) throws DataAccessException {
-		return mapper.getPaperListByName(param, 0, 13);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("param", param);
+		map.put("start", 0);
+		map.put("num", 13);
+		map.put("order", "desc");
+		return mapper.getPaperListByName(map);
 	}
 
 	@Override
-	public List<Paper> getPaper(String param,Integer start,Integer num) throws DataAccessException {
-		return this.getPaperByName(param,start,num);
+	public List<Paper> getPaper(String param,Integer start,Integer num,String order) throws DataAccessException {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("param", param);
+		map.put("start", start);
+		map.put("num",num);
+		map.put("order", order);
+		return this.getPaperByName(map);
 	}
 	
 	@Override
@@ -84,10 +95,11 @@ public class PaperServiceImpl implements PaperService {
 		this.upDataPaper(paper);
 	}
 	
-	private List<Paper> getPaperByName(String param,Integer start,Integer num) throws DataAccessException {
+	private List<Paper> getPaperByName(Map<String, Object> map) throws DataAccessException {
+		String param = map.get("param").toString();
 		if(param==null|| param=="") {
-			return mapper.getPaperList(0,13);
+			return mapper.getPaperList(map);
 		}
-		return mapper.getPaperListByName(param,start,num);
+		return mapper.getPaperListByName(map);
 	}
 }
