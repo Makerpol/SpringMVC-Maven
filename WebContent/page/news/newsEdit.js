@@ -45,7 +45,8 @@ layui.config({
  		param.status = data.field.shenhe=="on" ? 0 : 1;
  		param.text = ue.getContent();
  		param.images = getFirstImg(param.text);
- 		
+ 		window.path = window.path==null?getVideoPath(param.text):window.path;
+ 		console.log(window.path);
  		$.ajax({
 			url : "upDataPaper.do",
 			type : "post",
@@ -55,7 +56,7 @@ layui.config({
 			success : function(data){
 				if("error" != data.msg){
 					if(window.path!=null){
-						addVideoContent(param.id,window.path);
+						addVideoContent(param.id,param.paperName,window.path);
 					}
 				}else{
 					setTimeout(function(){
@@ -76,9 +77,10 @@ layui.config({
  		return false;
  	})
  	
- 	function addVideoContent(paperID, path){
+ 	function addVideoContent(paperID, videoname,path){
 		var param = {};
 		param.path = path;
+		param.videoname = videoname;
 		param.paperid = paperID;
 		$.ajax({
 			url:"addVideo.do",
@@ -100,7 +102,24 @@ layui.config({
 			var arr = content.match(imgReg);
 			var imgPath = arr[0].match(srcReg);
 			var path = imgPath[0].replace(/src=/i, "");
-			path = path.replace("\"","");
+			//path = path.replace(new RegExp("\"", 'g'), "");
+			console.log(path);
+			return path;
+		}
+	}
+ 	
+ 	function getVideoPath(content){
+ 		var imgReg = /<source.*?(?:>|\/>)/gi;
+		var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+		
+		if(imgReg.test(content)){
+			var arr = content.match(imgReg);
+			var imgPath = arr[0].match(srcReg);
+			var path = imgPath[0].replace(/src=/i, "");
+			console.log(path);
+			path = path.replace(new RegExp("\"", 'g'), "");
+			//path = path.replace(new RegExp("\\", 'g'), "/");
+			path = path.substr(path.indexOf("/upload"));
 			console.log(path);
 			return path;
 		}

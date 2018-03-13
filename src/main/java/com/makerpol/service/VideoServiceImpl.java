@@ -54,7 +54,11 @@ public class VideoServiceImpl implements VideoService {
 
 	@Override
 	public void addVideo(Video video) throws DataAccessException {
-		mapper.addVideo(video);
+		Video v = mapper.getVideoByPaperId(video.getPaperid());
+		if(v!=null) {
+			mapper.updataVideo(video);
+		}else {
+			mapper.addVideo(video);
+		}
 	}
-
 }

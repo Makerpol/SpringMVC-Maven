@@ -13,8 +13,11 @@ layui.config({
 	
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");
-	ue.addListener('afterUpVideo',function(t, arg) { 
+	ue.addListener('afterUpVideo',function(t, arg) {
+		console.log("afterUpVideo");
+		console.log(arg);
 		for(var i=0;i<arg.length;i++){
+			
 			window.path = arg[i].url;
 		}
 	})
@@ -31,7 +34,8 @@ layui.config({
  		param.status = data.field.shenhe=="on" ? 0 : 1;
  		param.text = ue.getContent();
  		param.images = getFirstImg(param.text);
- 		
+ 		window.path = window.path==null?getVideoPath(param.text):window.path;
+ 		console.log(window.path);
  		$.ajax({
 			url : "addPaper.do",
 			type : "post",
@@ -41,6 +45,7 @@ layui.config({
 			success : function(data){
 				
 				if("success" == data.message){
+					
 					if(window.path!=null){
 						addVideoContent(data.paperID,window.path);
 					}
@@ -92,4 +97,18 @@ layui.config({
 			return path;
 		}
 	}
+	
+	function getVideoPath(content){
+ 		var imgReg = /<source.*?(?:>|\/>)/gi;
+		var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+		
+		if(imgReg.test(content)){
+			var arr = content.match(imgReg);
+			var imgPath = arr[0].match(srcReg);
+			var path = imgPath[0].replace(/src=/i, "");
+			path = path.replace("\"","");
+			console.log(path);
+			return path;
+		}
+ 	}
 })

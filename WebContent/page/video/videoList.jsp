@@ -25,6 +25,9 @@ String userInfo = JSONObject.fromObject(user).toString();
     <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
     <link rel="stylesheet" href="/css/common.css" media="all" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" rel="stylesheet">
+
+	
 </head>
 
 <body class="childrenBody">
@@ -50,6 +53,7 @@ String userInfo = JSONObject.fromObject(user).toString();
     <div id="PDFpage"></div>
     <script type="text/javascript" src="/layui/layui.js"></script>
     <script type="text/javascript" src="/page/video/videoList.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>
 </body>
 
 </html>

@@ -5,6 +5,7 @@ import com.baidu.ueditor.define.AppInfo;
 import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.FileType;
 import com.baidu.ueditor.define.State;
+import com.makerpol.Utils.VideoUtil;
 
 import java.io.File;
 import java.util.Arrays;
@@ -18,8 +19,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class BinaryUploader {
 
-	public static final State save(HttpServletRequest request, Map<String, Object> conf) {
-
+	public static final State save(HttpServletRequest request,
+			Map<String, Object> conf) {
 		try {
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 			MultipartFile multipartFile = multipartRequest.getFile(conf.get("fieldName").toString());
@@ -52,21 +53,27 @@ public class BinaryUploader {
 			}
 			String pathTemp = request.getSession().getServletContext().getRealPath("/");
 			pathTemp = String.valueOf(pathTemp) + "\\upload\\" + temp;
-			System.out.println(pathTemp + "\\" + fileName);
-			System.out.println(new File(pathTemp).exists());
+
 			File targetFile = new File(pathTemp);
 			if (!targetFile.exists()) {
 				targetFile.mkdirs();
 			}
-			System.out.println(new File(pathTemp).exists());
+
 			/************/
 			// State storageState =
 			// StorageManager.saveFileByInputStream(multipartFile.getInputStream(),savePath,
 			// maxSize);
 			State storageState = StorageManager.saveFileByInputStream(multipartFile.getInputStream(),
 					pathTemp + "/" + fileName, maxSize);
-
+			
 			if (storageState.isSuccess()) {
+				if("true".equals(conf.get("isVideo"))&& !"mp4".equals(suffix)) {
+					String[] urlList = VideoUtil.transforToMp4(savePath);
+					savePath = urlList[0];
+					String iconPath = urlList[1];
+					storageState.putInfo("icon", PathFormat.format(iconPath));
+				}
+				
 				storageState.putInfo("url", PathFormat.format(savePath));
 				storageState.putInfo("type", suffix);
 				storageState.putInfo("original", originFileName + suffix);
@@ -79,6 +86,11 @@ public class BinaryUploader {
 			System.out.println(e.getMessage());
 		}
 		return new BaseState(false, AppInfo.IO_ERROR);
+	}
+	
+	private static String transforToMp4(String path) {
+		
+		return "";
 	}
 	
 	private static boolean validType(String type, String[] allowTypes) {

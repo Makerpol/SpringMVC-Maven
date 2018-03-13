@@ -8,6 +8,7 @@
     	<result column="date" property="date" jdbcType="VARCHAR" />
     	<result column="paperid" property="paperid" jdbcType="INTEGER" />
     	<result column="userid" property="userid" jdbcType="INTEGER" />
+    	<result column="icon" property="icon" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	
@@ -24,6 +25,10 @@
 				add videoname like concat('%',#{0},'%')
 			</if>
 		</trim>
+	</select>
+	
+	<select id="getVideoByPaperId" parameterType="int" resultMap="userResultMap">
+		select * from tb_video where paperid = #{paperid}
 	</select>
 	
 	<select id="getVideoById" parameterType="int"  resultMap="userResultMap">    
@@ -51,14 +56,15 @@
         <if test="date != null">date = #{date,jdbcType=VARCHAR},</if>
         <if test="paperid != null">paperid = #{paperid,jdbcType=INTEGER},</if>
         <if test="userid != null">userid = #{userid,jdbcType=INTEGER,}</if>
+        <if test="icon != null">icon = #{icon,jdbcType=VARCHAR},</if>
 		</set>
         
         where id = #{id} 
    </update>
    
    <insert id="addVideo" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.Video">   
-         insert into tb_video(videoname,path, date, paperid, userid)   
-         values(#{videoname},#{path}, #{date}, #{paperid}, #{userid})   
+         insert into tb_video(videoname,path, date, paperid, userid, icon)   
+         values(#{videoname},#{path}, #{date}, #{paperid}, #{userid}, #{icon})   
    </insert>
    
    <delete id="deleteVideo" parameterType="int">

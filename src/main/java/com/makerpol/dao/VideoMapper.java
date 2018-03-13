@@ -12,6 +12,7 @@ public interface VideoMapper {
 	public Video getVideoById(Integer id) throws DataAccessException;
 	public List<Video> getVideoList(String param,Integer start, Integer num) throws DataAccessException;
 	public int getCount(String param) throws DataAccessException;
+	public Video getVideoByPaperId(Integer paperid) throws DataAccessException;
 	
 	public void updataVideo(Video video) throws DataAccessException;
 	public void deleteVideo(Integer id) throws DataAccessException;

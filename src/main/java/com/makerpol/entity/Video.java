@@ -13,6 +13,8 @@ public class Video {
 	
 	private int userid;
 	
+	private String icon;
+	
 	public int getId() {
 		return id;
 	}
@@ -59,6 +61,14 @@ public class Video {
 
 	public void setUserid(int userid) {
 		this.userid = userid;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 }

@@ -33,12 +33,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.makerpol.common.Common;
-import com.makerpol.controller.FileController;
 import com.makerpol.entity.User;
 
 
 public class FileUtil {
-	private static final Logger log = LoggerFactory.getLogger(FileController.class);
+	private static final Logger log = LoggerFactory.getLogger(FileUtil.class);
 	
 	
 	/**
@@ -48,12 +47,14 @@ public class FileUtil {
 	 */
 	public static Map<String,Object> upLoad(MultipartFile file, HttpServletRequest req) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		String path =req.getSession().getServletContext().getRealPath("/");
+		String path =req.getSession().getServletContext().getRealPath("/");//项目真实路径
 		
-		String fileName = file.getOriginalFilename();
-		String type = getStrIndexOf(fileName, ".");
-		fileName = getFileName(type);
-		String URL = getPath(req,fileName);
+		String fileName = file.getOriginalFilename();//文件名
+		String suffix = getStrIndexOf(fileName, ".");//获取文件后缀
+		
+		fileName = getFileName(suffix);//获取一个文件保存名
+		
+		String URL = getPath(req,fileName);//文件保存路径
 		
 		File temp = new File(path+URL);
 		
@@ -65,10 +66,11 @@ public class FileUtil {
 				temp.createNewFile();
 			}
 			file.transferTo(temp);
-			if("pdf".equals(type)) {
+			if("pdf".equals(suffix)) {
 				icon = generateBookIamge(path,URL);
 				map.put("icon", icon);
 			}
+			
 			
 			map.put("code", 200);
 			map.put("msg", "success");
@@ -78,6 +80,12 @@ public class FileUtil {
 			map.put("msg", "error");
 		}
 		return map;
+	}
+	
+	private String generateBookIamgeByType() {
+		
+		
+		return "";
 	}
 	
 	/**

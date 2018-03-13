@@ -24,7 +24,6 @@ layui.config({
 	function getPaperList(start,limit){
 		var param = $(".search_input").val();
 		var order = $(".order").attr("value");
-		console.log(order);
 		$.get("getAllPaper.do?param="+param+"&start="+start+"&num="+limit+"&order="+order, function(data){
 			paperCount = data.total;
 			renderDate(data.paperList);
@@ -170,7 +169,6 @@ layui.config({
 		
 		var _this = $(this);
 		var id = _this.attr("data-id");
-		console.log(id);
 		window.open("page/news/newsView.jsp?"+id,"left=0,top=0,width="+(screen.availWidth - 10)+"height="+(screen.availHeight-50)+"scrollbars,resizable=yes,toolbar=no");
 	})
 	

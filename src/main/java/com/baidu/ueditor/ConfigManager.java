@@ -102,6 +102,7 @@ public final class ConfigManager {
 				break;
 				
 			case ActionMap.UPLOAD_VIDEO:
+				conf.put( "isVideo", "true");
 				conf.put( "maxSize", this.jsonConfig.getLong( "videoMaxSize" ) );
 				conf.put( "allowFiles", this.getArray( "videoAllowFiles" ) );
 				conf.put( "fieldName", this.jsonConfig.getString( "videoFieldName" ) );
