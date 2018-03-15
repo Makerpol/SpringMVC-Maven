@@ -298,6 +298,7 @@
             var file = uploadVideoList[key];
             videoObjs.push({
                 url: uploadDir + file.url,
+                icon:uploadDir + file.icon,
                 width:width,
                 height:height,
                 align:align
@@ -738,11 +739,13 @@
                 try {
                     var responseText = (ret._raw || ret),
                         json = utils.str2json(responseText);
+                    	console.log(json);
                     if (json.state == 'SUCCESS') {
                         uploadVideoList.push({
                             'url': json.url,
                             'type': json.type,
-                            'original':json.original
+                            'original':json.original,
+                            'icon':json.icon
                         });
                         $file.append('<span class="success"></span>');
                     } else {
@@ -886,10 +889,8 @@
                     method: 'get',
                     onsuccess: function (r) {
                         try {
-                        	console.log(r);
                         	
                             var json = eval('(' + r.responseText + ')');
-                            console.log(json);
                             if (json.state == 'SUCCESS') {
                                 _this.pushData(json.list);
                                 _this.listIndex = parseInt(json.start) + parseInt(json.list.length);

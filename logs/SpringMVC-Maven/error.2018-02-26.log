@@ -1,7 +1,0 @@
-2018-02-26  14:29:05.093 [qtp1715686600-17] ERROR com.makerpol.controller.UserController - org.springframework.jdbc.BadSqlGrammarException: 
-### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'mysql.tb_video' doesn't exist
-### The error may involve com.makerpol.dao.VideoMapper.addVideo-Inline
-### The error occurred while setting parameters
-### SQL: insert into tb_video(videoname,path, date, paperid, userid)             values(?,?, ?, ?, ?)
-### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'mysql.tb_video' doesn't exist
-; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'mysql.tb_video' doesn't exist

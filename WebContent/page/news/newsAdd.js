@@ -14,14 +14,13 @@ layui.config({
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");
 	ue.addListener('afterUpVideo',function(t, arg) {
-		console.log("afterUpVideo");
-		console.log(arg);
 		for(var i=0;i<arg.length;i++){
-			
 			window.path = arg[i].url;
+			window.icon = arg[i].icon;
 		}
 	})
 	
+	//提交文章
  	form.on("submit(addNews)",function(data){
  		var index = layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
  		var param = {};
@@ -45,9 +44,8 @@ layui.config({
 			success : function(data){
 				
 				if("success" == data.message){
-					
 					if(window.path!=null){
-						addVideoContent(data.paperID,window.path);
+						addVideoContent(param.paperName,data.paperID,window.path,window.icon);
 					}
 				}else{
 					setTimeout(function(){
@@ -68,9 +66,12 @@ layui.config({
  		return false;
  	})
  	
- 	function addVideoContent(paperID, path){
+ 	//同步更新视频信息
+ 	function addVideoContent(videoname,paperID, path,icon){
 		var param = {};
+		param.videoname = videoname;
 		param.path = path;
+		param.icon = icon;
 		param.paperid = paperID;
 		$.ajax({
 			url:"addVideo.do",

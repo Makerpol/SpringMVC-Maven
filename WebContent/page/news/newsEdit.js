@@ -14,12 +14,18 @@ layui.config({
 	
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");
-	
+	//视频上传后
 	ue.addListener('afterUpVideo',function(t, arg) { 
 		for(var i=0;i<arg.length;i++){
-			window.path = arg[i].url 
+			window.path = arg[i].url;
+			window.icon = arg[i].icon;
 		}
 	})
+	//图片插入后
+	ue.addListener("afterinsertimage",function(t, arg){
+		var temp = arg[0].src;
+		window.imagepath = temp.substr(temp.indexOf("/upload"));
+	});
 		
  	function renderCheckbox(paper){
  		if(paper.status==1){
@@ -56,7 +62,7 @@ layui.config({
 			success : function(data){
 				if("error" != data.msg){
 					if(window.path!=null){
-						addVideoContent(param.id,param.paperName,window.path);
+						addVideoContent(param.id,param.paperName,window.path,window.icon);
 					}
 				}else{
 					setTimeout(function(){
@@ -77,9 +83,10 @@ layui.config({
  		return false;
  	})
  	
- 	function addVideoContent(paperID, videoname,path){
+ 	function addVideoContent(paperID, videoname,path,icon){
 		var param = {};
 		param.path = path;
+		param.icon = icon;
 		param.videoname = videoname;
 		param.paperid = paperID;
 		$.ajax({
@@ -102,7 +109,8 @@ layui.config({
 			var arr = content.match(imgReg);
 			var imgPath = arr[0].match(srcReg);
 			var path = imgPath[0].replace(/src=/i, "");
-			//path = path.replace(new RegExp("\"", 'g'), "");
+			path = path.replace(new RegExp("\"", 'g'), "");
+			//path = path.substr(path.indexOf("/upload"));
 			console.log(path);
 			return path;
 		}

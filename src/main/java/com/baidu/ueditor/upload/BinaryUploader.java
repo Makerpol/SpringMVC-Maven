@@ -88,11 +88,6 @@ public class BinaryUploader {
 		return new BaseState(false, AppInfo.IO_ERROR);
 	}
 	
-	private static String transforToMp4(String path) {
-		
-		return "";
-	}
-	
 	private static boolean validType(String type, String[] allowTypes) {
 		List<String> list = Arrays.asList(allowTypes);
 

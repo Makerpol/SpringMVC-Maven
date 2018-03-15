@@ -38,11 +38,11 @@ public class VideoController {
 	@ResponseBody
 	public Map<String, Object> addVideo(@RequestBody Video video,HttpServletRequest req) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		User user = (User)req.getSession().getAttribute("LoginUser");
-		
+		log.debug(video.getIcon());
 		video.setUserid(user.getId());
-		video.setPaperid(video.getPaperid());
+		//video.setPaperid(video.getPaperid());
 		video.setDate(sf.format(new Date()));
 		
 		try {

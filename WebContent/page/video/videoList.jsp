@@ -51,6 +51,7 @@ String userInfo = JSONObject.fromObject(user).toString();
         </ul>
     </div>
     <div id="PDFpage"></div>
+    
     <script type="text/javascript" src="/layui/layui.js"></script>
     <script type="text/javascript" src="/page/video/videoList.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>

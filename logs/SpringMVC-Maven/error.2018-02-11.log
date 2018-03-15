@@ -1,7 +1,0 @@
-2018-02-11  08:35:18.462 [qtp70978270-14] ERROR com.makerpol.controller.UserController - org.springframework.jdbc.UncategorizedSQLException: 
-### Error updating database.  Cause: java.sql.SQLException: Field 'image' doesn't have a default value
-### The error may involve com.makerpol.dao.UserMapper.addUser-Inline
-### The error occurred while setting parameters
-### SQL: insert into tb_user(status,grade, name, password, sex, realname, phone, email, idcard)             values(?,?, ?, ?, ?, ?, ?, ?,?)
-### Cause: java.sql.SQLException: Field 'image' doesn't have a default value
-; uncategorized SQLException for SQL []; SQL state [HY000]; error code [1364]; Field 'image' doesn't have a default value; nested exception is java.sql.SQLException: Field 'image' doesn't have a default value
