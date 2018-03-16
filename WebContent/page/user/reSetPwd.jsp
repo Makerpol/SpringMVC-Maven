@@ -9,11 +9,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>后台管理系统</title>
-  <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+  <link rel="stylesheet" href="<%=path%>/css/login.css">
   <link rel="icon" type="image/x-icon" href="images/Tech.ico"/>  
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/layui/layui.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=path%>/layui/layui.js" charset="utf-8"></script>
 </head>
 <body class="login-bg">
     <canvas id="fullstarbg">你的浏览器不支持canvas标签</canvas>
@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
     </div>
 	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
-	<script type="text/javascript" src="/page/user/user.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/user/user.js"></script>
 
 </body>
 </html>

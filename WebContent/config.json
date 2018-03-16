@@ -8,7 +8,7 @@
     "imageCompressEnable": true, 
     "imageCompressBorder": 1600,
     "imageInsertAlign": "none", 
-    "imageUrlPrefix": "http://192.168.211.16:8080", 
+    "imageUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
     "imagePathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
                               
 
@@ -16,13 +16,13 @@
     "scrawlFieldName": "upfile", 
     "scrawlPathFormat": "/upload/scrawl/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "scrawlMaxSize": 2048000, 
-    "scrawlUrlPrefix": "http://192.168.211.16:8080", 
+    "scrawlUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
     "scrawlInsertAlign": "none",
 
   
     "snapscreenActionName": "uploadimage", 
     "snapscreenPathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
-    "snapscreenUrlPrefix": "http://192.168.211.16:8080", 
+    "snapscreenUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
     "snapscreenInsertAlign": "none", 
 
 
@@ -30,7 +30,7 @@
     "catcherActionName": "catchimage", 
     "catcherFieldName": "source", 
     "catcherPathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
-    "catcherUrlPrefix": "http://192.168.211.16:8080", 
+    "catcherUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
     "catcherMaxSize": 2048000, 
     "catcherAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
 
@@ -38,7 +38,7 @@
     "videoActionName": "uploadvideo", 
     "videoFieldName": "upfile", 
     "videoPathFormat": "/upload/video/{yyyy}{mm}{dd}/{time}{rand:6}", 
-    "videoUrlPrefix": "http://192.168.211.16:8080", 
+    "videoUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
     "videoMaxSize": 102400000, 
     "videoAllowFiles": [
         ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
@@ -47,7 +47,7 @@
     "fileActionName": "uploadfile", 
     "fileFieldName": "upfile", 
     "filePathFormat": "/upload/file/{yyyy}{mm}{dd}/{time}{rand:6}", 
-    "fileUrlPrefix": "http://192.168.211.16:8080", 
+    "fileUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
     "fileMaxSize": 51200000, 
     "fileAllowFiles": [
         ".png", ".jpg", ".jpeg", ".gif", ".bmp",
@@ -60,7 +60,7 @@
     "imageManagerActionName": "listimage", 
     "imageManagerListPath": "/upload/", 
     "imageManagerListSize": 20, 
-    "imageManagerUrlPrefix": "http://192.168.211.16:8080", 
+    "imageManagerUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
     "imageManagerInsertAlign": "none", 
     "imageManagerAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
 
@@ -78,7 +78,7 @@
     
     "videoManagerActionName": "listvideo",
 	"videoManagerListPath": "/upload/video/",
-	"videoManagerUrlPrefix": "http://192.168.211.16:8080",
+	"videoManagerUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven",
 	"videoManagerListSize": 20,
 	"videoManagerAllowFiles": [
 	    ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",

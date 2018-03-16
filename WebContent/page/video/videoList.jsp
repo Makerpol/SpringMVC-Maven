@@ -22,9 +22,9 @@ String userInfo = JSONObject.fromObject(user).toString();
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
-    <link rel="stylesheet" href="/css/common.css" media="all" />
+    <link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
+    <link rel="stylesheet" href="<%=path%>/css/common.css" media="all" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" rel="stylesheet">
 
 	
@@ -52,8 +52,8 @@ String userInfo = JSONObject.fromObject(user).toString();
     </div>
     <div id="PDFpage"></div>
     
-    <script type="text/javascript" src="/layui/layui.js"></script>
-    <script type="text/javascript" src="/page/video/videoList.js"></script>
+    <script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+    <script type="text/javascript" src="<%=path%>/page/video/videoList.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>
 </body>
 

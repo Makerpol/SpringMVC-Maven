@@ -20,7 +20,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="icon" type="image/x-icon" href="../.././images/Tech.ico"/> 
-	<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/modules/jquery.min.js"></script>
 <style type="text/css">
 .main{
 width : 100%;

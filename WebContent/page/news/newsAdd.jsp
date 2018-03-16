@@ -17,8 +17,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
+<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
 </head>
 <body class="childrenBody">
 	<form class="layui-form">
@@ -112,9 +112,9 @@
 			</div>
 		</div>
 	</form>
-	<script type="text/javascript" src="/UEditor/ueditor.config.js"></script>
-	<script type="text/javascript" src="/UEditor/ueditor.all.js"></script>
-	<script type="text/javascript" src="/layui/layui.js"></script>
-	<script type="text/javascript" src="/page/news/newsAdd.js"></script>
+	<script type="text/javascript" src="<%=path%>/UEditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="<%=path%>/UEditor/ueditor.all.js"></script>
+	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/news/newsAdd.js"></script>
 </body>
 </html>

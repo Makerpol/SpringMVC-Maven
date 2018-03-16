@@ -17,9 +17,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="icon" type="image/x-icon" href="images/Tech.ico"/> 
-	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
-	<link rel="stylesheet" href="/css/main.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/css/main.css" media="all" />
 </head>
 <body class="main_body">
 	<div class="layui-layout layui-layout-admin">
@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</li>
 					<li class="layui-nav-item" pc>
 						<a href="javascript:;">
-							<img src="${user.image}" class="layui-circle" width="35" height="35">
+							<img src="<%=path%>${user.image}" class="layui-circle" width="35" height="35">
 							<cite>${user.name}</cite>
 						</a>
 						<dl class="layui-nav-child">
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- 左侧导航 -->
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
-				<a class="img" title="我的头像" ><img src="${user.image}"></a>
+				<a class="img" title="我的头像" ><img src="<%=path%>${user.image}"></a>
 				<input id="userGrade" value="${user.grade}" class="layui-hide">
 				<p>你好！<span class="userName">${user.name}</span>, 欢迎登录</p>
 			</div>
@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- 锁屏 -->
 	<div class="admin-header-lock" id="lock-box" style="display: none;">
-		<div class="admin-header-lock-img"><img src="images/luna.jpg"/></div>
+		<div class="admin-header-lock-img"><img src="<%=path%>/images/luna.jpg"/></div>
 		<div class="admin-header-lock-name" id="lockUserName">${user.realname}</div>
 		<div class="input_btn">
 			<input type="password" class="admin-header-lock-input layui-input" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />
@@ -97,8 +97,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="site-tree-mobile layui-hide"><i class="layui-icon">&#xe602;</i></div>
 	<div class="site-mobile-shade"></div>
 
-	<script type="text/javascript" src="/js/nav.js"></script>
-	<script type="text/javascript" src="/js/leftNav.js"></script>
-	<script type="text/javascript" src="/js/index.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/nav.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/leftNav.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/index.js"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
 <style type="text/css">
 .PDFimage{
 	width:200px;
@@ -87,7 +87,7 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="/layui/layui.js"></script>
-	<script type="text/javascript" src="/page/file/PDFInfo.js"></script>
+	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/file/PDFInfo.js"></script>
 </body>
 </html>

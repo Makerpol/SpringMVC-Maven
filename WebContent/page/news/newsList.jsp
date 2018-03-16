@@ -20,10 +20,10 @@ String userInfo = JSONObject.fromObject(user).toString();
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
-	<link rel="stylesheet" href="/css/news.css" media="all" />
-	<script type="text/javascript" src="/js/modules/jquery.min.js"></script>
+	<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/css/news.css" media="all" />
+	<script type="text/javascript" src="<%=path%>/js/modules/jquery.min.js"></script>
 	<script type="text/javascript">
 		var user = '<%=userInfo%>';
 	</script>
@@ -71,7 +71,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 		</table>
 	</div>
 	<div id="page"></div>
-	<script type="text/javascript" src="/layui/layui.js"></script>
-	<script type="text/javascript" src="/page/news/newsList.js"></script>
+	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/news/newsList.js"></script>
 </body>
 </html>

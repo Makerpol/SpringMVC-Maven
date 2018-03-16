@@ -1,4 +1,5 @@
 var LoginUser = $.parseJSON(user);
+var ppath = projectpath;
 layui.config({
 	base : "../../js/"
 }).use(['form','layer','laypage'],function(){
@@ -46,7 +47,7 @@ layui.config({
 			   title:"预览",
 			   type:2,
 			   area:['1200px','600px'],
-			   content:"PDFJS/web/viewer.html?file="+pdfpath
+			   content:"PDFJS/web/viewer.html?file="+projectpath+pdfpath
 		   })
 	  })
    
@@ -131,7 +132,7 @@ layui.config({
     		for(var i = 0;i<fileList.length;i++){
         		html += "<li>";
         		html += '<div class="box" data-id="'+fileList[i].id+'">';
-        		html += '<img class="pdflistimg" src="'+fileList[i].icon+'">';
+        		html += '<img class="pdflistimg" src="'+ppath+fileList[i].icon+'">';
         		html += '<input type="checkbox" lay-filter="choose" /></div>'
         		html += '<div class="operate">';
         		html += '<p class="check">'+fileList[i].filename+'</p>';

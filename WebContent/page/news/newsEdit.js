@@ -110,7 +110,6 @@ layui.config({
 			var imgPath = arr[0].match(srcReg);
 			var path = imgPath[0].replace(/src=/i, "");
 			path = path.replace(new RegExp("\"", 'g'), "");
-			//path = path.substr(path.indexOf("/upload"));
 			console.log(path);
 			return path;
 		}
@@ -126,11 +125,10 @@ layui.config({
 			var path = imgPath[0].replace(/src=/i, "");
 			console.log(path);
 			path = path.replace(new RegExp("\"", 'g'), "");
-			//path = path.replace(new RegExp("\\", 'g'), "/");
 			path = path.substr(path.indexOf("/upload"));
 			console.log(path);
 			return path;
 		}
-	}
+ 	}
  	
 })
