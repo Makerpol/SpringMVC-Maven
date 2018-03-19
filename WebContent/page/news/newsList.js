@@ -23,12 +23,18 @@ layui.config({
 	
 	function getPaperList(start,limit){
 		var param = $(".search_input").val();
-		$.get("getAllPaper.do?param="+param+"&start="+start+"&num="+limit, function(data){
+		var order = $(".order").attr("value");
+		$.get("getAllPaper.do?param="+param+"&start="+start+"&num="+limit+"&order="+order, function(data){
 			paperCount = data.total;
 			renderDate(data.paperList);
 			toPage();
 		})
 	}
+	
+	$(".order").click(function(){
+		$(".order").attr("value",$(".order").attr("value")=="desc"?"asc":"desc");
+		getPaperList(start,limit);
+	})
 	
 	//查询
 	$(".search_btn").click(function(){
@@ -38,12 +44,13 @@ layui.config({
             	getPaperList(start,limit);
             	toPage();
                 layer.close(index);
-            },2000);
+            },500);
 	})
-
+	
+	
 	//添加文章
 	$(".newsAdd_btn").click(function(){
-		if(LoginUser.grade==2){
+		if(LoginUser.grade==3){
 			layer.open({
 				content: '没有权限添加文章！'
 			});     
@@ -72,7 +79,7 @@ layui.config({
 
 	//审核文章
 	$(".audit_btn").click(function(){
-		if(LoginUser.grade==2){
+		if(LoginUser.grade >= 2){
 			layer.open({
 				content: '没有权限审核文章！'
 			});     
@@ -96,11 +103,11 @@ layui.config({
         				if(oldStatus==1){
         					text = "审核通过";
         					//修改列表中的文字
-    						$checked.eq(j).parents("tr").find("td:eq(3)").text(text).removeAttr("style");
+    						$checked.eq(j).parents("tr").find("td:eq(4)").text(text).removeAttr("style");
         				}else{
         					text = "未审核";
         					//修改列表中的文字
-    						$checked.eq(j).parents("tr").find("td:eq(3)").text(text).attr("style","color:#f00");
+    						$checked.eq(j).parents("tr").find("td:eq(4)").text(text).attr("style","color:#f00");
         				}
         				
 						//将选中状态删除
@@ -117,6 +124,7 @@ layui.config({
 	})
 
 	function auditAjax(id,oldStatus){
+		var msg = null;
 		var param = {};
 		param.id = id;
 		param.status = oldStatus==0?1:0;
@@ -125,12 +133,14 @@ layui.config({
 			url : "upDataPaper.do",
 			type : "post",
 			dataType : "json",
+			async: false,
 			'contentType':'application/json',
 			data : JSON.stringify(param),
 			success : function(data){
-				return data.message;
+				msg = data.message;
 			}
 		})
+		return msg;
 	}
 
 	//全选
@@ -153,10 +163,19 @@ layui.config({
 		}
 		form.render('checkbox');
 	})
- 
+	
+	//预览
+	$("body").on("click", ".news_text", function(){
+		
+		var _this = $(this);
+		var id = _this.attr("data-id");
+		window.open("page/news/newsView.jsp?"+id,"left=0,top=0,width="+(screen.availWidth - 10)+"height="+(screen.availHeight-50)+"scrollbars,resizable=yes,toolbar=no");
+	})
+	
+	
 	//操作
 	$("body").on("click",".news_edit",function(){  //编辑
-		if(LoginUser.grade==2){
+		if(LoginUser.grade==3){
 			layer.open({
 				content: '没有权限编辑文章！'
 			});     
@@ -189,7 +208,7 @@ layui.config({
 	})
 
 	$("body").on("click",".news_del",function(){  //删除
-		if(LoginUser.grade==2){
+		if(LoginUser.grade==3){
 			layer.open({
 				content: '没有权限删除文章！'
 			});     
@@ -265,6 +284,9 @@ layui.config({
 				case 6:
 					dataHtml += '<td>科教文艺</td>';
 					break;
+				case 7:
+					dataHtml += '<td>新闻报道</td>';
+					break;
 				default:
 					dataHtml += '<td>自然科学</td>';
 				}
@@ -286,7 +308,8 @@ layui.config({
 		    	+'<td>'
 				+  '<a class="layui-btn layui-btn-mini news_edit" data-id="'+data[i].id+'"><i class="iconfont icon-edit"></i> 编辑</a>'
 				+  '<a class="layui-btn layui-btn-danger layui-btn-mini news_del" data-id="'+data[i].id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
-		        +'</td>'
+				+  '<a class="layui-btn layui-btn-mini news_text" data-id="'+data[i].id+'"><i class="iconfont icon-text"></i> 预览</a>'
+				+'</td>'
 		    	+'</tr>';
 			}
 		}else{

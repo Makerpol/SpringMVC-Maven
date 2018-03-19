@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" 
-	xmlns="http://java.sun.com/xml/ns/javaee" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app version="3.1" metadata-complete="true"  
+        xmlns="http://xmlns.jcp.org/xml/ns/javaee"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee   
+            http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">  
 
-  <!-- log4j -->
-  <context-param>
-      <param-name>log4jServletFilter</param-name>
-      <param-value>classpath:log4j.properties</param-value>
-  </context-param>
-  <listener>
-    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-  </listener>
-  
-  <!-- log4J end -->
-  
   <!-- SpringMVC字符集过滤器 -->
   <filter>
   	<filter-name>CharacterEncodingFilter</filter-name>
@@ -60,7 +49,7 @@
   </servlet-mapping> 
   
   <session-config>
-  	<session-timeout>1</session-timeout>
+  	<session-timeout>10</session-timeout>
   </session-config>
 
   <!-- 欢迎页面 -->

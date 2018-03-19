@@ -14,8 +14,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="/css/user.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/css/user.css" media="all" />
 </head>
 <body class="childrenBody">
 	<form class="layui-form changePwd" action="updataUser.do" model="post">
@@ -56,8 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</form>
 	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
-	<script type="text/javascript" src="/layui/layui.js"></script>
-	<script type="text/javascript" src="/page/user/address.js"></script>
-	<script type="text/javascript" src="/page/user/user.js"></script>
+	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/user/user.js"></script>
 </body>
 </html>

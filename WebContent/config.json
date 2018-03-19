@@ -1,0 +1,89 @@
+
+{
+
+    "imageActionName": "uploadimage", 
+    "imageFieldName": "upfile", 
+    "imageMaxSize": 2048000, 
+    "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
+    "imageCompressEnable": true, 
+    "imageCompressBorder": 1600,
+    "imageInsertAlign": "none", 
+    "imageUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
+    "imagePathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
+                              
+
+    "scrawlActionName": "uploadscrawl", 
+    "scrawlFieldName": "upfile", 
+    "scrawlPathFormat": "/upload/scrawl/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "scrawlMaxSize": 2048000, 
+    "scrawlUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
+    "scrawlInsertAlign": "none",
+
+  
+    "snapscreenActionName": "uploadimage", 
+    "snapscreenPathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "snapscreenUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
+    "snapscreenInsertAlign": "none", 
+
+
+    "catcherLocalDomain": ["127.0.0.1", "localhost", "img.baidu.com"],
+    "catcherActionName": "catchimage", 
+    "catcherFieldName": "source", 
+    "catcherPathFormat": "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "catcherUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
+    "catcherMaxSize": 2048000, 
+    "catcherAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
+
+ 
+    "videoActionName": "uploadvideo", 
+    "videoFieldName": "upfile", 
+    "videoPathFormat": "/upload/video/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "videoUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
+    "videoMaxSize": 102400000, 
+    "videoAllowFiles": [
+        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
+        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid"], 
+
+    "fileActionName": "uploadfile", 
+    "fileFieldName": "upfile", 
+    "filePathFormat": "/upload/file/{yyyy}{mm}{dd}/{time}{rand:6}", 
+    "fileUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
+    "fileMaxSize": 51200000, 
+    "fileAllowFiles": [
+        ".png", ".jpg", ".jpeg", ".gif", ".bmp",
+        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
+        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
+        ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
+        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"
+    ], 
+
+    "imageManagerActionName": "listimage", 
+    "imageManagerListPath": "/upload/", 
+    "imageManagerListSize": 20, 
+    "imageManagerUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven", 
+    "imageManagerInsertAlign": "none", 
+    "imageManagerAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
+
+    "fileManagerActionName": "listfile", 
+    "fileManagerListPath": "/upload/", 
+    "fileManagerUrlPrefix": "", 
+    "fileManagerListSize": 20, 
+    "fileManagerAllowFiles": [
+        ".png", ".jpg", ".jpeg", ".gif", ".bmp",
+        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
+        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
+        ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
+        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"
+    ],
+    
+    "videoManagerActionName": "listvideo",
+	"videoManagerListPath": "/upload/video/",
+	"videoManagerUrlPrefix": "http://192.168.189.131:8080/SpringMVC-Maven",
+	"videoManagerListSize": 20,
+	"videoManagerAllowFiles": [
+	    ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
+	    ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid"
+	]
+    
+
+}

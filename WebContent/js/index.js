@@ -30,6 +30,7 @@ layui.config({
 			success:function(data){
 				if(data.message=="ok"){
 					console.log("loginout");
+					window.sessionStorage.clear();
 					window.parent.location.href = "/login.jsp";
 				}
 			}

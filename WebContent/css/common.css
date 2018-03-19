@@ -1,0 +1,70 @@
+.layui-flow-more{ clear: both; margin-top: 20px; }
+#Images li{ width:19%; margin:0.5% 0.5%; float: left; overflow:hidden;}
+#Images li img{ width:100%; }
+#Images li .operate{ display: block; height: 40px; width:100%; background:#19a093; }
+#Images li .operate .check{ 
+	float:left; 
+	margin-left:11px; 
+	height:18px; 
+	padding:11px 0; 
+	width:200px; 
+	white-space:nowrap; 
+	text-overflow:ellipsis; 
+	overflow:hidden;
+}
+#Images li .operate .pdfdel{ float:right; margin:7px 11px 0 0; font-size: 22px; cursor:pointer; }
+#Images li .operate .pdfdel:hover{ color:#f00; }
+
+/*适配*/
+@media screen and (max-width:1050px){
+	/*用户信息*/
+	#Images li{ width:24%;}
+}
+@media screen and (max-width: 750px){
+	/*用户信息*/
+	#Images li{ width:49%;}
+}
+@media screen and (max-width:432px){
+	/*用户信息*/
+	#Images li{ width:99%;}
+}
+
+.file-addBtn{
+	margin-left:10px;
+	background-color:#5FB878
+}
+
+.file-eitBtn{
+	margin-left:10px;
+	background-color:#009688;
+}
+
+ .file-delBtn{
+ 	margin-left:10px;
+ }
+ 
+ .bookTitle{
+ 	width:"180px";
+ 	display:"block";
+ }
+ 
+ .pdflistimg{
+ 	width: 200px; 
+ 	height: 250px;
+ }
+ 
+ .hiddenInput{
+    display:  none;
+ }
+
+#PDFpage{
+	clear:both;
+	position: fixed;
+	bottom: 0px;
+}
+
+.box { position:relative; }
+.box input { position:absolute; left:0px; top:0px;bottom:250px; }
+.layui-form-checkbox{
+	bottom:250px;
+}

@@ -10,20 +10,20 @@ var navs = [{
 	"spread" : false
 },{
 	"title" : "用户管理",
-	"icon" : "icon-text",
+	"icon" : "icon-zhanghu",
 	"href" : "userList.do",
 	"spread" : false
 },{
-	"title" : "友情链接",
+	"title" : "视频管理",
 	"icon" : "icon-text",
-	"href" : "page/links/linksList.html",
+	"href" : "toVideoList.do",
 	"spread" : false
 },{
-	"title" : "404页面",
-	"icon" : "&#xe61c;",
-	"href" : "page/404.html",
+	"title" : "PDF管理",
+	"icon" : "icon-text",
+	"href" : "toPDFListPage.do",
 	"spread" : false
-},{
+},/*{
 	"title" : "系统基本参数",
 	"icon" : "&#xe631;",
 	"href" : "page/systemParameter/systemParameter.html",
@@ -47,4 +47,4 @@ var navs = [{
 			"spread" : false
 		}
 	]
-}]
+}*/]

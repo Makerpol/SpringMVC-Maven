@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.makerpol.dao.VideoMapper">
+	<resultMap id="userResultMap" type="com.makerpol.entity.Video" >
+		<id column="id" property="id" jdbcType="INTEGER" />
+    	<result column="videoname" property="videoname" jdbcType="VARCHAR" />
+    	<result column="path" property="path" jdbcType="VARCHAR" />
+    	<result column="date" property="date" jdbcType="VARCHAR" />
+    	<result column="paperid" property="paperid" jdbcType="INTEGER" />
+    	<result column="userid" property="userid" jdbcType="INTEGER" />
+    	<result column="icon" property="icon" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<select id="getAllVideos" resultType="list" resultMap="userResultMap" parameterType="int">
+		<![CDATA[         
+              select * from tb_video limit #{0},#{1}
+         ]]> 
+	</select>
+	
+	<select id="getCount" resultType="int" parameterType="string">
+		select count(id) from tb_video  
+		<trim prefix="where" prefixOverrides='add||or'>
+			<if test="_parameter != null">
+				add videoname like concat('%',#{0},'%')
+			</if>
+		</trim>
+	</select>
+	
+	<select id="getVideoByPaperId" parameterType="int" resultMap="userResultMap">
+		select * from tb_video where paperid = #{paperid}
+	</select>
+	
+	<select id="getVideoById" parameterType="int"  resultMap="userResultMap">    
+         <![CDATA[        
+             select * from tb_video where id = #{id}    
+         ]]>    
+	</select>  
+	
+	<select id="getVideoByName" parameterType="string"  resultMap="userResultMap">         
+         select * from tb_video where name = #{name}        
+	</select>
+	
+	<select id="getVideoList" parameterType="string" resultType="list"  resultMap="userResultMap">         
+         select * from
+           (select * from tb_video where videoname like concat('%',#{0},'%'))
+         as u
+         limit #{1},#{2}
+	</select>
+	
+	<update id="updataVideo" parameterType="com.makerpol.entity.Video">
+		update tb_video 
+		<set>
+		<if test="videoname != null">videoname = #{videoname,jdbcType=VARCHAR},</if>   
+		<if test="path != null">path = #{path,jdbcType=VARCHAR},</if>   
+        <if test="date != null">date = #{date,jdbcType=VARCHAR},</if>
+        <if test="paperid != null">paperid = #{paperid,jdbcType=INTEGER},</if>
+        <if test="userid != null">userid = #{userid,jdbcType=INTEGER,}</if>
+        <if test="icon != null">icon = #{icon,jdbcType=VARCHAR},</if>
+		</set>
+        
+        where id = #{id} 
+   </update>
+   
+   <insert id="addVideo" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.Video">   
+         insert into tb_video(videoname,path, date, paperid, userid, icon)   
+         values(#{videoname},#{path}, #{date}, #{paperid}, #{userid}, #{icon})   
+   </insert>
+   
+   <delete id="deleteVideo" parameterType="int">
+        delete from tb_video where id = #{id} 
+   </delete>
+</mapper>

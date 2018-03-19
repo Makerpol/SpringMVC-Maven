@@ -1,6 +1,12 @@
 function navBar(data){
+	//var grade = $("#userGrade").val();
+	var grade = document.getElementById("userGrade").value;
 	var ulHtml = '<ul class="layui-nav layui-nav-tree">';
 	for(var i=0;i<data.length;i++){
+		if(grade >= 2 && data[i].title == "用户管理"){
+			continue;
+		}
+		
 		if(data[i].spread){
 			ulHtml += '<li class="layui-nav-item layui-nav-itemed">';
 		}else{

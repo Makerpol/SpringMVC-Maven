@@ -17,8 +17,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
 </head>
 <body class="childrenBody">
 	<form class="layui-form">
@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-inline">		
 				<label class="layui-form-label">发布时间</label>
 				<div class="layui-input-inline">
-					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this})" value="${paper.date}">
+					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss',max:laydate.now()})" value="${paper.date}">
 				</div>
 			</div>
 			
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 		<div class="layui-inline">
 				<label class="layui-form-label">文章类型</label>
-				<div class="layui-input-inline">
+				<div class="layui-input-inline" id="paperType">
 					<select name="type" class="type" lay-filter="type">
 						<option value="0" <c:choose><c:when test='${paper.type == 0}'>selected</c:when></c:choose>>自然科学</option>
 						<option value="1" <c:choose><c:when test='${paper.type == 1}'>selected</c:when></c:choose>>工程技术</option>
@@ -59,6 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<option value="4" <c:choose><c:when test='${paper.type == 4}'>selected</c:when></c:choose>>哲学政法</option>
 						<option value="5" <c:choose><c:when test='${paper.type == 5}'>selected</c:when></c:choose>>社会科学</option>
 						<option value="6" <c:choose><c:when test='${paper.type == 6}'>selected</c:when></c:choose>>科教文艺</option>
+						<option value="7" <c:choose><c:when test='${paper.type == 7}'>selected</c:when></c:choose>>新闻报道</option>
 					</select>
 				</div>
 			</div>
@@ -92,7 +93,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 			<label class="layui-form-label">文章内容</label>
 			<div class="layui-input-block">
-				<textarea id="news_content" class="layui-textarea" name="content" lay-verify="content" >${paper.text}</textarea>
+				<script id="paper_content" type="text/plain" style="width:1260px;height:500px;">${paper.text}</script>
+				<%-- <textarea id="paper_content" class="layui-textarea" name="content" lay-verify="content" >${paper.text}</textarea> --%>
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -102,8 +104,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </div>
 		</div>
 	</form>
-	<script type="text/javascript" src="/layui/layui.js"></script>
-	<script type="text/javascript" src="/layui/lay/modules/jquery.js"></script>
-	<script type="text/javascript" src="/page/news/newsEdit.js"></script>
+	<script type="text/javascript" src="<%=path%>/UEditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="<%=path%>/UEditor/ueditor.all.js"></script>
+	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+	<script type="text/javascript" src="<%=path%>/layui/lay/modules/jquery.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/news/newsEdit.js"></script>
 </body>
 </html>

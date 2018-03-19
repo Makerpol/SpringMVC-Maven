@@ -17,8 +17,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
+<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
 </head>
 <body class="childrenBody">
 	<form class="layui-form">
@@ -45,7 +45,7 @@
 				<label class="layui-form-label">发布时间</label>
 				<div class="layui-input-inline">
 					<input type="text" class="layui-input newsTime" lay-verify="date"
-						onclick="layui.laydate({elem:this})">
+						onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss'})">
 				</div>
 			</div>
 
@@ -54,8 +54,8 @@
 		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">文章类型</label>
-				<div class="layui-input-inline">
-					<select name="type" class="type" lay-filter="type">
+				<div class="layui-input-inline" id="paperType">
+					<select name="type" class="type" lay-filter="type" >
 						<option value="0">自然科学</option>
 						<option value="1">工程技术</option>
 						<option value="2">医药卫生</option>
@@ -63,6 +63,7 @@
 						<option value="4">哲学政法</option>
 						<option value="5">社会科学</option>
 						<option value="6">科教文艺</option>
+						<option value="7">新闻报道</option>
 					</select>
 				</div>
 			</div>
@@ -98,8 +99,10 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">文章内容</label>
 			<div class="layui-input-block">
-				<textarea id="news_content" class="layui-textarea" name="content"
-					lay-verify="content"></textarea>
+				<script id="paper_content" type="text/plain" style="width:1260px;height:500px;"></script>
+			
+				<!-- <textarea id="news_content" class="layui-textarea" name="content"
+					lay-verify="content"></textarea> -->
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -109,7 +112,9 @@
 			</div>
 		</div>
 	</form>
-	<script type="text/javascript" src="/layui/layui.js"></script>
-	<script type="text/javascript" src="/page/news/newsAdd.js"></script>
+	<script type="text/javascript" src="<%=path%>/UEditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="<%=path%>/UEditor/ueditor.all.js"></script>
+	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/news/newsAdd.js"></script>
 </body>
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="contentDiv" onmouseover="getTop().stopPropagation(event);" onclick="getTop().preSwapLink(event, 'spam', 'ZC1611-bur_7QO45NKtQmA6c0n~O82');" style="position:relative;font-size:14px;height:auto;padding:15px 15px 10px 15px;z-index:1;zoom:1;line-height:1.7;" class="body">
+    <div id="qm_con_body">
+        <div id="mailContentContainer" class="qmbox qm_con_body_content qqmail_webmail_only" style="">
+            <style type="text/css">
+            .qmbox .mailcontentbox a {
+                font-size: 13px;
+                text-decoration: none;
+                color: #36C;
+                cursor: pointer;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .qmbox .mailcontentbox a:hover {
+                text-decoration: underline;
+            }
+            </style>
+            <div style="font-size: 13px;padding:40px;background-color: #F7F7F7;font-family:Arial, Helvetica, sans-serif; color:#333;">
+                <div class="mailcontentbox" style="min-width: 500px;max-width: 750px;">
+                    <div style="background-color: #333;">
+                    	<p style="color:white; margin-left:20px; font-size:15px;">河南科技</p>
+                    </div>
+                    <div style="border-width:0px 1px 2px 1px;border-style:solid;border-color:#D7D7D7;border-bottom-color:#333;padding:20px;background:#fff;">
+                        <p style="line-height:20px;padding-bottom:5px;">
+                            您好${username},
+                        </p>
+                        <p style="line-height:20px;padding-bottom:5px;">
+                            您申请的验证码是： 
+                        </p>
+                        <p style="background-color:#a7a7a7;width:40px;">${VerifyCode}</p>
+                        <p style="line-height:13px; margin: 40px 0px 10px">
+                            感谢您使用河南科技管理平台 
+                        </p>
+                     
+                    </div>
+                    <div style="color:#777;padding: 15px;">
+                        ©2017 河南科技.
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div style="width:1px;height:0px;overflow:hidden"><img style="width:0;height:0" src="javascript:;"></div>
+
+            <style type="text/css">
+            .qmbox style,
+            .qmbox script,
+            .qmbox head,
+            .qmbox link,
+            .qmbox meta {
+                display: none !important;
+            }
+            </style>
+        </div>
+    </div>
+    <!-- -->
+    <style>
+    #mailContentContainer .txt {
+        height: auto;
+    }
+    </style>
+</div>
+</body>
+</html>
+

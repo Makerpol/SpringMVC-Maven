@@ -6,6 +6,7 @@ import com.makerpol.entity.Nav;
 
 public interface NavService {
 	public List<Nav> getAllNav();
+	public List<Nav> getNavByType(Integer type);
 	public Nav  getNav(Integer id);
 	public Nav  getNav(String name);
 	public void updataNav(Nav nav);

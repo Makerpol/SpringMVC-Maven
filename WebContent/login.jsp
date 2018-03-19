@@ -9,9 +9,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>后台管理系统</title>
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="<%=path%>/css/login.css">
+  <link rel="icon" type="image/x-icon" href="images/Tech.ico"/>  
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/layui/layui.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=path%>/layui/layui.js" charset="utf-8"></script>
 </head>
 <body class="login-bg">
     <canvas id="fullstarbg">你的浏览器不支持canvas标签</canvas>
@@ -27,6 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <hr class="hr20" >
         </form>
         <div >${LoginMessige}</div>
+        <div class="Fmsg"><a href="verifyCode.jsp">忘记密码？</a></div>
     </div>
     <script>
     layui.use(['form']);
