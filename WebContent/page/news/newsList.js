@@ -6,7 +6,8 @@ layui.config({
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
 		laypage = layui.laypage,
 		$ = layui.jquery;
-
+	console.log(form);
+	
 	//加载页面数据
 	var newsData = '';
 	
@@ -237,7 +238,7 @@ layui.config({
 	function toPage(){
 		laypage({
 			cont : "page",
-			pages : paperCount,
+			pages : Math.ceil(paperCount/limit),
 			curr : currPage,
 			skip: true,
 			jump : function(obj,first){
@@ -264,31 +265,31 @@ layui.config({
 				switch(data[i].type)
 				{
 				case 0:
-					dataHtml += '<td>自然科学</td>';
+					dataHtml += '<td>通知公告</td>';
 					break;
 				case 1:
-					dataHtml += '<td>工程技术</td>';
+					dataHtml += '<td>图片新闻</td>';
 					break;
 				case 2:
-					dataHtml += '<td>医药卫生</td>';
+					dataHtml += '<td>工作动态</td>';
 					break;
 				case 3:
-					dataHtml += '<td>农业科学</td>';
+					dataHtml += '<td>科技资讯</td>';
 					break;
 				case 4:
-					dataHtml += '<td>哲学政法</td>';
+					dataHtml += '<td>科技文摘</td>';
 					break;
 				case 5:
-					dataHtml += '<td>社会科学</td>';
+					dataHtml += '<td>札记</td>';
 					break;
 				case 6:
-					dataHtml += '<td>科教文艺</td>';
+					dataHtml += '<td>随笔</td>';
 					break;
 				case 7:
-					dataHtml += '<td>新闻报道</td>';
+					dataHtml += '<td>观点</td>';
 					break;
 				default:
-					dataHtml += '<td>自然科学</td>';
+					dataHtml += '<td>通知公告</td>';
 				}
 				
 				dataHtml += '<td>'+data[i].author+'</td>';

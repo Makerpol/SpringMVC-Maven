@@ -22,6 +22,7 @@ layui.config({
 			url: "getVideoList.do?param="+param+"&start="+start+"&num="+num,
 			type:"get",
 			success:function(data){
+				console.log(data);
 				total = data.total;
 				renderDate(data.videos);
 				toPage();
@@ -34,7 +35,7 @@ layui.config({
 		for(var i=0;i<data.length;i++){
 			html += '<li>';
 			html += '<div  style="float: left;margin-right: 50px;background-color: #369e4c;width: 360px;height: 200px;margin-bottom:20px;">';
-			html += '<video class="video-js vjs-default-skin  vjs-big-play-centered" width="360" height="200" poster="'+data[i].icon+'" controls preload="metadata" data-setup="{}">';
+			html += '<video class="video-js vjs-default-skin  vjs-big-play-centered" width="360" height="200" poster="" controls preload="metadata" data-setup="{}">';
 			html += ' <source src="'+data[i].path+'" type="video/mp4">';
 			html += '</video></div>';
 			html += '<div style="float:left;position:relative;width:250px;height:200px; border-bottom: 1px solid #e5e9ef;">';
@@ -49,9 +50,9 @@ layui.config({
 	function toPage(){
 		laypage({
 			cont : "PDFpage",
-			pages : total,
+			pages : Math.ceil(total/num),
 			curr : currPage,
-			skip: false,
+			skip: true,
 			jump : function(obj,first){
 				currPage = obj.curr;
 				start = (obj.curr-1)*num;

@@ -1,9 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.makerpol.entity.User"%>
+<%@ page import="net.sf.json.JSONObject"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+User user = (User)session.getAttribute("LoginUser");
+String userInfo = JSONObject.fromObject(user).toString();
 %>
 
 <!DOCTYPE html>
@@ -19,6 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
+	<script type="text/javascript" src="<%=path%>/js/modules/jquery.min.js"></script>
+	<script type="text/javascript">
+		var user = '<%=userInfo%>';
+	</script>
 </head>
 <body class="childrenBody">
 	<form class="layui-form">
@@ -42,24 +50,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-inline">		
 				<label class="layui-form-label">发布时间</label>
 				<div class="layui-input-inline">
-					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss',max:laydate.now()})" value="${paper.date}">
+					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss',max:laydate.now(0)})" value="${paper.date}">
 				</div>
 			</div>
 			
 		</div>
 		<div class="layui-form-item">
 		<div class="layui-inline">
-				<label class="layui-form-label">文章类型</label>
+				<label class="layui-form-label">栏目类型</label>
 				<div class="layui-input-inline" id="paperType">
 					<select name="type" class="type" lay-filter="type">
-						<option value="0" <c:choose><c:when test='${paper.type == 0}'>selected</c:when></c:choose>>自然科学</option>
-						<option value="1" <c:choose><c:when test='${paper.type == 1}'>selected</c:when></c:choose>>工程技术</option>
-						<option value="2" <c:choose><c:when test='${paper.type == 2}'>selected</c:when></c:choose>>医药卫生</option>
-						<option value="3" <c:choose><c:when test='${paper.type == 3}'>selected</c:when></c:choose>>农业科学</option>
-						<option value="4" <c:choose><c:when test='${paper.type == 4}'>selected</c:when></c:choose>>哲学政法</option>
-						<option value="5" <c:choose><c:when test='${paper.type == 5}'>selected</c:when></c:choose>>社会科学</option>
-						<option value="6" <c:choose><c:when test='${paper.type == 6}'>selected</c:when></c:choose>>科教文艺</option>
-						<option value="7" <c:choose><c:when test='${paper.type == 7}'>selected</c:when></c:choose>>新闻报道</option>
+						<option value="0" disabled <c:choose><c:when test='${paper.type == 0}'>selected</c:when></c:choose>>通知公告</option>
+						<option value="1" disabled <c:choose><c:when test='${paper.type == 1}'>selected</c:when></c:choose>>图片新闻</option>
+						<option value="2" disabled <c:choose><c:when test='${paper.type == 2}'>selected</c:when></c:choose>>工作动态</option>
+						<option value="3" disabled <c:choose><c:when test='${paper.type == 3}'>selected</c:when></c:choose>>科技资讯</option>
+						<option value="4" disabled <c:choose><c:when test='${paper.type == 4}'>selected</c:when></c:choose>>科技文摘</option>
+						<option value="5" disabled <c:choose><c:when test='${paper.type == 5}'>selected</c:when></c:choose>>札记</option>
+						<option value="6" disabled <c:choose><c:when test='${paper.type == 6}'>selected</c:when></c:choose>>随笔</option>
+						<option value="7" disabled <c:choose><c:when test='${paper.type == 7}'>selected</c:when></c:choose>>观点</option>
 					</select>
 				</div>
 			</div>

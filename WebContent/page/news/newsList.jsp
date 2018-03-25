@@ -59,7 +59,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 				<tr>
 					<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
 					<th style="text-align:left;">文章标题</th>
-					<th>文章类型</th>
+					<th>栏目类型</th>
 					<th>作者</th>
 					<th>审核状态</th>
 					<th>浏览权限</th>

@@ -6,8 +6,6 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-User user = (User)session.getAttribute("LoginUser");
-String userInfo = JSONObject.fromObject(user).toString();
 %>
 
 <!DOCTYPE html>

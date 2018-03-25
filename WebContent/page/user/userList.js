@@ -238,7 +238,7 @@ layui.config({
 	function toPage(){
 		laypage({
 			cont : "page",
-			pages : total,
+			pages : Math.ceil(total/num),
 			curr : currPage,
 			skip: true,
 			jump : function(obj,first){

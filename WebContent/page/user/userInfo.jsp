@@ -56,7 +56,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 			</div>
-			
+			<div class="layui-form-item">
+				<label class="layui-form-label">管理栏目</label>
+				<div class="layui-input-block column" value="${User.colu}">
+					<input type="checkbox" name="" class="tzgg"  value="0" title="通知公告" >
+					<input type="checkbox" name="" class="tpxw"  value="1" title="图片新闻">
+					<input type="checkbox" name="" class="gzdt"  value="2" title="工作动态">
+					<input type="checkbox" name="" class="kjzx"  value="3" title="科技资讯">
+					<input type="checkbox" name="" class="kjwz"  value="4" title="科技文摘">
+					<input type="checkbox" name="" class="zj"  value="5" title="札记">
+					<input type="checkbox" name="" class="suib"  value="6" title="随笔">
+					<input type="checkbox" name="" class="gd"  value="7" title="观点">
+				</div>
+			</div>
 			<div class="layui-form-item">
 			    <label class="layui-form-label">真实姓名</label>
 			    <div class="layui-input-block">
@@ -86,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="user_right">
 			<input type="file" name="upfile" class="layui-upload-file" lay-title="我要换一个头像" <c:choose><c:when test="${sessionScope.LoginUser.id != User.id}">disabled="disabled"</c:when></c:choose>>
 			<p>预览</p>
-			<img src="${User.image}" class="layui-circle" id="userFace">
+			<img src="<%=path%>${User.image}" class="layui-circle" id="userFace">
 		</div>
 		<div class="layui-form-item" style="margin-left: 5%;">
 		    <div class="layui-input-block">
@@ -95,8 +107,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </div>
 		</div>
 	</form>
-	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
+	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script> 
 	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+	<script type="text/javascript" src="<%=path%>/layui/lay/modules/jquery.js"></script> 
+	<script type="text/javascript" src="<%=path%>/layui/lay/modules/form.js"></script> 
 	<script type="text/javascript" src="<%=path%>/page/user/user.js"></script>
+	
 </body>
 </html>
