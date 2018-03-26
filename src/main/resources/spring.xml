@@ -27,8 +27,8 @@
     <!-- 配置DataSource数据源   -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
-        <property name="url" value="jdbc:mysql://localhost:3306/mysql?characterEncoding=utf-8" />  
-        <property name="username" value="root" />  
+        <property name="url" value="jdbc:mysql://localhost:3306/hnkj?characterEncoding=utf-8" />  
+        <property name="username" value="HNKJ" />  
         <property name="password" value="1234" />   
     </bean>  
 	

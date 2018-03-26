@@ -51,8 +51,9 @@ public class BinaryUploader {
 					temp += savePathBySplit_temp[i];
 				}
 			}
-			String pathTemp = request.getSession().getServletContext().getRealPath("/");
-			pathTemp = String.valueOf(pathTemp) + "\\upload\\" + temp;
+			//String pathTemp = request.getSession().getServletContext().getRealPath("/");
+			String pathTemp = "/usr/filedb/";
+			pathTemp = String.valueOf(pathTemp) + "upload/" + temp;
 
 			File targetFile = new File(pathTemp);
 			if (!targetFile.exists()) {

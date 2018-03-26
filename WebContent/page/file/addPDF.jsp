@@ -31,7 +31,7 @@
 			<label class="layui-form-label">选择文件</label>
 			<div class="layui-input-block">
 				<input type="file" name="upfile" class="layui-upload-file" lay-title="选择PDF文件">
-				<img src="/images/shuji-005.jpg" class="PDFimage">
+				<img src="<%=path%>/images/shuji-005.jpg" class="PDFimage">
 			</div>
 	</div>
 	<div class="layui-form">

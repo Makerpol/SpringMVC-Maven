@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="user_right">
 			<input type="file" name="upfile" class="layui-upload-file" lay-title="我要换一个头像" <c:choose><c:when test="${sessionScope.LoginUser.id != User.id}">disabled="disabled"</c:when></c:choose>>
 			<p>预览</p>
-			<img src="${User.image}" class="layui-circle" id="userFace">
+			<img src="<%=path%>${User.image}" class="layui-circle" id="userFace">
 		</div>
 		<div class="layui-form-item" style="margin-left: 5%;">
 		    <div class="layui-input-block">

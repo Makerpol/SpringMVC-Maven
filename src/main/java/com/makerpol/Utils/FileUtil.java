@@ -47,8 +47,8 @@ public class FileUtil {
 	 */
 	public static Map<String,Object> upLoad(MultipartFile file, HttpServletRequest req) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		String path =req.getSession().getServletContext().getRealPath("/");//项目真实路径
-		
+		//String path =req.getSession().getServletContext().getRealPath("/");//项目真实路径
+		String path = "/usr/filedb";
 		String fileName = file.getOriginalFilename();//文件名
 		String suffix = getStrIndexOf(fileName, ".");//获取文件后缀
 		
@@ -56,7 +56,7 @@ public class FileUtil {
 		
 		String URL = getPath(req,fileName);//文件保存路径
 		
-		File temp = new File(path+URL);
+		File temp = new File(URL);
 		
 		checkParentFile(temp);
 		String icon = null;
@@ -80,12 +80,6 @@ public class FileUtil {
 			map.put("msg", "error");
 		}
 		return map;
-	}
-	
-	private String generateBookIamgeByType() {
-		
-		
-		return "";
 	}
 	
 	/**
@@ -183,9 +177,9 @@ public class FileUtil {
 		String type = getFileType(getStrIndexOf(filename,"."));
 		if("images".equals(type)) {
 			User user = (User)req.getSession().getAttribute("LoginUser");
-			return Common.DF_UPLOAD_PATH +type+"\\"+user.getName()+"\\"+filename;
+			return Common.DF_UPLOAD_PATH +type+"/"+user.getName()+"/"+filename;
 		}
-		return Common.DF_UPLOAD_PATH +type+"\\"+filename;
+		return Common.DF_UPLOAD_PATH +type+"/"+filename;
 	}
 	
 	

@@ -225,7 +225,7 @@ public class FileController {
 	}
 	
 	private String getNow() {
-		SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sf.format(new Date());
 	}
 	

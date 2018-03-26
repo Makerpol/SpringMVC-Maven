@@ -47,7 +47,7 @@ layui.config({
 			   title:"预览",
 			   type:2,
 			   area:['1200px','600px'],
-			   content:"PDFJS/web/viewer.html?file="+projectpath+pdfpath
+			   content:"PDFJS/web/viewer.html?file="+pdfpath
 		   })
 	  })
    
