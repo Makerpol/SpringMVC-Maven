@@ -70,6 +70,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="layui-form-item">
+			<label class="layui-form-label">管理期刊</label>
+			<div class="layui-input-block journal" value="${User.journal}">
+				<input type="checkbox" name="" class="cxkj"  value="0" title="创新科技">
+				<input type="checkbox" name="" class="hnkj" value="1" title="河南科技">
+				<input type="checkbox" name="" class="xckj" value="2" title="乡村科技">
+				<input type="checkbox" name="" class="yjbg" value="3" title="研究报告">
+				<input type="checkbox" name="" class="cxff" value="4" title="创新方法">
+			</div>
+		</div>
+			<div class="layui-form-item">
 			    <label class="layui-form-label">真实姓名</label>
 			    <div class="layui-input-block">
 			    	<input type="text" id="realname" value="${User.realname }" placeholder="请输入真实姓名" lay-verify="required" class="layui-input">

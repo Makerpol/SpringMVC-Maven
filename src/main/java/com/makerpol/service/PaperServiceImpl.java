@@ -56,12 +56,13 @@ public class PaperServiceImpl implements PaperService {
 	}
 
 	@Override
-	public List<Paper> getPaper(String param,Integer start,Integer num,String order) throws DataAccessException {
+	public List<Paper> getPaper(String param,Integer start,Integer num,String order, List column) throws DataAccessException {
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("param", param);
 		map.put("start", start);
 		map.put("num",num);
 		map.put("order", order);
+		map.put("column", column);
 		return this.getPaperByName(map);
 	}
 	
@@ -82,8 +83,11 @@ public class PaperServiceImpl implements PaperService {
 	}
 	
 	@Override
-	public int getPaperCount(String param) throws DataAccessException {
-		return mapper.getPaperCount(param);
+	public int getPaperCount(String param,List list) throws DataAccessException {
+		Map map = new HashMap();
+		map.put("param", param);
+		map.put("column", list);
+		return mapper.getPaperCount(map);
 	}
 	
 	@Override

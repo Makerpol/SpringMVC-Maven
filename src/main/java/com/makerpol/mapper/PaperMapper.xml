@@ -49,7 +49,13 @@
   
   <select id="getPaperListByName" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="map">
   	select * from
-  	  (select * from tb_paper where paper_name like concat('%',#{param},'%') 
+  	  (select * from tb_paper  
+  	  <where>
+  	  paper_name like concat('%',#{param},'%')
+  		<foreach collection="column" open=" and type in(" close=")" item="type" separator=",">
+  			#{type}
+  		</foreach>
+  	  </where>
   	  <if test="order == 'desc'">
   	  	order by date desc)
   	  </if>
@@ -71,20 +77,31 @@
   
   <select id="getPaperList" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="map">
   	select * from tb_paper limit #{start},#{num} 
-  		<if test="order == 'desc'">
-  			order by date desc
-  		</if>
-  		<if test="order == 'asc'">
-  			order by date asc
-  		</if>
+  	<where>
+  		<foreach collection="column" open=" and type in(" close=")" item="type" separator=",">
+  			#{type}
+  		</foreach>
+  	</where>		
+	<if test="order == 'desc'">
+		order by date desc
+	</if>
+	<if test="order == 'asc'">
+		order by date asc
+	</if>
   </select>
   
-  <select id="getPaperCount" resultType="int" parameterType="string">
+  <select id="getPaperCount" resultType="int" parameterType="map">
   	select count(id) from tb_paper 
   	<trim prefix="where" prefixOverrides='add||or'>
-  		<if test="_parameter != null">
-  			add paper_name like concat('%',#{0},'%')
+  		<if test="param != null">
+  			add paper_name like concat('%',#{param},'%')
   		</if>
+  		<if test="column != null">
+  			<foreach collection="column" open=" and type in(" close=")" item="type" separator=",">
+  				#{type}
+  			</foreach>
+  		</if>
+  		
   	</trim>
   </select>
   

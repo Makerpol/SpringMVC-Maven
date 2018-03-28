@@ -85,6 +85,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<input type="checkbox" name="" class="gd" value="7" title="观点">
 			</div>
 		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">期刊</label>
+			<div class="layui-input-block journal">
+				<input type="checkbox" name="" class="cxkj"  value="0" title="创新科技">
+				<input type="checkbox" name="" class="hnkj" value="1" title="河南科技">
+				<input type="checkbox" name="" class="xckj" value="2" title="乡村科技">
+				<input type="checkbox" name="" class="yjbg" value="3" title="研究报告">
+				<input type="checkbox" name="" class="cxff" value="4" title="创新方法">
+			</div>
+		</div>
 		<div class="layui-form-item">
 			<div class="layui-inline">
 			    <label class="layui-form-label">性别</label>

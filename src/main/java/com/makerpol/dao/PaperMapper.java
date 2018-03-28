@@ -20,7 +20,7 @@ public interface PaperMapper {
     
     public List<Paper> getPaperList(Map map) throws DataAccessException;
     
-    public int getPaperCount(String param) throws DataAccessException;
+    public int getPaperCount(Map map) throws DataAccessException;
     
     public int getWaitPaperCount() throws DataAccessException;
     

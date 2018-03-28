@@ -16,7 +16,7 @@ public class User {
 
     private Integer sex;		//性别
 
-    private String phone;			//电话
+    private String phone;		//电话
 
     private String email;		//邮箱
 
@@ -26,7 +26,25 @@ public class User {
     
     private String idcard;		//身份证
     
+    private String colu;		//栏目
+    
+    private String journal;		//期刊
+    
+	public String getJournal() {
+		return journal;
+	}
 
+	public void setJournal(String journal) {
+		this.journal = journal;
+	}
+
+	public String getColu() {
+		return colu;
+	}
+
+	public void setColu(String colu) {
+		this.colu = colu;
+	}
 
 	public String getIdcard() {
 		return idcard;

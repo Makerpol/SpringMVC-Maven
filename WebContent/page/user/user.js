@@ -11,16 +11,26 @@ layui.config({
 		laydate = layui.laydate;
 		
 		renderColumn();
+		renderJournal();
 		function renderColumn(){
 			var column = $(".column").attr("value");
 			column = column.replace(new RegExp(",", 'g'),"");
 			for(var i=0;i<column.length;i++){
-				checkboxSet(column.charAt(i));
+				columnCheckBoxSet(column.charAt(i));
 			}
 			form.render("checkbox");
 		}
-
-		function checkboxSet(value){
+		
+		function renderJournal(){
+			var Journal = $(".journal").attr("value");
+			Journal = Journal.replace(new RegExp(",", 'g'),"");
+			for(var i=0;i<Journal.length;i++){
+				journalCheckBoxSet(Journal.charAt(i));
+			}
+			form.render("checkbox");
+		}
+		
+		function columnCheckBoxSet(value){
 			var v = value;
 			switch (v){
 			case '0':
@@ -46,6 +56,27 @@ layui.config({
 				break;
 			case '7':
 				$(".gd").attr('checked', true);
+				break;
+			}
+		}
+		
+		function journalCheckBoxSet(value){
+			var v = value;
+			switch (v){
+			case '0':
+				$(".cxkj").attr('checked', true);
+				break;
+			case '1':
+				$(".hnkj").attr('checked', true);
+				break;
+			case '2':
+				$(".xckj").attr('checked', true);
+				break;
+			case '3':
+				$(".yjbg").attr('checked', true);
+				break;
+			case '4':
+				$(".cxff").attr('checked', true);
 				break;
 			}
 		}
@@ -109,6 +140,19 @@ layui.config({
         	return Column;
         }
         
+        function getJournalValue(){
+        	var Journal = '';
+        	var checkboxList = $('.journal input[type="checkbox"]:checked');
+        	for(var i=0;i<checkboxList.length;i++){
+        		console.log(checkboxList[i]);
+        		if(i>0){
+        			Journal += ",";
+        		}
+        		Journal += $(checkboxList[i]).val();
+        	}
+        	return Journal;
+        }
+        
         //提交个人资料
         form.on("submit(updataUser)",function(data){
         	var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
@@ -120,6 +164,7 @@ layui.config({
         	param.birthday = $("#birthday").val();
         	param.email = $("#email").val();
         	param.colu = getColumnValue();
+        	param.journal = getJournalValue();
         	//
         	$.ajax({'url':"updataUser.do",
         			'data': JSON.stringify(param),

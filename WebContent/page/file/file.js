@@ -149,9 +149,9 @@ layui.config({
     function toPage(){
 		laypage({
 			cont : "PDFpage",
-			pages : total,
+			pages : Math.ceil(total/num),
 			curr : currPage,
-			skip: false,
+			skip: true,
 			jump : function(obj,first){
 				currPage = obj.curr;
 				start = (obj.curr-1)*num;

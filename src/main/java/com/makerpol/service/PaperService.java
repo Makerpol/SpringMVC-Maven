@@ -13,11 +13,11 @@ public interface PaperService {
 	public void deletePaper(Integer id) throws DataAccessException ;
 	public void upDataPaper(Paper paper) throws DataAccessException ;
 	public Paper getPaper(Integer id) throws DataAccessException ;
-	public int getPaperCount(String param) throws DataAccessException ;
+	public int getPaperCount(String param,List list) throws DataAccessException ;
 	public int getWaitPaperCount() throws DataAccessException;
 	
 	public List<Paper> getPaper(String param) throws DataAccessException ;
-	public List<Paper> getPaper(String param,Integer start, Integer num,String order) throws DataAccessException ;
+	public List<Paper> getPaper(String param,Integer start, Integer num,String order,List column) throws DataAccessException ;
 	
 	public List<Paper> getPaper(String starTime,String endTime) throws DataAccessException ;
 	public List<Map> getPaperTypeList() throws DataAccessException ;	

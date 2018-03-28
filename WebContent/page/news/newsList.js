@@ -188,7 +188,7 @@ layui.config({
 			title : "编辑文章信息",
 			type : 2,
 			content : "toUpdataPaper.do?id="+id,
-			area : ['1400px', '600px'],
+			area : ['1500px', '620px'],
 			success : function(layero, index){
 				
 			},

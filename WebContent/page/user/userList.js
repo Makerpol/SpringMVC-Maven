@@ -196,7 +196,7 @@ layui.config({
 			type : 2,
 			shadeClose: false,
 			content : "searchUser.do?id="+id,
-			area : ['1400px', '600px'],
+			area : ['1500px', '620px'],
 			success : function(layero, index){
 				
 			},

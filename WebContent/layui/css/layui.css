@@ -236,7 +236,7 @@ a cite {
 
 .layui-body {
 	position: absolute;
-	left: 200px;
+	left: 120px;
 	right: 0;
 	top: 0;
 	bottom: 0;
@@ -255,7 +255,7 @@ a cite {
 
 .layui-layout-admin .layui-side {
 	top: 60px;
-	width: 200px;
+	width: 120px;
 	overflow-x: hidden
 }
 
@@ -271,7 +271,7 @@ a cite {
 
 .layui-layout-admin .layui-footer {
 	position: fixed;
-	left: 200px;
+	left: 120px;
 	right: 0;
 	bottom: 0;
 	height: 44px;

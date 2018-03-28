@@ -137,6 +137,19 @@ layui.config({
     	return Column;
     }
     
+    function getJournalValue(){
+    	var Journal = '';
+    	var checkboxList = $('.journal input[type="checkbox"]:checked');
+    	for(var i=0;i<checkboxList.length;i++){
+    		console.log(checkboxList[i]);
+    		if(i>0){
+    			Journal += ",";
+    		}
+    		Journal += $(checkboxList[i]).val();
+    	}
+    	return Journal;
+    }
+    
  	form.on("submit(addUser)",function(data){
  		
  		var param = {};
@@ -149,6 +162,7 @@ layui.config({
  		param.grade = $(".userGrade").val()
  		param.status = $(".userStatus").val()
  		param.colu = getColumnValue();
+ 		param.journal = getJournalValue();
  		
  		$.ajax({
  			url:"addUser.do",

@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.makerpol.entity.PDF;
 
 public interface FileMapper {
+	
 	int addFile(PDF file) throws DataAccessException ;
 	int deleteFile(Integer id) throws DataAccessException ;
 	int updataFile(PDF file) throws DataAccessException ;

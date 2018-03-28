@@ -183,9 +183,9 @@ public class FileUtil {
 		String type = getFileType(getStrIndexOf(filename,"."));
 		if("images".equals(type)) {
 			User user = (User)req.getSession().getAttribute("LoginUser");
-			return Common.DF_UPLOAD_PATH +type+"\\"+user.getName()+"\\"+filename;
+			return Common.DF_UPLOAD_PATH +type+"/"+user.getName()+"/"+filename;
 		}
-		return Common.DF_UPLOAD_PATH +type+"\\"+filename;
+		return Common.DF_UPLOAD_PATH +type+"/"+filename;
 	}
 	
 	

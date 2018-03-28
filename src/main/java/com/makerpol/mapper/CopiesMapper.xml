@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.makerpol.dao.CopiesMapper">
+	<resultMap type="com.makerpol.entity.Copies" id="copiesResultMap">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="papername" property="papername" jdbcType="VARCHAR"/>
+		<result column="author" property="author" jdbcType="VARCHAR"/>
+		<result column="phone" property="phone" jdbcType="VARCHAR"/>
+		<result column="adds" property="adds" jdbcType="VARCHAR"/>
+		<result column="qq" property="qq" jdbcType="VARCHAR"/>
+		<result column="filepath" property="filepath" jdbcType="VARCHAR"/>
+		<result column="email" property="email" jdbcType="VARCHAR"/>
+		<result column="remark" property="remark" jdbcType="VARCHAR"/>
+		<result column="date" property="date" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="INTEGER"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<select id="getCopiesById" parameterType="int"  resultMap="copiesResultMap">
+		<![CDATA[        
+             select * from tb_copies where id = #{id}    
+         ]]> 
+	</select>
+	
+	<select id="getCopiesByName" parameterType="string"  resultMap="copiesResultMap">
+		<![CDATA[        
+             select * from tb_copies where papername = #{papername}    
+         ]]> 
+	</select>
+	
+	<select id="getCopiesList" parameterType="map" resultType="list"  resultMap="copiesResultMap">         
+         <if test="param == null">
+         	select * from tb_copies limit #{start},#{num} order by date desc 
+         </if>
+         <if test="param != null">
+         	select * from
+           		(select * from tb_copies where papername like concat('%',#{param},'%') order by date desc)
+         	as u
+         	limit #{start},#{num}
+         </if>
+	</select>
+	
+	<select id="getCopiesListByType" parameterType="map" resultType="list"  resultMap="copiesResultMap">
+		select * from
+			(select * from tb_copies where type = #{type} order by date desc)
+		as u
+		limit #{start},#{num}	
+	</select>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.Copies">
+		insert into tb_copies(papername,author,phone,adds,qq,filepath,email,remark,date,type,status)
+		values(#{papername},#{author},#{phone},#{adds},#{qq},#{filepath},#{email},#{remark},#{date},#{type},#{status})
+	</insert>
+	
+	<update id="update" parameterType="com.makerpol.entity.Copies">
+		update tb_copies
+		<if test="papername != null">papername = #{papername,jdbcType=VARCHAR},</if>
+		<if test="author != null">author = #{author,jdbcType=VARCHAR},</if>
+		<if test="phone != null">phone = #{phone,jdbcType=VARCHAR},</if>
+		<if test="adds != null">adds = #{adds,jdbcType=VARCHAR},</if>
+		<if test="qq != null">qq = #{qq,jdbcType=VARCHAR},</if>
+		<if test="filepath != null">filepath = #{filepath,jdbcType=VARCHAR},</if>
+		<if test="email != null">email = #{email,jdbcType=VARCHAR},</if>
+		<if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
+		<if test="date != null">date = #{date,jdbcType=VARCHAR},</if>
+		<if test="type != null">type = #{type,jdbcType=INTEGER},</if>
+		<if test="status != null">status = #{status,jdbcType=INTEGER},</if>
+		 where id = #{id} 
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from tb_copies where id = #{id}
+	</delete>
+	
+</mapper>

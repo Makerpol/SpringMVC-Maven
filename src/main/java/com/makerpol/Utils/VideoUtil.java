@@ -20,7 +20,7 @@ public class VideoUtil {
 		String temp = getOutPath(videoPath);
 		StringBuffer videoCmd = new StringBuffer();
 		videoCmd.append(getClassPath());
-		videoCmd.append("\\ffmpeg -i ");
+		videoCmd.append("/ffmpeg -i ");
 		videoCmd.append(checkFilePath(videoPath));
 		videoCmd.append(" -vcodec libx264 -y -r 29.97 -b 768k -ar 24000 -ab 64k -s 1280x720 ");
 		videoCmd.append(temp);
@@ -29,7 +29,7 @@ public class VideoUtil {
 		
 		StringBuffer imgCmd = new StringBuffer();
 		imgCmd.append(getClassPath());
-		imgCmd.append("\\ffmpeg -ss 00:00:04 -i ");
+		imgCmd.append("/ffmpeg -ss 00:00:04 -i ");
 		imgCmd.append(temp);
 		imgCmd.append(".mp4");
 		imgCmd.append(" -f image2 -y ");
@@ -66,7 +66,7 @@ public class VideoUtil {
 		File file = new File(filePath);
 		
 		if(!file.exists()) {
-			filePath = getProjectPath()+"\\WebContent"+filePath;
+			filePath = getProjectPath()+"/WebContent"+filePath;
 		}
 		return changePath(filePath);
 	}

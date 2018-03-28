@@ -18,6 +18,8 @@
     <result column="grade" property="grade" jdbcType="INTEGER" />
     <result column="image" property="image" jdbcType="VARCHAR" />
     <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="colu" property="colu" jdbcType="VARCHAR" />
+    <result column="journal" property="journal" jdbcType="VARCHAR" />
   </resultMap>
   
   <!-- 与相应Mapper接口中同名的方法对应 -->
@@ -71,8 +73,10 @@
         <if test="birthday != null">birthday = #{birthday,jdbcType=VARCHAR},</if>
         <if test="realname != null">realname = #{realname,jdbcType=VARCHAR},</if>
         <if test="phone != null">phone = #{phone,jdbcType=VARCHAR},</if>
-        <if test="image != null">image = #{image,jdbcType=VARCHAR}</if>
-        <if test="idcard != null">idcard = #{idcard,jdbcType=VARCHAR}</if>
+        <if test="image != null">image = #{image,jdbcType=VARCHAR},</if>
+        <if test="idcard != null">idcard = #{idcard,jdbcType=VARCHAR},</if>
+        <if test="colu != null">colu = #{colu,jdbcType=VARCHAR},</if>
+        <if test="journal != null">journal = #{journal,jdbcType=VARCHAR},</if>
 		</set>
         
         where id = #{id} 
@@ -80,8 +84,8 @@
    
    <!-- 自动生成id策略 -->  
    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.User">   
-         insert into tb_user(status,grade, name, password, sex, realname, phone, email, idcard, image)   
-         values(#{status},#{grade}, #{name}, #{password}, #{sex}, #{realname}, #{phone}, #{email},#{idcard}, #{image})   
+         insert into tb_user(status,grade, name, password, sex, realname, phone, email, idcard, image, colu, journal)   
+         values(#{status},#{grade}, #{name}, #{password}, #{sex}, #{realname}, #{phone}, #{email},#{idcard}, #{image}, #{colu},#{journal})   
    </insert> 
     
     <delete id="deleteUser" parameterType="int">

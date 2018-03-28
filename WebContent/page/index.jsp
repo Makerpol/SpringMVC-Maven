@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="user-photo">
 				<a class="img" title="我的头像" ><img src="<%=path%>${user.image}"></a>
 				<input id="userGrade" value="${user.grade}" class="layui-hide">
-				<p>你好！<span class="userName">${user.name}</span>, 欢迎登录</p>
+				<p>你好！<span class="userName">${user.name}</span></p>
 			</div>
 			<div class="navBar layui-side-scroll"></div>
 		</div>

@@ -1,3 +1,4 @@
+var LoginUser = $.parseJSON(user);
 layui.config({
 	base : "js/"
 }).use(['form','layer','jquery','layedit','laydate'],function(){
@@ -6,8 +7,6 @@ layui.config({
 		laypage = layui.laypage,
 		layedit = layui.layedit,
 		$ = layui.jquery;
-	
-	$("#paperType dl").css("height","130px");
 	
 	urlArray = null;
 	
@@ -19,6 +18,53 @@ layui.config({
 			window.icon = arg[i].icon;
 		}
 	})
+	
+	renderSelect();
+	
+	function renderSelect(){
+		var colu = LoginUser.colu;
+		console.log(LoginUser);
+		colu = colu.replace(new RegExp(",","g"),"");
+		for(var i=0;i<colu.length;i++){
+			checkboxSet(colu.charAt(i));
+		}
+		form.render("select");
+		$("#paperType dl").css("height","130px");
+	}
+	
+	function checkboxSet(value){
+		
+		var options = $(".type option");
+		var v = value;
+		switch (v){
+		case '0':
+			console.log(v);
+			$(options[0]).removeAttr('disabled');
+			break;
+		case '1':
+			$(options[1]).removeAttr('disabled');
+			break;
+		case '2':
+			$(options[2]).removeAttr('disabled');
+			break;
+		case '3':
+			$(options[3]).removeAttr('disabled');
+			break;
+		case '4':
+			$(options[4]).removeAttr('disabled');
+			break;
+		case '5':
+			$(options[5]).removeAttr('disabled');
+			break;
+		case '6':
+			$(options[6]).removeAttr('disabled');
+			break;
+		case '7':
+			$(options[7]).removeAttr('disabled');
+			break;
+		}
+	}
+	
 	
 	//提交文章
  	form.on("submit(addNews)",function(data){

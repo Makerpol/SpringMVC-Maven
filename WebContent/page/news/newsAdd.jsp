@@ -1,8 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.makerpol.entity.User"%>
+<%@ page import="net.sf.json.JSONObject"%>  
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	User user = (User)session.getAttribute("LoginUser");
+	String userInfo = JSONObject.fromObject(user).toString();
 %>
 
 <!DOCTYPE html>
@@ -19,6 +23,10 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
 <link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
+<script type="text/javascript" src="<%=path%>/js/modules/jquery.min.js"></script>
+<script type="text/javascript">
+	var user = '<%=userInfo%>';
+</script>
 </head>
 <body class="childrenBody">
 	<form class="layui-form">
@@ -53,17 +61,17 @@
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-inline">
-				<label class="layui-form-label">文章类型</label>
+				<label class="layui-form-label">栏目类型</label>
 				<div class="layui-input-inline" id="paperType">
 					<select name="type" class="type" lay-filter="type" >
-						<option value="0">自然科学</option>
-						<option value="1">工程技术</option>
-						<option value="2">医药卫生</option>
-						<option value="3">农业科学</option>
-						<option value="4">哲学政法</option>
-						<option value="5">社会科学</option>
-						<option value="6">科教文艺</option>
-						<option value="7">新闻报道</option>
+						<option value="0" disabled>通知公告</option>
+						<option value="1" disabled>图片新闻</option>
+						<option value="2" disabled>工作动态</option>
+						<option value="3" disabled>科技资讯</option>
+						<option value="4" disabled>科技文摘</option>
+						<option value="5" disabled>札记</option>
+						<option value="6" disabled>随笔</option>
+						<option value="7" disabled>观点</option>
 					</select>
 				</div>
 			</div>

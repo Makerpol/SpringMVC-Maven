@@ -1,6 +1,7 @@
 package com.makerpol.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,12 +125,16 @@ public class PaperController {
 	 */
 	@RequestMapping(value="/getAllPaper")
 	@ResponseBody
-	public Map<String, Object> getAllPaper(@RequestParam String param ,@RequestParam Integer start,@RequestParam Integer num,@RequestParam String order) throws DataAccessException{
+	public Map<String, Object> getAllPaper(@RequestParam String param ,@RequestParam Integer start,@RequestParam Integer num,@RequestParam String order,HttpServletRequest req) throws DataAccessException{
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Paper> list = new ArrayList<Paper>();
+		User user = (User)req.getSession().getAttribute("LoginUser");
+		log.debug(user.getColu());
+		List column = Arrays.asList(user.getColu().split(","));
 
-		list = service.getPaper(param, start, num,order);
-		int total = service.getPaperCount(param);
+		
+		list = service.getPaper(param, start, num,order,column);
+		int total = service.getPaperCount(param,column);
 		
 		map.put("paperList", list);
 		map.put("total", total);
@@ -178,7 +183,7 @@ public class PaperController {
 	public Map<String, Object> getPaperListInfo(){
 		Map<String,Object> map = new HashMap<String, Object>();
 		try {
-			int total = service.getPaperCount(null);
+			int total = service.getPaperCount(null,null);
 			int wait = service.getWaitPaperCount();
 			map.put("total", total);
 			map.put("wait", wait);
