@@ -95,7 +95,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 		<div class="layui-form-item">
 			<label class="layui-form-label">内容摘要</label>
 			<div class="layui-input-block">
-				<textarea placeholder="请输入内容摘要" class="layui-textarea"></textarea>
+				<textarea placeholder="请输入内容摘要" class="layui-textarea">${paper.summary}</textarea>
 			</div>
 		</div>
 		<div class="layui-form-item">

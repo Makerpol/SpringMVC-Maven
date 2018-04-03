@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,16 +18,18 @@ public class VideoUtil {
 	
 	private static final Logger log = LoggerFactory.getLogger(VideoUtil.class);
 	
-	public static String[] transforToMp4(String videoPath) {
+	public static List<String> transforToMp4(String videoPath) {
 		String temp = getOutPath(videoPath);
-		StringBuffer videoCmd = new StringBuffer();
-		videoCmd.append(getClassPath());
-		videoCmd.append("/ffmpeg -i ");
-		videoCmd.append(checkFilePath(videoPath));
-		videoCmd.append(" -vcodec libx264 -y -r 29.97 -b 768k -ar 24000 -ab 64k -s 1280x720 ");
-		videoCmd.append(temp);
-		videoCmd.append(".mp4");
-		run(videoCmd.toString());
+		if(videoPath.lastIndexOf(".mp4")<0) {
+			StringBuffer videoCmd = new StringBuffer();
+			videoCmd.append(getClassPath());
+			videoCmd.append("/ffmpeg -i ");
+			videoCmd.append(checkFilePath(videoPath));
+			videoCmd.append(" -vcodec libx264 -y -r 29.97 -b 768k -ar 24000 -ab 64k -s 1280x720 ");
+			videoCmd.append(temp);
+			videoCmd.append(".mp4");
+			run(videoCmd.toString());
+		}
 		
 		StringBuffer imgCmd = new StringBuffer();
 		imgCmd.append(getClassPath());
@@ -37,10 +41,12 @@ public class VideoUtil {
 		imgCmd.append(".jpg");
 		run(imgCmd.toString());
 		
-		FileUtil.remove(checkFilePath(videoPath));
+		//FileUtil.remove(checkFilePath(videoPath));
 		temp = getRelativePath(temp);
-		String[] r = {temp+".mp4",temp+".jpg"};
-		return r;
+		List<String> list = new ArrayList<String>();
+		list.add(temp+".mp4");
+		list.add(temp+".jpg");
+		return list;
 	}
 	
 	//获取相对路径
@@ -105,15 +111,8 @@ public class VideoUtil {
 	}
 	
 	public static void main(String[] arg) {
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.println(sf.format(new Date()));
-		//checkFilePath("\\upload\\video\\20180367035428.avi");
-		//log.debug(isWindows()+"");
-		//File f = new File("F:\\JAVAworkspace\\SpringMVC-Maven\\WebContent\\upload\\video\\20180367035428.avi");
-		//System.out.println(getRelativePath(f.getPath()));
-		//transforToMp4("F:\\JAVAworkspace\\SpringMVC-Maven\\WebContent\\upload\\video\\20180367035428.avi");
-		System.out.println(getClassPath());
-		String out = checkFilePath("/upload/video/20180315/1521080988377094624.mp4");
-		System.out.println(out);
+		
+		transforToMp4("F:\\JAVAworkspace\\SpringMVC-Maven\\WebContent\\upload\\video\\20180367035428.avi");
+
 	}
 }

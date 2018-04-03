@@ -95,7 +95,7 @@ layui.config({
             setTimeout(function(){
             	for(var j=0;j<$checked.length;j++){
         			var id = $checked.eq(j).parents("tr").find(".news_del").attr("data-id");
-        			var oldStatus = $checked.eq(j).parents("tr").find("td:eq(3)").text()=="审核通过"?0:1;
+        			var oldStatus = $checked.eq(j).parents("tr").find("td:eq(4)").text()=="审核通过"?0:1;
         			var msg = auditAjax(id,oldStatus);
         			console.log(msg);
         			
@@ -104,11 +104,11 @@ layui.config({
         				if(oldStatus==1){
         					text = "审核通过";
         					//修改列表中的文字
-    						$checked.eq(j).parents("tr").find("td:eq(4)").text(text).removeAttr("style");
+    						$checked.eq(j).parents("tr").find("td:eq(5)").text(text).removeAttr("style");
         				}else{
         					text = "未审核";
         					//修改列表中的文字
-    						$checked.eq(j).parents("tr").find("td:eq(4)").text(text).attr("style","color:#f00");
+    						$checked.eq(j).parents("tr").find("td:eq(5)").text(text).attr("style","color:#f00");
         				}
         				
 						//将选中状态删除
@@ -260,6 +260,7 @@ layui.config({
 			for(var i=0;i<data.length;i++){
 				dataHtml += '<tr>'
 		    	+'<td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose"></td>'
+		    	+ '<td>'+data[i].id+'</td>'
 		    	+'<td align="left">'+data[i].paperName+'</td>';
 				
 				switch(data[i].type)

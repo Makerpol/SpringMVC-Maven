@@ -67,6 +67,9 @@ public class CopiesServiceImpl<T extends Copies> implements CopiesService<T> {
 
 	@Override
 	public int getCount(String param) throws DataAccessException {
+		if(param==null) {
+			return this.getCount();
+		}
 		return mapper.getCount(param);
 	}
 }

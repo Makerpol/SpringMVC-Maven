@@ -24,6 +24,7 @@
     <result column="power" property="power" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="clickCount" property="clickCount" jdbcType="INTEGER" />
+    <result column="summary" property="summary" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
@@ -190,6 +191,9 @@
       <if test="clickCount != null">
       	clickCount,
       </if>
+      <if test="summary != null">
+      	summary,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="paperName != null" >
@@ -221,6 +225,9 @@
       </if>
       <if test="clickCount != null">
       	#{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="summary != null">
+      	#{summary,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -261,6 +268,9 @@
       </if>
       <if test="clickCount != null">
       	clickCount = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="summary != null">
+      	summary = #{summary,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

@@ -66,15 +66,18 @@ public class FileUtil {
 				temp.createNewFile();
 			}
 			file.transferTo(temp);
-			if("pdf".equals(suffix)) {
-				icon = generateBookIamge(path,URL);
-				map.put("icon", icon);
-			}
-			
-			
 			map.put("code", 200);
 			map.put("msg", "success");
 			map.put("URL", URL);
+			
+			if("pdf".equals(suffix)) {
+				icon = generateBookIamge(path,URL);
+				map.put("icon", icon);
+			}else if("video".equals(getFileType(suffix))) {
+				List<String> list = VideoUtil.transforToMp4(path+URL);
+				map.put("icon", list.get(1));
+				map.put("URL", list.get(0));
+			}
 			
 		}catch(IOException | IllegalStateException e) {
 			map.put("msg", "error");

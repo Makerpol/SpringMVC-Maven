@@ -12,9 +12,8 @@ layui.config({
    
     layui.upload({
     	elem:"",
-    	url:"uploadFile.do",
+    	url:"uploadVideo.do",
     	type:"file",
-    	ext:"pdf|PDF",
     	success:function(data){
     		window.path = data.URL;
     		window.icon = data.icon;
@@ -26,24 +25,22 @@ layui.config({
     })
     
    $(".submit_btn").click(function(){
-    	console.log(window.path);
-    	console.log(window.icon);
     	if(window.path==null){
-    		layer.msg("未选择PDF文件，请先选择上传文件！");
+    		layer.msg("未选择视频文件，请先选择上传文件！");
     		return;
     	}
     	
     	var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
     	var param = {};
     	
-    	param.filename = $(".fileName").val();
+    	param.videoname = $(".fileName").val();
+    	
     	param.type = $(".type").val();
     	param.summary = $(".summary").val();
     	param.icon = window.icon;
     	param.path = window.path;
-    	console.log(param.path);
     	
-    	$.ajax({'url':"addFile.do",
+    	$.ajax({'url':"updateVideo.do",
 			'data': JSON.stringify(param),
 			'type':"POST",
 			'dataType':"json",

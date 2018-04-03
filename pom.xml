@@ -214,6 +214,7 @@
     				<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
     			</webAppConfig>
     				<webAppSourceDirectory>WebContent/</webAppSourceDirectory>
+    				<jvmArgs>-Xmx512m -XX:PermSize=128m -XX:MaxPermSize=256m-D file.encoding=GB2312</jvmArgs>
     			</configuration>
     		</plugin>
     		<plugin>  

@@ -1,10 +1,11 @@
+var path = path;
 layui.config({
 	base:"/js"
 }).use(["form","layer","jquery","laypage"],function(){
 	var layer = parent.layer === undefined ? layui.layer : parent.layer,
 		laypage = layui.laypage,
 		$ = layui.jquery,
-		form = layer.form;
+		form = layui.form();
 	
 	//总数
 	var total = 0;
@@ -30,26 +31,36 @@ layui.config({
 		});
 	}
 	
-	function renderDate(data){
+	function renderDate(data){	//渲染
 		var html = "";
 		for(var i=0;i<data.length;i++){
-			html += '<li>';
-			html += '<div  style="float: left;margin-right: 50px;background-color: #369e4c;width: 360px;height: 200px;margin-bottom:20px;">';
-			html += '<video class="video-js vjs-default-skin  vjs-big-play-centered" width="360" height="200" poster="" controls preload="metadata" data-setup="{}">';
-			html += ' <source src="'+data[i].path+'" type="video/mp4">';
-			html += '</video></div>';
-			html += '<div style="float:left;position:relative;width:250px;height:200px; border-bottom: 1px solid #e5e9ef;">';
-			html += '<a href="'+data[i].path+'" title="'+data[i].videoname+'">'+data[i].videoname+'</a>';
-			html += '<div style="padding-top: 14px;color: #99a2aa;">'+data[i].date+'</div>';
-			html += '</div></li>';
+			html += '<tr>';
+			html += '<td><input type="checkbox" name="checked" value="'+ data[i].id+'" lay-skin="primary" lay-filter="choose"></td>';
+			html += '<td style="text-align:left;">'+data[i].videoname+'</td>';
+			html += '<td>'+data[i].username+'</td>';
+			html += '<td>'+data[i].date+'</td>';
+			
+			if(data[i].paperid==0){
+				html += '<td>'+"无"+'</td>';
+			}else{
+				html += '<td style="color:red;">'+data[i].paperid+'</td>';
+			}
+			
+			html += '<td>';
+			html += '<a class="layui-btn layui-btn-mini links_edit" data-id="'+data[i].id+'"><i class="iconfont icon-edit"></i> 编辑</a>'
+			+  '<a class="layui-btn layui-btn-danger layui-btn-mini news_del" data-id="'+data[i].id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
+			+  '<a class="layui-btn layui-btn-mini news_text" data-id="'+data[i].id+'"><i class="iconfont icon-text"></i> 下载</a>'
+			html += '</td>';
+			html += '</tr>';
 		}
-		$("#videoList").html(html);
-		//form.render();
+		$(".video_content").html(html);
+		$('.video_list thead input[type="checkbox"]').prop("checked",false);
+		form.render();
 	}
 	
-	function toPage(){
+	function toPage(){	//分页
 		laypage({
-			cont : "PDFpage",
+			cont : "topage",
 			pages : Math.ceil(total/num),
 			curr : currPage,
 			skip: true,
@@ -69,7 +80,7 @@ layui.config({
 		var newArray = [];
 		var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
         setTimeout(function(){
-        	getVideoList(start,limit);
+        	getVideoList(start,num);
         	toPage();
             layer.close(index);
         },2000);
@@ -93,6 +104,49 @@ layui.config({
 		layui.layer.full(index);
 	})
 	
+	$("body").on("click",".links_edit",function(){	//编辑
+		var _this = $(this);
+		var id = _this.attr("data-id");
+		var index = layui.layer.open({
+			title : "编辑视频信息",
+			type : 2,
+			shadeClose: false,
+			content : "toVideoInfo.do?id="+id,
+			area : ['1500px', '620px'],
+			success : function(layero, index){
+				
+			},
+			end: function () {
+                location.reload();
+            }
+		})
+	})
 	
+	$("body").on("click",".news_del",function(){	//删除
+		var _this = $(this);
+		var t = _this.parents("tr").find("td:eq(4)").html();
+		if(t!="无"){
+			layer.open({
+				content: '当前视频已经被文章引用，无法直接删除！'
+			});     
+			return false;
+		}
+		layer.confirm('确定删除此信息？',{icon:3, title:'提示信息'},function(index){
+			var id = _this.attr("data-id");
+			$.ajax({'url':"deleteVideo.do",
+				'data': {'id':id},
+				'success':function(data){
+					if("error"==data.message){
+						setTimeout(function(){
+							layer.close(index);
+							layer.msg("提交失败！");
+						},2000);
+					}
+					_this.parents("tr").remove();
+				}
+			});
+			layer.close(index);
+		});
+	})
 	
 })

@@ -40,6 +40,20 @@
          </if>
 	</select>
 	
+	<select id="getCount" resultType="int" parameterType="map">
+		select count(id) from tb_copies 
+  		<trim prefix="where" prefixOverrides='add||or'>
+  		<if test="param != null">
+  			add papername like concat('%',#{param},'%')
+  		</if>
+  		<if test="types != null">
+  			<foreach collection="types" open=" and type in(" close=")" item="type" separator=",">
+  				#{type}
+  			</foreach>
+  		</if>
+  		</trim>
+	</select>
+	
 	<select id="getCopiesListByType" parameterType="map" resultType="list"  resultMap="copiesResultMap">
 		select * from
 			(select * from tb_copies where type = #{type} order by date desc)

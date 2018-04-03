@@ -68,9 +68,9 @@ public class BinaryUploader {
 			
 			if (storageState.isSuccess()) {
 				if("true".equals(conf.get("isVideo"))&& !"mp4".equals(suffix)) {
-					String[] urlList = VideoUtil.transforToMp4(savePath);
-					savePath = urlList[0];
-					String iconPath = urlList[1];
+					List<String> urlList = VideoUtil.transforToMp4(savePath);
+					savePath = urlList.get(0);
+					String iconPath = urlList.get(1);
 					storageState.putInfo("icon", PathFormat.format(iconPath));
 				}
 				

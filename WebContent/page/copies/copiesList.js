@@ -28,6 +28,116 @@ layui.use(["form","jquery","layer","laypage"],function(){
 		});
 	}
 	
+	function getOldStatus(s){
+		var OldStatus = 0;
+		switch(s){
+		case "未审核":
+			OldStatus = 0;
+			break;
+		case "已初审":
+			OldStatus = 1;
+			break;
+		case "已复审":
+			OldStatus = 2;
+			break;
+		case "已终审":
+			OldStatus = 3;
+			break;
+		}
+		return OldStatus;
+	}
+	
+	$(".audit_btn").click(function(){	//审核
+		var grade = LoginUser.grade;
+		var $checkbox = $('.copies_list tbody input[type="checkbox"][name="checked"]');
+		var $checked = $('.copies_list tbody input[type="checkbox"][name="checked"]:checked');
+		
+		if($checkbox.is(":checked")){
+			var index = layer.msg('审核中，请稍候',{icon: 16,time:false,shade:0.8});
+			
+			setTimeout(function(){
+            	for(var j=0;j<$checked.length;j++){
+        			var id = $checked.eq(j).parents("tr").find(".news_del").attr("data-id");
+        			var oldStatus = getOldStatus($checked.eq(j).parents("tr").find("td:eq(5)").text());
+        			var msg = auditAjax(id,oldStatus);
+        			console.log(msg);
+        			
+        			if(msg!="error"){
+        				var text = "";
+        				switch(oldStatus){
+        				case 0:
+        					text = "未审核";
+        					var color = LoginUser.grade==2?"color:#f00":'';
+        					$checked.eq(j).parents("tr").find("td:eq(6)").text(text).attr("style",color);
+        					break;
+        				case 1:
+        					text = "已初核";
+        					var color = LoginUser.grade==1?"color:#f00":'';
+        					$checked.eq(j).parents("tr").find("td:eq(6)").text(text).attr("style",color);
+        					break;
+        				case 2:
+        					text = "已复审";
+        					var color = LoginUser.grade==0?"color:#f00":'';
+        					$checked.eq(j).parents("tr").find("td:eq(6)").text(text).attr("style",color);
+        					break;
+        				case 3:
+        					text = "已终审";
+        					$checked.eq(j).parents("tr").find("td:eq(6)").text(text).removeAttr("style");
+        					break;
+        				}
+        				
+						//将选中状态删除
+						$checked.eq(j).parents("tr").find('input[type="checkbox"][name="checked"]').prop("checked",false);
+						form.render();
+        			}	
+            	}
+                layer.close(index);
+				layer.msg("审核成功");
+            },2000);
+		}else{
+			layer.msg("请选择需要审核的文章");
+		}
+	})
+	
+	function auditAjax(id,oldStatus){
+		var msg = null;
+		var param = {};
+		param.id = id;
+		param.status = oldStatus==0?1:0;
+		
+		$.ajax({
+			url : "updateCopies.do",
+			type : "post",
+			dataType : "json",
+			async: false,
+			'contentType':'application/json',
+			data : JSON.stringify(param),
+			success : function(data){
+				msg = data.message;
+			}
+		})
+		return msg;
+	}
+	
+	$(".newsAdd_btn").click(function(){
+		var index = layui.layer.open({
+			title : "添加新稿件",
+			type : 2,
+			content : "toCopiesAddPage.do",
+			success : function(layero, index){
+			
+			},
+			end: function () {
+                location.reload();
+            }
+		})
+		//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+	})
+	
 	function getTypeText(v){
 		var type = null;
 		switch(v){
@@ -63,7 +173,7 @@ layui.use(["form","jquery","layer","laypage"],function(){
 			status=LoginUser.grade==0?'<td style:"color:#f00">已复审</td>':'<td>已复审</td>';
 			break;
 		case 3:
-			status='<td>已复审</td>';
+			status='<td>已终审</td>';
 			break;
 		}
 		return status;

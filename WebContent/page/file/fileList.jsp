@@ -54,7 +54,7 @@
 
 		</ul>
 	</div>
-	<div id="PDFpage"></div>
+	<div id="topage"></div>
 	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
 	<script type="text/javascript" src="<%=path%>/page/file/file.js"></script>
 </body>

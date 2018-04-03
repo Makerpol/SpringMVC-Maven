@@ -148,7 +148,7 @@ layui.config({
     //分页
     function toPage(){
 		laypage({
-			cont : "PDFpage",
+			cont : "topage",
 			pages : Math.ceil(total/num),
 			curr : currPage,
 			skip: true,

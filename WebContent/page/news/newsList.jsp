@@ -47,6 +47,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 	  	<table class="layui-table">
 		    <colgroup>
 				<col width="50">
+				<col width="50">
 				<col>
 				<col width="9%">
 				<col width="9%">
@@ -58,7 +59,8 @@ String userInfo = JSONObject.fromObject(user).toString();
 		    <thead>
 				<tr>
 					<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
-					<th style="text-align:left;">文章标题</th>
+					<th>ID</th>
+					<th>文章标题</th>
 					<th>栏目类型</th>
 					<th>作者</th>
 					<th>审核状态</th>

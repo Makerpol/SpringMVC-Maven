@@ -19,7 +19,7 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
 <style type="text/css">
-.icon{
+.PDFimage{
 	width:200px;
 	height:250px;
 	margin-left:15px;
@@ -30,12 +30,19 @@
 </style>
 </head>
 <body class="childrenBody">
-	<div class="layui-inline">
-			<label class="layui-form-label">选择文件</label>
+	<div class="layui-form-item">
+		<div class="layui-inline">
+				<label class="layui-form-label">选择文件</label>
+				<div class="layui-input-block">
+					<input type="file" name="upfile" class="layui-upload-file" lay-title="选择视频文件">
+				</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">文件路径</label>
 			<div class="layui-input-block">
-				<input type="file" name="upfile" class="layui-upload-file" lay-title="选择视频文件">
-				<img src="<%=path%>/images/shuji-005.jpg" class="icon">
+				<input type="text" class="layui-input layui-disabled path">
 			</div>
+		</div>
 	</div>
 	<div class="layui-form">
 		<div class="layui-form-item">
@@ -43,6 +50,36 @@
 			<div class="layui-input-block">
 				<input type="text" maxlength="50" class="layui-input fileName"
 					lay-verify="required" placeholder="请输入文章标题">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">作者姓名</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input author"
+						lay-verify="required|author" placeholder="请输入作者姓名">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">联系电话</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input phone"
+						lay-verify="required|phone" placeholder="请输入联系电话">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<lable class="layui-form-label">地址</lable>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input adds"
+						lay-verify="required" placeholder="请输入联系地址">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<lable class="layui-form-label">邮箱</lable>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input mail"
+						lay-verify="required|mail" placeholder="请输入联系邮箱">
+				</div>
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -63,23 +100,24 @@
 			</div>
 
 			<div class="layui-inline">
-				<label class="layui-form-label">浏览权限</label>
+				<label class="layui-form-label">审核状态</label>
 				<div class="layui-input-inline">
-					<select name="browseLook" class="newsLook" lay-filter="browseLook">
-						<option value="0">开放浏览</option>
-						<option value="1">会员浏览</option>
+					<select name="browseLook" class="status" lay-filter="status">
+						<option value="0">未审核</option>
+						<option value="1">已初审</option>
+						<option value="2">已复核</option>
+						<option value="3">已终审</option>
 					</select>
 				</div>
 			</div>
 		</div>
 
 		<div class="layui-form-item">
-			<label class="layui-form-label">内容摘要</label>
+			<label class="layui-form-label">作者备注</label>
 			<div class="layui-input-block">
-				<textarea placeholder="请输入内容摘要" class="layui-textarea summary"></textarea>
+				<textarea placeholder="请输入作者备注" class="layui-textarea remark"></textarea>
 			</div>
 		</div>
-		
 		
 		<div class="layui-form-item">
 			<div class="layui-input-block">
@@ -89,6 +127,6 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
-	<script type="text/javascript" src="<%=path%>/page/video/addVideo.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/copies/copiesAdd.js"></script>
 </body>
 </html>

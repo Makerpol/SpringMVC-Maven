@@ -38,7 +38,6 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-
 			<div class="layui-inline">
 				<label class="layui-form-label">文章作者</label>
 				<div class="layui-input-inline">
@@ -47,8 +46,6 @@
 				</div>
 			</div>
 
-
-
 			<div class="layui-inline">
 				<label class="layui-form-label">发布时间</label>
 				<div class="layui-input-inline">
@@ -56,8 +53,6 @@
 						onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss'})">
 				</div>
 			</div>
-
-
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-inline">

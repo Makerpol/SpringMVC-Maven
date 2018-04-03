@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.makerpol.entity.User"%>
 <%@ page import="net.sf.json.JSONObject"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,53 +6,65 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+User user = (User)session.getAttribute("LoginUser");
+String userInfo = JSONObject.fromObject(user).toString();
 %>
-
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <title>文章列表--layui后台管理模板</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
-    <link rel="stylesheet" href="<%=path%>/css/common.css" media="all" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" rel="stylesheet">
-
-	
+	<meta charset="utf-8">
+	<title>后台管理模板</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="<%=path%>/css/news.css" media="all" />
+	<script type="text/javascript" src="<%=path%>/js/modules/jquery.min.js"></script>
+	<script type="text/javascript">
+		var user = '<%=userInfo%>';
+	</script>
 </head>
-
 <body class="childrenBody">
-    <blockquote class="layui-elem-quote news_search">
-        <div class="layui-inline">
-            <div class="layui-input-inline">
-                <input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
-            </div>
-            <a class="layui-btn search_btn">查询</a>
-        </div>
-        <div class="layui-inline">
-        	<a class="layui-btn file-addBtn">添加视频</a>
-        </div>
-        <div class="layui-inline">
-        	<a class="layui-btn file-eitBtn">编辑信息</a>
-        </div>
-    </blockquote>
-    <div class="layui-form">
-        <ul id="videoList">
-            
-        </ul>
-    </div>
-    <div id="PDFpage"></div>
-    
-    <script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
-    <script type="text/javascript" src="<%=path%>/page/video/videoList.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>
+	<blockquote class="layui-elem-quote news_search">
+		<div class="layui-inline">
+		    <div class="layui-input-inline">
+		    	<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
+		    </div>
+		    <a class="layui-btn search_btn">查询</a>
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn layui-btn-normal file-addBtn">添加视频</a>
+		</div>
+	</blockquote>
+	<div class="layui-form video_list">
+	  	<table class="layui-table">
+		    <colgroup>
+				<col width="50">
+				<col>
+				<col width="9%">
+				<col width="15%">
+				<col width="9%">
+				<col width="15%">
+		    </colgroup>
+		    <thead>
+				<tr>
+					<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
+					<th>视频标题</th>
+					<th>上传人</th>
+					<th>上传时间</th>
+					<th>引用文章ID</th>
+					<th>操作</th>
+				</tr> 
+		    </thead>
+		    <tbody class="video_content"></tbody>
+		</table>
+	</div>
+	<div id="topage"></div>
+	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/video/videoList.js"></script>
 </body>
-
 </html>

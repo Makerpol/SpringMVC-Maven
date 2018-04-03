@@ -15,6 +15,26 @@ public class Video {
 	
 	private String icon;
 	
+	private int type;
+	
+	private String summary;
+	
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
 	public int getId() {
 		return id;
 	}

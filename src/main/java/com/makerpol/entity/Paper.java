@@ -73,6 +73,16 @@ public class Paper {
      */
     private String text;
     
+    private String summary;
+    
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
 	public Integer getClickCount() {
 		return clickCount;
 	}

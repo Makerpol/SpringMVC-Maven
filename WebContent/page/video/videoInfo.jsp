@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -34,14 +36,14 @@
 			<label class="layui-form-label">选择文件</label>
 			<div class="layui-input-block">
 				<input type="file" name="upfile" class="layui-upload-file" lay-title="选择视频文件">
-				<img src="<%=path%>/images/shuji-005.jpg" class="icon">
+				<img src="${video.icon}" class="icon">
 			</div>
 	</div>
 	<div class="layui-form">
 		<div class="layui-form-item">
 			<label class="layui-form-label">文件名字</label>
 			<div class="layui-input-block">
-				<input type="text" maxlength="50" class="layui-input fileName"
+				<input type="text" maxlength="50" class="layui-input fileName" value="${video.videoname}"
 					lay-verify="required" placeholder="请输入文章标题">
 			</div>
 		</div>
@@ -50,14 +52,14 @@
 				<label class="layui-form-label">文章类型</label>
 				<div class="layui-input-inline" id="fileType">
 					<select name="type" class="type" lay-filter="type" >
-						<option value="0">自然科学</option>
-						<option value="1">工程技术</option>
-						<option value="2">医药卫生</option>
-						<option value="3">农业科学</option>
-						<option value="4">哲学政法</option>
-						<option value="5">社会科学</option>
-						<option value="6">科教文艺</option>
-						<option value="7">新闻报道</option>
+						<option value="0" <c:choose><c:when test="${video.type == 0}">selected='selected'</c:when></c:choose>>自然科学</option>
+						<option value="1" <c:choose><c:when test="${video.type == 1}">selected='selected'</c:when></c:choose>>工程技术</option>
+						<option value="2" <c:choose><c:when test="${video.type == 2}">selected='selected'</c:when></c:choose>>医药卫生</option>
+						<option value="3" <c:choose><c:when test="${video.type == 3}">selected='selected'</c:when></c:choose>>农业科学</option>
+						<option value="4" <c:choose><c:when test="${video.type == 4}">selected='selected'</c:when></c:choose>>哲学政法</option>
+						<option value="5" <c:choose><c:when test="${video.type == 5}">selected='selected'</c:when></c:choose>>社会科学</option>
+						<option value="6" <c:choose><c:when test="${video.type == 6}">selected='selected'</c:when></c:choose>>科教文艺</option>
+						<option value="7" <c:choose><c:when test="${video.type == 7}">selected='selected'</c:when></c:choose>>新闻报道</option>
 					</select>
 				</div>
 			</div>
@@ -76,7 +78,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">内容摘要</label>
 			<div class="layui-input-block">
-				<textarea placeholder="请输入内容摘要" class="layui-textarea summary"></textarea>
+				<textarea placeholder="请输入内容摘要"  class="layui-textarea summary">${video.summary}</textarea>
 			</div>
 		</div>
 		
@@ -89,6 +91,6 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
-	<script type="text/javascript" src="<%=path%>/page/video/addVideo.js"></script>
+	<script type="text/javascript" src="<%=path%>/page/video/videoInfo.js"></script>
 </body>
 </html>

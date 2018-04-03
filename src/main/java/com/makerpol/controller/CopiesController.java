@@ -21,18 +21,16 @@ import com.makerpol.entity.Copies;
 import com.makerpol.service.CopiesService;
 
 @Controller("copiescontroller")
-public class CopiesController<T extends Copies> implements BaseController<T> {
+public class CopiesController{
 	@Autowired
 	private CopiesService service;
 	private static final Logger log = LoggerFactory.getLogger(CopiesController.class);
 	
-	@Override
 	@RequestMapping("/toCopiesListPage")
 	public String toListPage() {
 		return "/page/copies/copiesList";
 	}
 
-	@Override
 	@RequestMapping("/toCopiesInfoPage")
 	public String toInfoPage(@RequestParam Integer id, Model model) {
 		Copies copies = (Copies) service.get(id);
@@ -40,17 +38,14 @@ public class CopiesController<T extends Copies> implements BaseController<T> {
 		return "/page/copies/copiesInfo";
 	}
 
-	@Override
 	@RequestMapping("/toCopiesAddPage")
-	
 	public String toAddPage() {
 		return "/page/copies/copiesAdd";
 	}
 
-	@Override
 	@RequestMapping(value="/addCopies")
 	@ResponseBody
-	public Map<String, Object> add(@RequestBody T t, HttpServletRequest req) {
+	public Map<String, Object> add(@RequestBody Copies t, HttpServletRequest req) {
 		Map<String, Object> map = new HashMap<String, Object>(); 
 		try {
 			service.add(t);
@@ -62,7 +57,6 @@ public class CopiesController<T extends Copies> implements BaseController<T> {
 		return map;
 	}
 
-	@Override
 	@RequestMapping(value="/deleteCopies")
 	@ResponseBody
 	public Map<String, Object> delete(@RequestParam int id) {
@@ -77,10 +71,9 @@ public class CopiesController<T extends Copies> implements BaseController<T> {
 		return map;
 	}
 
-	@Override
 	@RequestMapping(value="/updateCopies")
 	@ResponseBody
-	public Map<String, Object> update(@RequestBody T t) {
+	public Map<String, Object> update(@RequestBody Copies t) {
 		Map<String, Object> map = new HashMap<String,Object>();
 		try {
 			service.update(t);
@@ -92,7 +85,6 @@ public class CopiesController<T extends Copies> implements BaseController<T> {
 		return map;
 	}
 
-	@Override
 	@RequestMapping(value="/getCopies")
 	@ResponseBody
 	public Map<String,Object> get(@RequestParam Integer id) {
@@ -108,15 +100,14 @@ public class CopiesController<T extends Copies> implements BaseController<T> {
 		return map;
 	}
 
-	@Override
 	@RequestMapping(value="/getCopiesList")
 	@ResponseBody
 	public Map<String,Object> get(@RequestParam String param,@RequestParam Integer start,@RequestParam Integer num) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
 			List<Copies> list = service.get(param, start, num);
-			int total = service.getCount(param);
-			map.put("total", total);
+			//int total = service.getCount(param);
+			//map.put("total", total);
 			map.put("copiesList", list);
 			map.put("msg", "success");
 		}catch(DataAccessException e) {

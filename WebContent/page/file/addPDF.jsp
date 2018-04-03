@@ -19,7 +19,7 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
 <style type="text/css">
-.PDFimage{
+.icon{
 	width:200px;
 	height:250px;
 	margin-left:15px;
@@ -31,7 +31,7 @@
 			<label class="layui-form-label">选择文件</label>
 			<div class="layui-input-block">
 				<input type="file" name="upfile" class="layui-upload-file" lay-title="选择PDF文件">
-				<img src="<%=path%>/images/shuji-005.jpg" class="PDFimage">
+				<img src="<%=path%>/images/shuji-005.jpg" class="icon">
 			</div>
 	</div>
 	<div class="layui-form">

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.makerpol.dao.VideoMapper">
+	<!-- javabean类型 -->
 	<resultMap id="userResultMap" type="com.makerpol.entity.Video" >
 		<id column="id" property="id" jdbcType="INTEGER" />
     	<result column="videoname" property="videoname" jdbcType="VARCHAR" />
@@ -9,6 +10,22 @@
     	<result column="paperid" property="paperid" jdbcType="INTEGER" />
     	<result column="userid" property="userid" jdbcType="INTEGER" />
     	<result column="icon" property="icon" jdbcType="VARCHAR" />
+    	<result column="type" property="type" jdbcType="INTEGER" />
+    	<result column="summary" property="summary" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 一般map类型 -->
+	<resultMap type="map" id="videomap">
+		<id column="id" property="id" javaType="INTEGER"/>
+		<result column="videoname" property="videoname" jdbcType="VARCHAR" />
+    	<result column="path" property="path" jdbcType="VARCHAR" />
+    	<result column="date" property="date" jdbcType="VARCHAR" />
+    	<result column="paperid" property="paperid" jdbcType="INTEGER" />
+    	<result column="userid" property="userid" jdbcType="INTEGER" />
+    	<result column="icon" property="icon" jdbcType="VARCHAR" />
+    	<result column="type" property="type" jdbcType="INTEGER" />
+    	<result column="summary" property="summary" jdbcType="VARCHAR" />
+    	<result column="username" property="username" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	
@@ -48,6 +65,25 @@
          limit #{1},#{2}
 	</select>
 	
+	<select id="getVideoList1" parameterType="string" resultType="String" resultMap="videomap">         
+         select * from
+           (select v.id,v.videoname,
+           		(select name from tb_user u where u.id = v.userid) as username,v.date,v.paperid
+            from tb_video v where videoname like concat('%',#{0},'%') )
+         as u
+         limit #{1},#{2}
+	</select>
+	
+	
+	<select id="getUserNameList"  parameterType="java.util.List" resultType="String">
+		select realname from tb_user 
+		<where>
+			<foreach collection="list" open=" and id in(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</where>
+	</select>
+	
 	<update id="updataVideo" parameterType="com.makerpol.entity.Video">
 		update tb_video 
 		<set>
@@ -57,14 +93,16 @@
         <if test="paperid != null">paperid = #{paperid,jdbcType=INTEGER},</if>
         <if test="userid != null">userid = #{userid,jdbcType=INTEGER,}</if>
         <if test="icon != null">icon = #{icon,jdbcType=VARCHAR},</if>
+        <if test="type != null">type = #{type,jdbcType=INTEGER},</if>
+        <if test="summary != null">summary = #{summary,jdbcType=VARCHAR},</if>
 		</set>
         
         where id = #{id} 
    </update>
    
    <insert id="addVideo" useGeneratedKeys="true" keyProperty="id" parameterType="com.makerpol.entity.Video">   
-         insert into tb_video(videoname,path, date, paperid, userid, icon)   
-         values(#{videoname},#{path}, #{date}, #{paperid}, #{userid}, #{icon})   
+         insert into tb_video(videoname,path, date, paperid, userid, icon,type,summary)   
+         values(#{videoname},#{path}, #{date}, #{paperid}, #{userid}, #{icon},#{type},#{summary})   
    </insert>
    
    <delete id="deleteVideo" parameterType="int">

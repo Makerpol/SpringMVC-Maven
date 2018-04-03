@@ -16,8 +16,8 @@ layui.config({
     	type:"file",
     	success:function(data){
     		window.path = data.URL;
-    		//window.icon = data.icon;
-    		//$(".PDFimage").attr("src",data.icon);
+    		window.icon = data.icon;
+    		$(".icon").attr("src",data.icon);
     		$(".layui-btn").removeAttr("disabled");
     		$(".layui-upload-file").attr("disabled","true");
     		$(".layui-upload-file").removeAttr("name");
@@ -35,9 +35,9 @@ layui.config({
     	
     	param.videoname = $(".fileName").val();
     	
-    	//param.type = $(".type").val();
-    	//param.summary = $(".summary").val();
-    	//param.icon = window.icon;
+    	param.type = $(".type").val();
+    	param.summary = $(".summary").val();
+    	param.icon = window.icon;
     	param.path = window.path;
     	
     	$.ajax({'url':"addVideo.do",
