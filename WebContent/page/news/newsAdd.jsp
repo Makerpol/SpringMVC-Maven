@@ -53,8 +53,23 @@
 						onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss'})">
 				</div>
 			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">栏目类型</label>
+				<div class="layui-input-inline" id="paperType">
+					<select name="type" class="type" lay-filter="type" >
+						<option value="0" disabled>通知公告</option>
+						<option value="1" disabled>图片新闻</option>
+						<option value="2" disabled>工作动态</option>
+						<option value="3" disabled>科技资讯</option>
+						<option value="4" disabled>科技文摘</option>
+						<option value="5" disabled>札记</option>
+						<option value="6" disabled>随笔</option>
+						<option value="7" disabled>观点</option>
+					</select>
+				</div>
+			</div>
 		</div>
-		<div class="layui-form-item">
+		<!--<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">栏目类型</label>
 				<div class="layui-input-inline" id="paperType">
@@ -71,7 +86,7 @@
 				</div>
 			</div>
 
-			<div class="layui-inline">
+			 <div class="layui-inline">
 				<label class="layui-form-label">浏览权限</label>
 				<div class="layui-input-inline">
 					<select name="browseLook" class="newsLook" lay-filter="browseLook">
@@ -79,16 +94,16 @@
 						<option value="1">会员浏览</option>
 					</select>
 				</div>
-			</div>
-		</div>
+			</div> 
+		</div>-->
 
 		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">自定义属性</label>
 				<div class="layui-input-block">
-					<input type="checkbox" name="tuijian" class="tuijian" title="推荐">
+					<input type="checkbox" name="top" class="top" title="置顶">
 					<input type="checkbox" name="shenhe" class="newsStatus" title="审核">
-					<input type="checkbox" name="show" class="isShow" title="展示">
+					<!-- <input type="checkbox" name="show" class="isShow" title="展示"> -->
 				</div>
 			</div>
 		</div>

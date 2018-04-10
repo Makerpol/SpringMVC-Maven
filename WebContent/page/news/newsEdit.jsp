@@ -53,9 +53,23 @@ String userInfo = JSONObject.fromObject(user).toString();
 					<input type="text" class="layui-input newsTime" lay-verify="date" onclick="layui.laydate({elem:this,format:'YYYY-MM-DD hh:mm:ss',max:laydate.now(0)})" value="${paper.date}">
 				</div>
 			</div>
-			
+			<div class="layui-inline">
+				<label class="layui-form-label">栏目类型</label>
+				<div class="layui-input-inline" id="paperType">
+					<select name="type" class="type" lay-filter="type">
+						<option value="0" disabled <c:choose><c:when test='${paper.type == 0}'>selected</c:when></c:choose>>通知公告</option>
+						<option value="1" disabled <c:choose><c:when test='${paper.type == 1}'>selected</c:when></c:choose>>图片新闻</option>
+						<option value="2" disabled <c:choose><c:when test='${paper.type == 2}'>selected</c:when></c:choose>>工作动态</option>
+						<option value="3" disabled <c:choose><c:when test='${paper.type == 3}'>selected</c:when></c:choose>>科技资讯</option>
+						<option value="4" disabled <c:choose><c:when test='${paper.type == 4}'>selected</c:when></c:choose>>科技文摘</option>
+						<option value="5" disabled <c:choose><c:when test='${paper.type == 5}'>selected</c:when></c:choose>>札记</option>
+						<option value="6" disabled <c:choose><c:when test='${paper.type == 6}'>selected</c:when></c:choose>>随笔</option>
+						<option value="7" disabled <c:choose><c:when test='${paper.type == 7}'>selected</c:when></c:choose>>观点</option>
+					</select>
+				</div>
+			</div>
 		</div>
-		<div class="layui-form-item">
+		<%-- <div class="layui-form-item">
 		<div class="layui-inline">
 				<label class="layui-form-label">栏目类型</label>
 				<div class="layui-input-inline" id="paperType">
@@ -80,15 +94,15 @@ String userInfo = JSONObject.fromObject(user).toString();
 				    </select>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 		
 		<div class="layui-form-item">
 		<div class="layui-inline">
 			<label class="layui-form-label">自定义属性</label>
 			<div class="layui-input-block" >
-				<input type="checkbox" class="tuijian" name="tuijian" title="推荐" >
+				<input type="checkbox" class="top" name="top" title="置顶" <c:choose><c:when test='${paper.top == 1}'>checked</c:when></c:choose>>
 				<input type="checkbox"  class="newsStatus" name="shenhe" title="审核" <c:choose><c:when test='${paper.status == 0}'>checked</c:when></c:choose>>
-				<input type="checkbox"  class="isShow" name="show" title="展示" <c:choose><c:when test='${paper.show == 0}'>checked</c:when></c:choose>>
+				<%-- <input type="checkbox"  class="isShow" name="show" title="展示" <c:choose><c:when test='${paper.show == 0}'>checked</c:when></c:choose>> --%>
 			</div>
 		</div>
 		</div>

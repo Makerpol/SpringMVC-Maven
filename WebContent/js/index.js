@@ -1,4 +1,6 @@
 var $,tab,skyconsWeather;
+md5;
+var user = $.parseJSON(user);
 layui.config({
 	base : "js/"
 }).use(['bodyTab','form','element','layer','jquery'],function(){
@@ -44,9 +46,10 @@ layui.config({
 	// 解锁
 	$("#unlock").on("click",function(){
 		if($(this).siblings(".admin-header-lock-input").val() == ''){
-			layer.msg("请输入解锁密码！");
+			layer.msg("请输入用户密码！");
 		}else{
-			if($(this).siblings(".admin-header-lock-input").val() == "123456"){
+			var p = md5($(this).siblings(".admin-header-lock-input").val()).toUpperCase();
+			if(p === user.password){
 				window.sessionStorage.setItem("lockcms",false);
 				$(this).siblings(".admin-header-lock-input").val('');
 				layer.closeAll("page");
@@ -55,8 +58,9 @@ layui.config({
 			}
 		}
 	});
-	$(document).on('keydown', function() {
-		if(event.keyCode == 13) {
+	$(document).on('keydown', function(e) {
+		 var e = e || event || window.event || arguments.callee.caller.arguments[0];
+		if(e.keyCode == 13 || e.which == 13) {
 			$("#unlock").click();
 		}
 	});

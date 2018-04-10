@@ -37,15 +37,26 @@ layui.config({
 		getPaperList(start,limit);
 	})
 	
-	//查询
-	$(".search_btn").click(function(){
-		var newArray = [];
-			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
+	document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) {
+        	var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
             setTimeout(function(){
             	getPaperList(start,limit);
             	toPage();
                 layer.close(index);
             },500);
+        }
+    };
+	
+	//查询
+	$(".search_btn").click(function(){
+		var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
+        setTimeout(function(){
+        	getPaperList(start,limit);
+        	toPage();
+            layer.close(index);
+        },500);
 	})
 	
 	
@@ -261,7 +272,7 @@ layui.config({
 				dataHtml += '<tr>'
 		    	+'<td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose"></td>'
 		    	+ '<td>'+data[i].id+'</td>'
-		    	+'<td align="left">'+data[i].paperName+'</td>';
+		    	+'<td align="left" title="'+data[i].paperName+'">'+data[i].paperName+'</td>';
 				
 				switch(data[i].type)
 				{
@@ -299,10 +310,10 @@ layui.config({
 		    	}else{
 		    		dataHtml += '<td style="color:#f00">未审核</td>';
 		    	}
-		    	if(data[i].power == 1){
-		    		dataHtml += '<td>开放浏览</td>';
+		    	if(data[i].top == 1){
+		    		dataHtml += '<td style="color:#f00">是</td>';
 		    	}else{
-		    		dataHtml += '<td>会员浏览</td>';
+		    		dataHtml += '<td>否</td>';
 		    	}
 		    	
 		    	dataHtml += ''

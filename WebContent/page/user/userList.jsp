@@ -33,7 +33,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 	<blockquote class="layui-elem-quote news_search">
 		<div class="layui-inline">
 		    <div class="layui-input-inline">
-		    	<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
+		    	<input type="text" value="" placeholder="请输入真实姓名" class="layui-input search_input">
 		    </div>
 		    <a class="layui-btn search_btn">查询</a>
 		</div>
@@ -45,7 +45,8 @@ String userInfo = JSONObject.fromObject(user).toString();
 	  	<table class="layui-table">
 		    <colgroup>
 				<col width="50">
-				<col width="30%">
+				<col width="13%">
+				<col>
 				<col>
 				<col>
 				<col>
@@ -56,7 +57,8 @@ String userInfo = JSONObject.fromObject(user).toString();
 		    <thead>
 				<tr>
 					<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
-					<th style="text-align:left;">用户名称</th>
+					<th>真实姓名</th>
+					<th>登录账户</th>
 					<th>用户组</th>
 					<th>邮箱</th>
 					<th>电话</th>

@@ -1,7 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.makerpol.entity.User"%>
+<%@ page import="net.sf.json.JSONObject"%>  
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+User user = (User)session.getAttribute("LoginUser");
+String userInfo = JSONObject.fromObject(user).toString();
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -20,6 +24,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="<%=path%>/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="<%=path%>/css/font_eolqem241z66flxr.css" media="all" />
 	<link rel="stylesheet" href="<%=path%>/css/main.css" media="all" />
+	<script type="text/javascript" src="<%=path%>/js/modules/jquery.min.js"></script>
+	<script type="text/javascript">
+		var user = '<%=userInfo%>';
+	</script>
 </head>
 <body class="main_body">
 	<div class="layui-layout layui-layout-admin">
@@ -29,9 +37,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="#" class="logo">后台管理系统</a>
 			    <!-- 顶部右侧菜单 -->
 			    <ul class="layui-nav top_menu">
-			    	<li class="layui-nav-item showNotice" id="showNotice" pc>
-						<a href="javascript:;"><i class="iconfont icon-gonggao"></i><cite>系统公告</cite></a>
-					</li>
 			    	<li class="layui-nav-item" mobile>
 			    		<a href="javascript:;" data-url="<%=path%>/page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>设置</cite></a>
 			    	</li>
@@ -85,20 +90,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- 锁屏 -->
 	<div class="admin-header-lock" id="lock-box" style="display: none;">
-		<div class="admin-header-lock-img"><img src="<%=path%>/images/luna.jpg"/></div>
+		<div class="admin-header-lock-img"><img src="<%=path%>${user.image}"/></div>
 		<div class="admin-header-lock-name" id="lockUserName">${user.realname}</div>
 		<div class="input_btn">
-			<input type="password" class="admin-header-lock-input layui-input" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />
+			<input type="password" class="admin-header-lock-input layui-input" placeholder="请输入登录密码" name="lockPwd" id="lockPwd" />
 			<button class="layui-btn" id="unlock">解锁</button>
 		</div>
-		<p>请输入“123456”，否则不会解锁成功哦！！！</p>
 	</div>
 	<!-- 移动导航 -->
 	<div class="site-tree-mobile layui-hide"><i class="layui-icon">&#xe602;</i></div>
 	<div class="site-mobile-shade"></div>
 
+	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
 	<script type="text/javascript" src="<%=path%>/js/nav.js"></script>
 	<script type="text/javascript" src="<%=path%>/js/leftNav.js"></script>
 	<script type="text/javascript" src="<%=path%>/js/index.js"></script>
+	
 </body>
 </html>

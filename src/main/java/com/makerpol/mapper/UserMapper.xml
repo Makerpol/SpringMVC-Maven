@@ -36,7 +36,7 @@
 		select count(id) from tb_user  
 		<trim prefix="where" prefixOverrides='add||or'>
 			<if test="_parameter != null">
-				add name like concat('%',#{0},'%')
+				add realname like concat('%',#{0},'%')
 			</if>
 		</trim>
 	</select>   
@@ -53,7 +53,7 @@
 	
 	<select id="getUserList" parameterType="string" resultType="list"  resultMap="userResultMap">         
          select * from
-           (select * from tb_user where name like concat('%',#{0},'%'))
+           (select * from tb_user where realname like concat('%',#{0},'%'))
          as u
          limit #{1},#{2}
 	</select>

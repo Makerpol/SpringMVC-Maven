@@ -56,15 +56,16 @@
   		<foreach collection="column" open=" and type in(" close=")" item="type" separator=",">
   			#{type}
   		</foreach>
+  		)
   	  </where>
-  	  <if test="order == 'desc'">
-  	  	order by date desc)
-  	  </if>
-  	  <if test="order == 'asc'">
-  	  	order by date asc)
-  	  </if>
   	  
-  	as p 
+  	as p order by case when top=1 then id end desc,case when top=0 then date end 
+  	<if test="order == 'desc'">
+  		desc
+  	</if>
+  	<if test="order == 'asc'">
+  		asc
+  	</if>
   	limit #{start},#{num}
   </select>
    
@@ -77,18 +78,20 @@
   </select>
   
   <select id="getPaperList" resultType="list" resultMap="ResultMapWithBLOBs" parameterType="map">
-  	select * from tb_paper limit #{start},#{num} 
+  	select * from tb_paper 
   	<where>
   		<foreach collection="column" open=" and type in(" close=")" item="type" separator=",">
   			#{type}
   		</foreach>
   	</where>		
+  	 order by case when top=1 then id end desc,case when top=0 then date end 
 	<if test="order == 'desc'">
 		order by date desc
 	</if>
 	<if test="order == 'asc'">
 		order by date asc
 	</if>
+	limit #{start},#{num} 
   </select>
   
   <select id="getPaperCount" resultType="int" parameterType="map">

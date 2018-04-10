@@ -135,7 +135,6 @@ public class VideoController {
 		}catch(DataAccessException e) {
 			log.error(e.toString());
 		}
-		
 		return map;
 	}
 }

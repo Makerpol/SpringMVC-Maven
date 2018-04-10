@@ -197,7 +197,7 @@ layui.config({
         form.on("submit(changePwd)",function(data){
         	var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
         	var param = {};
-        	param.password = $("#firstPwd").val();
+        	param.password = md5($("#firstPwd").val()).toLocaleUpperCase();
         	param.id = $("#id").val();
         	
         	$.ajax({'url':"updataUser.do",

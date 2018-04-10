@@ -45,7 +45,7 @@ public class LoginController {
 	@RequestMapping(value="/userLogin", method = RequestMethod.POST)
 	public String login(@RequestParam String username, @RequestParam String password, Model model,HttpSession session) throws IOException, NoSuchAlgorithmException {
 		User user = service.getUser(username);
-		if(user==null||user.getPassword()==null||!MD5Util.checkPassword(password,user.getPassword())) {
+		if(user==null||user.getPassword()==null||!password.equals(user.getPassword())) {
 			model.addAttribute("LoginMessige", "用户名或密码错误！");
 			return "login";
 		}else if(user.getStatus()!=0) {

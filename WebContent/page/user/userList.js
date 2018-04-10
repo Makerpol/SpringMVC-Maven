@@ -34,13 +34,22 @@ layui.config({
 		});
 	}
 	
-	function order(data){
-		
-	}
-	
+	document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) {
+        	var param = $(".search_input").val();
+    		
+    		var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
+            setTimeout(function(){
+            	getUserList(start,num);
+            	toPage();
+                layer.close(index);
+            },2000);
+        }
+    };
+    
 	//查询
 	$(".search_btn").click(function(){
-		var newArray = [];
 		var param = $(".search_input").val();
 		
 		var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
@@ -264,7 +273,8 @@ layui.config({
 				
 				dataHtml += '<tr>'
 		    	+'<td><input type="checkbox" name="checked" value="'+ data[i].id+'" lay-skin="primary" lay-filter="choose"></td>'
-		    	+'<td align="left">'+data[i].realname+'</td>';
+		    	+'<td>'+data[i].realname+'</td>'
+		    	+'<td>'+data[i].name+'</td>';
 		    	
 				var text;
 		    	switch(data[i].grade){

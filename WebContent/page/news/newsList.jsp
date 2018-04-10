@@ -27,12 +27,22 @@ String userInfo = JSONObject.fromObject(user).toString();
 	<script type="text/javascript">
 		var user = '<%=userInfo%>';
 	</script>
+	<style type="text/css">
+	table tr td {
+	    overflow:hidden;
+	    white-space:nowrap;
+	    text-overflow:ellipsis;
+	    -o-text-overflow:ellipsis;
+	    -moz-text-overflow: ellipsis;
+	    -webkit-text-overflow: ellipsis;
+	}
+	</style>
 </head>
 <body class="childrenBody">
 	<blockquote class="layui-elem-quote news_search">
 		<div class="layui-inline">
 		    <div class="layui-input-inline">
-		    	<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
+		    	<input type="text" value="" placeholder="请输入文章标题" class="layui-input search_input">
 		    </div>
 		    <a class="layui-btn search_btn">查询</a>
 		</div>
@@ -48,7 +58,7 @@ String userInfo = JSONObject.fromObject(user).toString();
 		    <colgroup>
 				<col width="50">
 				<col width="50">
-				<col>
+				<col  width="600">
 				<col width="9%">
 				<col width="9%">
 				<col width="9%">
@@ -64,8 +74,8 @@ String userInfo = JSONObject.fromObject(user).toString();
 					<th>栏目类型</th>
 					<th>作者</th>
 					<th>审核状态</th>
-					<th>浏览权限</th>
-					<th class="order" value="desc">发布时间</th>
+					<th>置顶</th>
+					<th class="order" style="cursor:pointer" value="desc">发布时间</th>
 					<th>操作</th>
 				</tr> 
 		    </thead>

@@ -75,9 +75,19 @@ layui.config({
 		})
 	}
 	
+	document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) {
+        	var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
+            setTimeout(function(){
+            	getVideoList(start,num);
+                layer.close(index);
+            },500);
+        }
+    };
+	
 	//查询
 	$(".search_btn").click(function(){
-		var newArray = [];
 		var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
         setTimeout(function(){
         	getVideoList(start,num);

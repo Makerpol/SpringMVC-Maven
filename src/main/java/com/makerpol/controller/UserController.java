@@ -123,10 +123,10 @@ public class UserController {
 	public Map<Object,Object> updataUser(@RequestBody User user) throws Exception {
 		Map<Object,Object> map = new HashMap<Object,Object>();
 		
-		if(user.getPassword() != null) {
+		/*if(user.getPassword() != null) {
 			//MD5加密
 			user.setPassword(MD5Util.EncoderByMd5(user.getPassword()));
-		}
+		}*/
 		
 		try {
 			service.updataUser(user);

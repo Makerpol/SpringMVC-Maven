@@ -75,6 +75,16 @@ public class Paper {
     
     private String summary;
     
+    private Integer top;
+    
+	public Integer getTop() {
+		return top;
+	}
+
+	public void setTop(Integer top) {
+		this.top = top;
+	}
+
 	public String getSummary() {
 		return summary;
 	}

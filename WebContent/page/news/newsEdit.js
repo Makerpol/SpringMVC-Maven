@@ -96,6 +96,7 @@ layui.config({
  		param.type = $(".type").val();
  		param.show = data.field.show=="on" ? 0 : 1;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
+ 		param.top = data.field.top=="on"?1:0;
  		param.text = ue.getContent();
  		param.images = getFirstImg(param.text);
  		window.path = window.path==null?getVideoPath(param.text):window.path;

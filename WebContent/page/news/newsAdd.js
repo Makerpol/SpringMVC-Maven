@@ -1,3 +1,23 @@
+Date.prototype.format = function(format)
+{
+ var o = {
+ "M+" : this.getMonth()+1, //month
+ "d+" : this.getDate(),    //day
+ "h+" : this.getHours(),   //hour
+ "m+" : this.getMinutes(), //minute
+ "s+" : this.getSeconds(), //second
+ "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+ "S" : this.getMilliseconds() //millisecond
+ }
+ if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+ (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+ for(var k in o)if(new RegExp("("+ k +")").test(format))
+ format = format.replace(RegExp.$1,
+ RegExp.$1.length==1 ? o[k] :
+ ("00"+ o[k]).substr((""+ o[k]).length));
+ return format;
+}
+
 var LoginUser = $.parseJSON(user);
 layui.config({
 	base : "js/"
@@ -9,6 +29,8 @@ layui.config({
 		$ = layui.jquery;
 	
 	urlArray = null;
+	
+	$(".newsTime").attr("value",new Date().format("yyyy-MM-dd hh:mm:ss"));
 	
 	window.UEDITOR_HOME_URL = "/UEditor/";
 	var ue = UE.getEditor("paper_content");
@@ -65,9 +87,29 @@ layui.config({
 		}
 	}
 	
+	function checkContent(str,is_global){
+		var result;
+		console.log(result);
+		result = str.replace(/(^\s+)|(\s+$)/g,"");
+		if(is_global.toLowerCase()=="g")
+		{
+			result = result.replace(/\s/g,"");
+		}
+		console.log(result);
+	   return result;
+	}
 	
 	//提交文章
  	form.on("submit(addNews)",function(data){
+ 		
+ 		if(checkContent(ue.getContent(),"g").length==0){
+ 			layer.open({ 
+ 				title:'错误提示',
+				content: '文章内容不能为空！'
+			});
+ 			return false;
+ 		}
+ 		
  		var index = layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
  		var param = {};
  		param.paperName = $(".newsName").val();
@@ -75,12 +117,13 @@ layui.config({
  		param.date = $(".newsTime").val();
  		param.author = $(".newsAuthor").val();
  		param.type = $(".type").val();
+ 		param.text = ue.getContent();
  		param.show = data.field.show=="on" ? 1 : 0;
  		param.status = data.field.shenhe=="on" ? 0 : 1;
- 		param.text = ue.getContent();
+ 		param.top = data.field.top=="on"?1:0;
+ 		
  		param.images = getFirstImg(param.text);
  		window.path = window.path==null?getVideoPath(param.text):window.path;
- 		console.log(window.path);
  		$.ajax({
 			url : "addPaper.do",
 			type : "post",
@@ -126,7 +169,6 @@ layui.config({
 			dataType : "json",
 			contentType:'application/json',
 			success:function(data){
-				console.log(data.msg);
 			}
 		})
 	}
@@ -140,7 +182,6 @@ layui.config({
 			var imgPath = arr[0].match(srcReg);
 			var path = imgPath[0].replace(/src=/i, "");
 			path = path.replace("\"","");
-			console.log(path);
 			return path;
 		}
 	}
@@ -154,7 +195,6 @@ layui.config({
 			var imgPath = arr[0].match(srcReg);
 			var path = imgPath[0].replace(/src=/i, "");
 			path = path.replace("\"","");
-			console.log(path);
 			return path;
 		}
  	}
